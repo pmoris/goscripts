@@ -33,39 +33,6 @@ inputPath = os.path.abspath(args.genes)
 with open(inputPath, 'r') as inGenes:
     geneSet = set([line.rstrip() for line in inGenes][1:])
 
-# # Import .obo file
-# oboPath = os.path.abspath(args.obo)
-# with open(oboPath, 'r') as oboFile:
-#     obo = oboFile.read()
-
-# # Import .gaf file
-# gafPath = os.path.abspath(args.gaf)
-# with open(gafPath, 'r') as gafFile:
-#     gafDict = {}
-#     for line in gafFile:
-#         if not line.startswith('!'):    # ignore comments in gaf file
-#             splitLine = line.split('\t')     # split column-wise
-#             uniprotAC = splitLine[1]
-#             goTerm = splitLine[4]
-#             goQualifier = splitLine[3]
-#             if not 'NOT' in goQualifier:    # ignore annotations with "NOT"
-#                 if uniprotAC in geneSet:    # only keep genes present in input gene set
-#                     if not uniprotAC in gafDict:    # Create new key if AC does not already appear in dictionary
-#                         # make dictionary containing uniprot AC as key and set
-#                         # of GO's
-#                         gafDict[uniprotAC] = {goTerm}
-#                         # gafDict[uniprotAC] = set([goTerm])
-#                     else:
-#                         gafDict[uniprotAC].add(goTerm)
-# # .gaf dataframe
-# gafDf = pd.read_csv(gafPath, sep='\t', header=None, comment='!')
-# # only keep genes present in input gene set
-# gafDf = gafDf[gafDf[1].isin(geneSet)]
-# # ignore annotations with "NOT"
-# gafDf = gafDf[~gafDf[3].str.contains('NOT', na=False)]
-# gafDf = gafDf.reset_index(drop=True)
-
-
 def importGAF(path, geneSet):
     """
     Imports a GAF file and generates a dictionary mapping the gene ID to the GO ID.
