@@ -1,5 +1,7 @@
 import pandas as pd
-import sys
+import sys, os
+
+print('Reading PPI entries from',sys.argv[1])
 
 # Read in human-ebola PPI network from first positional argumnet
 # ppi = pd.read_csv(sys.argv[1], delimiter='\t')
@@ -27,14 +29,17 @@ orthologs = pd.read_csv(sys.argv[2], delimiter='\t')
 
 # Add binary indicator to human-bat PPI list if a bat ortholog exists for the human protein
 ppi['batOrthologExists'] = ppi['uniprot_AC_1'].isin(orthologs['uniprot_AC_1'])
+print('Writing new PPI files in',os.getcwd())
 ppi.to_csv('ppi-human-ebola-bat-ortholog.csv', sep='\t', index=False)
 
 # Subset PPIs where human partner (AC1) does not appear in human-bat
 # ortholog list
 ppi_missingInBat = ppi[~ppi['uniprot_AC_1'].isin(orthologs['uniprot_AC_1'])]
+ppi_missingInBat.to_csv('ppi-human-ebola-missing-bat.csv', sep='\t', index=False)
 
 # Subset PPIs where human partner (AC1) does appear in human-bat ortholog list
 ppi_presentInBat = ppi[~ppi.index.isin(ppi_missingInBat.index)]
+ppi_presentInBat.to_csv('ppi-human-ebola-present-bat.csv', sep='\t', index=False)
 # ppi[ppi['uniprot_AC_1'].isin(orthologs['uniprot_AC_1'])]
 
 # Check if subsets add up to original ppi list
