@@ -65,3 +65,7 @@ if __name__ == '__main__':
                        minGenes=3, threshold=0.05)
 
     print(pValues)
+
+    pValuesCorrected = 
+
+    # propagateparents documentatie afwerken
