@@ -1,3 +1,5 @@
 data/go_data/
 data/hpidb2/hpidb2*
 docs/.*
+goenrichment/__pycache__/
+data/__pycache__/
