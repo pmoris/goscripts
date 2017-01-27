@@ -4,7 +4,7 @@
 @author: Pieter Moris
 '''
 
-import pandas as pd
+import numpy as np
 import statsmodels.sandbox.stats.multicomp
 
 from scipy.stats import hypergeom
@@ -117,16 +117,16 @@ def countGOassociations(validTerms, gafDict):
          The number of associated genes.
      """
 
-        GOcounter = 0
+    GOcounter = 0
 
-        # For each gene:GO id set pair in the GAF dictionary
-        for gene, GOids in gafDict.items():
-            # Increment the GO counter if the valid terms set shares a member
-            # with the GO id set of the current gene
-            if not validTerms.isdisjoint(GOids):
-                GOcounter += 1
+    # For each gene:GO id set pair in the GAF dictionary
+    for gene, GOids in gafDict.items():
+        # Increment the GO counter if the valid terms set shares a member
+        # with the GO id set of the current gene
+        if not validTerms.isdisjoint(GOids):
+            GOcounter += 1
 
-        return GOcounter
+    return GOcounter
 
 
 def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
@@ -137,23 +137,24 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
     First, all GO id's associated with the genes in the subset of interest,
     i.e. those defined in the gafSubset dictionary, will be tested
     using a onesided hypergeometric test.
+
     If the test is not significant at the chosen threshold, the test will
     recursively be performed for all of the GO id's parents.
-    If the test is significant, 
+    If the test is significant, the recursive call will stop here.
 
     NOTE: At the moment, this means the test will be propagated until the top level, but after a certain point it is probably not worth testing anymore.
     NOTE: Isn't this cherry picking / p-value manipulation?
     C) NICOLAS: set maken van termen vanaf wanneer (dus propageer vanaf onder) er genoeg genen geassocieerd zijn, die opslaan en enkel deze testen. 
 
     If the number of genes associated with a GO id is lower than minGenes,
-    the test will be skipped for this id, but its parents will be tested.
+    the test will be skipped for this id, but its parents will recursively be tested.
 
     For each test, the number of genes associated with the GO id is found
     by counting the number of genes associated with the GO id itself or 
     with any of its child terms.
 
-    In the end a dictionary containing the tested GO id's mapped to a p-value.
-    Any term that was not tested
+    In the end, a dictionary containing the tested GO id's mapped to p-values.
+    Any term that was not tested will be absent.
 
     Parameters
     ----------
@@ -216,7 +217,11 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
 def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
                     gafSubset, minGenes, threshold, pValues):
     """
-    Counts the number of genes associated with at least one of the provided GO terms.
+    Implements the recursive enrichment tests for the enrichmentAnalysis() function
+    by propagating through parent terms in case of an insignificant result or low
+    gene count.
+
+    NOTE: Does not return anything, but fills in the passed pValues dictionary.
 
     Parameters
     ----------
@@ -241,11 +246,6 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     pValues : dict
         An empty dictionary that gets passed through the recursion and
         filled with a GO id : p-value pair for every enrichment test.     
-
-    Returns
-    -------
-    int
-     The number of associated genes.
     """
 
     # If a certain GOid already has a p-value stored,
@@ -288,8 +288,25 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
             else:
                 return
 
-def
+def multipleTestingCorrection(pValues, testType='fdr'):
+    """
+    Performs multiple testing correction for a list of supplied p-values.
 
+    Parameters
+    ----------
+    pValues : dict
+        A dictionary mapping GO id's to p-values. Only GO id's that
+        were tested are returned.
+    testType : str
+        Specifies the type of multiple correction.
+        Options include: `bonferroni` and `fdr` (Benjamini Hochberg). 
+
+    Returns
+    -------
+    dict
+        A dictionary of GO id's mapped to their corrected p-values.
+    """
+    statsmodels.sandbox.stats.multicomp.multipleTestingCorrection()
 
 class goResults():
 

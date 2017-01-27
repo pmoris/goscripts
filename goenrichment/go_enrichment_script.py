@@ -28,9 +28,11 @@ if __name__ == '__main__':
                         help='.obo file containing gene ontology')
     parser.add_argument('-g', '--gaf', type=str, required=True, dest='gaf',
                         help='.gaf file containing GO annotations')
-    parser.add_argument('-O', '--output', type=argparse.FileType('w'),
-                        default='enrichment-results.csv', dest='output',
-                        help='Specifies the name or path of the output csv file')
+    # parser.add_argument('-O', '--output', type=argparse.FileType('w'),
+    # default='enrichment-results.csv', dest='output',
+    # help='Specifies the name or path of the output csv file')
+    parser.add_argument('-O', '--output', type=str, default='enrichment_results.csv', dest='outputFile',
+                        help='Output file or path')
     parser.add_argument('-m', '--min', type=int, default='3', dest='minGenes',
                         help='Minimum number of genes before considering a GO category')
     parser.add_argument('-t', '--thresh', type=float, default='0.1', dest='threshold',
@@ -62,10 +64,21 @@ if __name__ == '__main__':
         print('id', i, 'parents', GOterms[i].parents)
 
     pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
-                       minGenes=3, threshold=0.05)
+                                                  minGenes=3, threshold=0.05)
 
     print(pValues)
 
-    pValuesCorrected = 
+    import numpy as np
+    keys = np.array(list(pValues.keys()))
+    pvalues = np.array(list(pValues.values()))
 
-    # propagateparents documentatie afwerken
+    import statsmodels.sandbox.stats.multicomp
+    fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvalues)
+
+    print(fdr)
+
+    output = np.column_stack(
+        (keys.flatten(), pvalues.flatten(), fdr[1].flatten()))
+
+    with open(args.outputFile, 'wb') as outFile:
+        np.savetxt(args.outputFile, output, delimiter='\t')
