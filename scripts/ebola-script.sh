@@ -55,7 +55,7 @@ cd ..
 echo "Creating directory go_data in data directory to store GO obo and gaf files"
 mkdir -p data/go_data
 wget -nc ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/HUMAN/goa_human.gaf.gz -O data/go_data/goa_human.gaf.gz
-# gzip -d goa_human.gaf.gz
+gzip -d goa_human.gaf.gz
 # wget -nc http://purl.obolibrary.org/obo/go/releases/2016-11-26/go.owl data/go.owl
 wget -nc http://purl.obolibrary.org/obo/go/releases/2016-11-26/go.obo -O data/go_data/go.obo
 
