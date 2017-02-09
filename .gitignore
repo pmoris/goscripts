@@ -4,3 +4,4 @@ docs/.*
 goenrichment/__pycache__/
 data/__pycache__/
 goenrichment/__pycache__/*
+.idea/
