@@ -41,6 +41,7 @@ if __name__ == '__main__':
 
     background = genelist_importer.importBackground(args.background)
     interest = genelist_importer.importSubset(args.subset)
+
     if not genelist_importer.isValidSubset(interest, background):
         print("WARNING! Subset contains genes not present in background set!")
         print(interest - background)
@@ -54,31 +55,32 @@ if __name__ == '__main__':
 
     print('background\n', background)
     print('interest\n', interest)
-
-    for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
-        print('id', i, 'parents', GOterms[i].parents)
-
+    #
+    # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
+    #     print('id', i, 'parents', GOterms[i].parents)
+    #
     obo_tools.buildGOtree(GOterms)
-
-    for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
-        print('id', i, 'parents', GOterms[i].parents)
+    #
+    # print('\n After propagating through parents')
+    #
+    # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
+    #     print('id', i, 'parents', GOterms[i].parents)
 
     pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
-                                                  minGenes=3, threshold=0.05)
+                                                  minGenes=0, threshold=0.05)
 
     print(pValues)
+    print(sorted(pValues.values()))
 
-    import numpy as np
-    keys = np.array(list(pValues.keys()))
-    pvalues = np.array(list(pValues.values()))
+    output = enrichment_stats.multipleTestingCorrection(pValues, threshold = 0.05)
 
-    import statsmodels.sandbox.stats.multicomp
-    fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvalues)
+    print(output)
 
-    print(fdr)
+    # import numpy as np
+    #
+    # np.savetxt('enrichment_results.txt', output, delimiter='\t')
 
-    output = np.column_stack(
-        (keys.flatten(), pvalues.flatten(), fdr[1].flatten()))
 
-    with open(args.outputFile, 'wb') as outFile:
-        np.savetxt(args.outputFile, output, delimiter='\t')
+
+    # with open(args.outputFile, 'wb') as outFile:
+    #     np.savetxt(args.outputFile, output, delimiter='\t')

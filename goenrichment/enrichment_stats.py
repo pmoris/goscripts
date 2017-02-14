@@ -213,6 +213,9 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
         recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
                         gafDict, gafSubset, minGenes, threshold, pValues)
 
+    print('Tested', len(pValues), 'GO categories.')
+    sig = sum(i < threshold for i in pValues.values())
+    print(sig, 'were significant at alpha =',threshold)
     return pValues
 
 
@@ -290,7 +293,7 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
             else:
                 return
 
-def multipleTestingCorrection(pValues, testType='fdr'):
+def multipleTestingCorrection(pValues, testType='fdr', threshold = 0.05):
     """
     Performs multiple testing correction for a list of supplied p-values.
 
@@ -301,20 +304,38 @@ def multipleTestingCorrection(pValues, testType='fdr'):
         were tested are returned.
     testType : str
         Specifies the type of multiple correction.
-        Options include: `bonferroni` and `fdr` (Benjamini Hochberg). 
+        Options include: `bonferroni` and `fdr` (Benjamini Hochberg).
+    threshold : float
+        The significance level to use.
 
     Returns
     -------
-    dict
-        A dictionary of GO id's mapped to their corrected p-values.
+    array
+        A numpy array containing uniprot AC's, p-values and corrected q-values.
     """
-    statsmodels.sandbox.stats.multicomp.multipleTestingCorrection()
 
-class goResults():
+    # Convert uniprot AC's and associated p-values to np arrays
+    keys = np.array(list(pValues.keys()))
+    pvals = np.array(list(pValues.values()))
 
-    def __init__(self):
-        self.pValues = {}
-        self.qValues = {}
-        self.threshold = 0
+    # Perform multiple testing correction
+    fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvals, threshold)
 
-    # def multipleTestingCorrection(self, threshold):
+    print(sum(fdr[0]),'GO categories out of',len(pvals),'significant after multiple testing correction.')
+
+    # Create array with ID's, p-values and q-values
+    outputArray = np.column_stack((keys, pvals, fdr[1]))
+
+    outputArray = outputArray[outputArray[:,2].argsort()]
+
+    return outputArray
+
+
+# class goResults():
+#
+#     def __init__(self):
+#         self.pValues = {}
+#         self.qValues = {}
+#         self.threshold = 0
+#
+#     # def multipleTestingCorrection(self, threshold):
