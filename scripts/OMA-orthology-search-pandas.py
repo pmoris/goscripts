@@ -1,11 +1,8 @@
 import pandas as pd
 import sys, os
 
-print('Reading PPI entries from',sys.argv[1])
-
 # Read in human-ebola PPI network from first positional argumnet
-# ppi = pd.read_csv(sys.argv[1], delimiter='\t')
-# ppi = pd.read_csv('hpidb2/ppi-human-ebola.csv', delimiter='\t')
+print('Reading PPI entries from',sys.argv[1])
 ppi = pd.read_csv(sys.argv[1], delimiter='\t')
 
 # Extract uniprot accession numbers and store in new columns
@@ -22,9 +19,10 @@ ppi['uniprot_AC_2'] = ppi.iloc[:, 1].str.rsplit('kb:').str[1]    # ebola
 # p = re.search(r'kb:(.*)',humanAC[0])
 # print(p.group(1))
 
-# Read in human - Myotis lucifugus ortholog pairs, frpm second positional argument
-# uniprot_AC_1 = human | AC_2 = Myotis lucifugus
+# Read in human - Myotis lucifugus ortholog pairs, from second positional argument
+# uniprot_AC_1 = human       AC_2 = Myotis lucifugus
 # orthologs = pd.read_csv('oma_orthologs/orthologs_human_myotis.csv', delimiter='\t')
+print('Reading orthologs from', sys.argv[2])
 orthologs = pd.read_csv(sys.argv[2], delimiter='\t')
 
 # Add binary indicator to human-bat PPI list if a bat ortholog exists for the human protein
@@ -41,6 +39,11 @@ ppi_missingInBat.to_csv('ppi-human-ebola-missing-bat.csv', sep='\t', index=False
 ppi_presentInBat = ppi[~ppi.index.isin(ppi_missingInBat.index)]
 ppi_presentInBat.to_csv('ppi-human-ebola-present-bat.csv', sep='\t', index=False)
 # ppi[ppi['uniprot_AC_1'].isin(orthologs['uniprot_AC_1'])]
+
+# Deduplicate AC1/AC2 pairs to separate file for network visualisation
+ppi_dedup = ppi.drop_duplicates(subset=['uniprot_AC_1', 'uniprot_AC_2'])
+ppi_dedup.to_csv('ppi-human-ebola-bat-ortholog-dedup.csv', sep='\t', index=False)
+
 
 # Check if subsets add up to original ppi list
 # print(ppi_missingInBat['uniprot_AC_1'].unique().size + len(ppi_presentInBat['uniprot_AC_1'].unique()) == ppi['uniprot_AC_1'].unique().size)

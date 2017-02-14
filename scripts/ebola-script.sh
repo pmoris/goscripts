@@ -47,8 +47,11 @@ cd data
 python3 ../scripts/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebola.csv	oma_orthologs/orthologs_human_myotis.csv 
 # outputs:
 #	updated hpidb2-human-ebola-ortholog.csv that contains additional column "batOrthologExists"
+#	updated hpidb2-human-ebola-ortholog-dedup.csv with same output but omitting duplicate pairs
 #	ppi-human-ebola-present-bat.csv that contains only entries with a bat ortholog
 #	ppi-human-ebola-missing-bat.csv	that contains only entries without a bat ortholog
+cut -f27 ppi-human-ebola-ortholog-dedup.csv > background.txt
+cut -f27 ppi-human-ebola-missing-bat.csv > interest.txt
 cd ..
 
 # Download gaf and obo files for human GOA - version 2.1 !Generated: 2016-11-28 09:32
