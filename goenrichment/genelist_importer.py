@@ -24,10 +24,12 @@ def importBackground(path):
     Notes: Gene lists should not contain a header. One gene per line.
     Possible improvement: check for file structure and allow headers, comma separated lists, etc.
     """
-    with open(path, 'r') as inGenes:
+
+    backgroundPath = os.path.abspath(path)
+    with open(backgroundPath, 'r') as inGenes:
         backgroundSet = set([line.rstrip() for line in inGenes][1:])
     print('Retrieved', len(backgroundSet),
-          'background uniprot AC\'s from', path)
+          'background uniprot AC\'s from', backgroundPath)
     return backgroundSet
 
 
@@ -47,9 +49,11 @@ def importSubset(path):
 
     Notes: Gene lists should not contain a header. One gene per line.
     """
-    with open(path, 'r') as inGenes:
+
+    subsetPath = os.path.abspath(path)
+    with open(subsetPath, 'r') as inGenes:
         geneSubset = set([line.rstrip() for line in inGenes][1:])
-    print('Retrieved', len(geneSubset), 'subset uniprot AC\'s from', path)
+    print('Retrieved', len(geneSubset), 'subset uniprot AC\'s from', subsetPath)
     return geneSubset
 
 
