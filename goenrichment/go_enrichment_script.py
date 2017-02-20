@@ -20,7 +20,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Script to perform GO enrichment analysis')
     # https://stackoverflow.com/questions/18862836/how-to-open-file-using-argparse
-    parser.add_argument('-b', '--background', type=str, required=True, dest='background',
+    parser.add_argument('-b', '--background', type=str, default='full annotation set', dest='background',
                         help='File containing a list of uniprot accession numbers for the background set of genes')
     parser.add_argument('-s', '--subset', type=str, required=True, dest='subset',
                         help='File containing a list of uniprot accession numbers for the subset of genes of interest')
@@ -39,18 +39,28 @@ if __name__ == '__main__':
                         help='P-value cut-off to use for significance testing')
     args = parser.parse_args()
 
-    background = genelist_importer.importBackground(args.background)
+    # Import the uniprot set of interest
     interest = genelist_importer.importSubset(args.subset)
+    # If no background was provided, retrieve the full set
+    if args.background == 'full annotation set':
+        gafDict = gaf_parser.importFullGAF(args.gaf)
+        background = set(gafDict.keys())
+    # otherwise import background and use this to limit gene association import
+    else:
+        background = genelist_importer.importBackground(args.background)
+        gafDict = gaf_parser.importGAF(args.gaf, background)
 
+    # import obo file
+    gafSubset = gaf_parser.createSubsetGafDict(interest, gafDict)
+
+    # Check if the set of interest contains uniprot ac's not present in the background set
     if not genelist_importer.isValidSubset(interest, background):
         print("WARNING! Subset contains genes not present in background set!")
         print(interest - background)
-        print('Terminating script.')
+        print('Terminating script...')
         exit()
 
-    gafDict = gaf_parser.importGAF(args.gaf, background)
-    gafSubset = gaf_parser.createSubsetGafDict(interest, gafDict)
-
+    # import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
     print('background\n', background)
@@ -58,16 +68,21 @@ if __name__ == '__main__':
     #
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
-    #
+
+    # Build full GO hierarchy
+    print('Propagating through ontology to find all children and parents for each term...')
     obo_tools.buildGOtree(GOterms)
-    #
+
     # print('\n After propagating through parents')
     #
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
 
     pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
-                                                  minGenes=0, threshold=0.05)
+                                                  minGenes=0, threshold=0.2)
+
+    # pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
+    #                                               minGenes=args.minGenes, threshold=args.threshold)
 
     print(pValues)
     print(sorted(pValues.values()))
