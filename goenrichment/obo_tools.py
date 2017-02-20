@@ -119,6 +119,8 @@ def importOBO(path):
                     GOdict[GOid].altid.append(line.split(': ')[1].rstrip())
                 elif line.startswith('is_a'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
+
+    print('Retrieved', len(GOdict), 'GO terms from', path)
     return GOdict
 
 
