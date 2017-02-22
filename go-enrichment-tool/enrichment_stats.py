@@ -321,7 +321,7 @@ def multipleTestingCorrection(pValues, testType='fdr', threshold = 0.05):
     # Perform multiple testing correction
     fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvals, threshold)
 
-    print(sum(fdr[0]),'GO categories out of',len(pvals),'significant after multiple testing correction.')
+    print(sum(fdr[0]),'GO categories out of',len(pvals),'were significant after FDR multiple testing correction.')
 
     # Create array with ID's, p-values and q-values
     outputArray = np.column_stack((keys, pvals, fdr[1]))
