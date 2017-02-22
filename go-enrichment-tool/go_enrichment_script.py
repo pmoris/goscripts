@@ -35,6 +35,8 @@ if __name__ == '__main__':
                         help='Output file or path')
     parser.add_argument('-m', '--min', type=int, default='3', dest='minGenes',
                         help='Minimum number of genes before considering a GO category')
+    parser.add_argument('-T', '--testing-thresh', type=float, default='0.05', dest='testing_threshold',
+                        help='P-value cut-off to use to stop GO tree propogation during testing')
     parser.add_argument('-t', '--thresh', type=float, default='0.1', dest='threshold',
                         help='P-value cut-off to use for significance testing')
     args = parser.parse_args()
@@ -78,24 +80,21 @@ if __name__ == '__main__':
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
 
-    pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
-                                                  minGenes=0, threshold=0.2)
+    pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
 
-    # pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset,
-    #                                               minGenes=args.minGenes, threshold=args.threshold)
-
+    print('\nTested GO-terms and their p-values:')
     print(pValues)
+    print('\nOrdered p-values:')
     print(sorted(pValues.values()))
 
-    output = enrichment_stats.multipleTestingCorrection(pValues, threshold = 0.05)
+    output = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
+    print('\nGO-term, uncorrected and FDR-corrected p-values:')
     print(output)
 
     # import numpy as np
     #
     # np.savetxt('enrichment_results.txt', output, delimiter='\t')
-
-
 
     # with open(args.outputFile, 'wb') as outFile:
     #     np.savetxt(args.outputFile, output, delimiter='\t')
