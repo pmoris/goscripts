@@ -14,7 +14,7 @@ wget -nc http://www.agbase.msstate.edu/hpi/downloads/hpidb2.mitab.zip -O data/hp
 cd data/hpidb2
 unzip -u hpidb2.zip
 cd ../..
-rm data/hpidb2/hpidb2.zip
+# rm data/hpidb2/hpidb2.zip
 
 # Extract all interactions involving ebola
 echo "Extracting PPI's involving ebola"
@@ -34,6 +34,10 @@ python ../../data-preprocessing/entrezTaxIDlookup.py taxid-list.txt taxonomyID.c
 echo "The following taxon ID's were retrieved from the HPIDB 2.0 database:"
 cat taxonomyID.csv | tail -n +2 | while read x; do echo "${x} count: $(cut -f10,11 ppi-human-ebola.csv | grep $(echo $x | awk '{print $1}') | wc -l)"; done
 # cut -f1 taxonomyID.csv | tail -n +2 | while read x; do echo "$x count: $(cut -f11 ppi-human-ebola.csv | grep $x | wc -l)"; done
+
+# Print the size of the PPI network
+echo "The size of the PPI network is `tail -n +2 ppi-human-ebola.csv | wc -l | awk '{print $1}' `."
+echo "`tail -n +2 ppi-human-ebola.csv | cut -f1 | sort -u | wc -l | awk '{print $1}' ` of which are unique human proteins."
 cd ../..
 
 # Download 1-1 genome pairs between human and myotis lucifugus from omabrowser.org 
@@ -41,6 +45,10 @@ echo "Creating directory oma_orthologs in data directory to store OMA orthologs"
 mkdir -p data/oma_orthologs
 wget 'http://omabrowser.org/cgi-bin/gateway.pl?f=PairwiseOrthologs&p1=HUMAN&p2=MYOLU&p3=UniProt' -O data/oma_orthologs/orthologs_human_myotis.csv
 sed -i '1s/^/uniprot_AC_1\tuniprot_AC_2\torthology_type\tOMA_group\n/' data/oma_orthologs/orthologs_human_myotis.csv
+
+# Print the number of orthologs found
+echo "The number of human - myotis lucifugus ortholog pairs is `tail -n +2 data/oma_orthologs/orthologs_human_myotis.csv | wc -l | awk '{print $1}' `."
+echo "The number of unique human proteins involved is `tail -n +2 orthologs_human_myotis.csv | cut -f1 | sort -u | wc -l | awk '{print $1}' `."
 
 # Check for each human-ebola PPI if a bat ortholog exists for the human protein
 echo "Processing PPI data to include information about the existance of bat orthologs, saved to ppi-human-ebola-bat-ortholog.csv in main data directory"
@@ -51,9 +59,13 @@ python ../data-preprocessing/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebo
 #	updated hpidb2-human-ebola-ortholog-dedup.csv with same output but omitting duplicate pairs
 #	ppi-human-ebola-present-bat.csv that contains only entries with a bat ortholog
 #	ppi-human-ebola-missing-bat.csv	that contains only entries without a bat ortholog
-cut -f27 ppi-human-ebola-ortholog-dedup.csv | sort -u > background.txt
-cut -f27 ppi-human-ebola-missing-bat.csv | sort -u > interest.txt
-# create deduplicated lists of uniprot ac's.
+echo "The number of unique human proteins in the ebola - human PPI is `tail -n +2 ppi-human-ebola-bat-ortholog-dedup.csv | wc -l | awk '{print $1}'`."
+
+
+# Create deduplicated lists of uniprot ac's.
+cut -f27 ppi-human-ebola-bat-ortholog.csv | tail -n +2 | sort -u > background.txt
+cut -f27 ppi-human-ebola-missing-bat.csv | tail -n +2 | sort -u > interest.txt
+
 cd ..
 
 # Download gaf and obo files for human GOA - version 2.1 !Generated: 2016-11-28 09:32
