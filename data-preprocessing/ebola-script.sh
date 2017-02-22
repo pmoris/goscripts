@@ -25,26 +25,27 @@ grep ebola data/hpidb2/*plus* >> data/hpidb2/ppi-human-ebola.csv
 echo "Writing ebola taxids to taxonomyID.csv"
  { tail -n +2 data/hpidb2/ppi-human-ebola.csv | cut -f10  ; tail -n +2 data/hpidb2/ppi-human-ebola.csv | cut -f11 ; } | sort -u > data/hpidb2/taxid-list.txt
 
-# Print number of PPIs for each taxon to screen
-# cut -f1 taxonomyID.csv | tail -n +2 | while read x; do echo "$x count: $(cut -f11 ppi-human-ebola.csv | grep $x | wc -l)"; done
-cat taxonomyID.csv | tail -n +2 | while read x; do echo "${x} count: $(cut -f10,11 ppi-human-ebola.csv | grep $(echo $x | awk '{print $1}') | wc -l)"; done
-
 # Search Entrez for list of taxonomy ID's using python script, save as taxonomyID.csv
 echo "Retrieving taxonomy ID's from Entrez"
 cd data/hpidb2
-python3 ../../scripts/entrezTaxIDlookup.py taxid-list.txt
+python ../../data-preprocessing/entrezTaxIDlookup.py taxid-list.txt taxonomyID.csv
+
+# Print number of PPIs for each taxon to screen
+echo "The following taxon ID's were retrieved from the HPIDB 2.0 database:"
+cat taxonomyID.csv | tail -n +2 | while read x; do echo "${x} count: $(cut -f10,11 ppi-human-ebola.csv | grep $(echo $x | awk '{print $1}') | wc -l)"; done
+# cut -f1 taxonomyID.csv | tail -n +2 | while read x; do echo "$x count: $(cut -f11 ppi-human-ebola.csv | grep $x | wc -l)"; done
 cd ../..
 
 # Download 1-1 genome pairs between human and myotis lucifugus from omabrowser.org 
 echo "Creating directory oma_orthologs in data directory to store OMA orthologs"
 mkdir -p data/oma_orthologs
-wget -nc 'http://omabrowser.org/cgi-bin/gateway.pl?f=PairwiseOrthologs&p1=HUMAN&p2=MYOLU&p3=UniProt' -O data/oma_orthologs/orthologs_human_myotis.csv
+wget 'http://omabrowser.org/cgi-bin/gateway.pl?f=PairwiseOrthologs&p1=HUMAN&p2=MYOLU&p3=UniProt' -O data/oma_orthologs/orthologs_human_myotis.csv
 sed -i '1s/^/uniprot_AC_1\tuniprot_AC_2\torthology_type\tOMA_group\n/' data/oma_orthologs/orthologs_human_myotis.csv
 
 # Check for each human-ebola PPI if a bat ortholog exists for the human protein
 echo "Processing PPI data to include information about the existance of bat orthologs, saved to ppi-human-ebola-bat-ortholog.csv in main data directory"
 cd data
-python3 ../scripts/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebola.csv	oma_orthologs/orthologs_human_myotis.csv 
+python ../data-preprocessing/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebola.csv	oma_orthologs/orthologs_human_myotis.csv 
 # outputs:
 #	updated hpidb2-human-ebola-ortholog.csv that contains additional column "batOrthologExists"
 #	updated hpidb2-human-ebola-ortholog-dedup.csv with same output but omitting duplicate pairs
