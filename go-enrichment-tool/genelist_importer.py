@@ -27,7 +27,7 @@ def importBackground(path):
 
     backgroundPath = os.path.abspath(path)
     with open(backgroundPath, 'r') as inGenes:
-        backgroundSet = set([line.rstrip() for line in inGenes][1:])
+        backgroundSet = set([line.rstrip() for line in inGenes])
     print('Retrieved', len(backgroundSet),
           'background uniprot AC\'s from', backgroundPath)
     return backgroundSet
@@ -52,7 +52,7 @@ def importSubset(path):
 
     subsetPath = os.path.abspath(path)
     with open(subsetPath, 'r') as inGenes:
-        geneSubset = set([line.rstrip() for line in inGenes][1:])
+        geneSubset = set([line.rstrip() for line in inGenes])
     print('Retrieved', len(geneSubset), 'subset uniprot AC\'s from', subsetPath)
     return geneSubset
 
