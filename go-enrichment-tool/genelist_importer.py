@@ -61,5 +61,6 @@ def isValidSubset(subset, background):
     if subset.issubset(background):
         return True
     else:
-        print('WARNING! Subset contained genes not present in background list. Terminating program now.')
-        exit()
+        print('WARNING! Subset contained genes not present in background list...')
+        print([AC for AC in subset if AC not in background])
+
