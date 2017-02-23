@@ -111,13 +111,13 @@ def importOBO(path):
                         # key
                         GOdict[GOid] = goTerm(GOid)
 
-                elif line.startswith('name'):
+                elif line.startswith('name:'):
                     GOdict[GOid].name = line.split(': ')[1].rstrip()
-                elif line.startswith('namespace'):
+                elif line.startswith('namespace:'):
                     GOdict[GOid].namespace = line.split(': ')[1].rstrip()
-                elif line.startswith('alt_id'):
+                elif line.startswith('alt_id:'):
                     GOdict[GOid].altid.append(line.split(': ')[1].rstrip())
-                elif line.startswith('is_a'):
+                elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path)
