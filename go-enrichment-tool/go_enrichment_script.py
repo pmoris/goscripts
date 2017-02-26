@@ -87,16 +87,20 @@ if __name__ == '__main__':
     print('\nOrdered p-values:')
     print(sorted(pValues.values()))
 
-    output = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
+    correctedPvalues = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
-
+    output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
 
     print('\nGO-term, description and uncorrected and FDR-corrected p-values:')
     print(output)
 
     # import numpy as np
-    #
-    # np.savetxt('enrichment_results.txt', output, delimiter='\t')
 
+    # np.savetxt('enrichment_results.txt', output, delimiter='\t')
+    #
+    # print('Saving output to', args.outputFile)
     # with open(args.outputFile, 'wb') as outFile:
-    #     np.savetxt(args.outputFile, output, delimiter='\t')
+    #     for line in output:
+    #         np.savetxt(outFile, line, '<U100')
+        # output.tofile(outFile, '\t')
+        # np.savetxt(args.outputFile, output, delimiter='\t')
