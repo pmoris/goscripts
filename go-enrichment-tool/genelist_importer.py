@@ -58,9 +58,29 @@ def importSubset(path):
 
 
 def isValidSubset(subset, background):
+    """
+    Checks if the gene subset of interest contains genes not present in the background set.
+    If there are additional genes they are removed.
+
+    Parameters
+    ----------
+    subset : set of str
+        A subset of uniprot ACs of interest.
+    background : set of str
+        A set of uniprot ACs to be used as the background.
+
+    Returns
+    -------
+    set of str
+        A cleaned subset of uniprot ACs of interest.
+    """
+
     if subset.issubset(background):
-        return True
+        return subset
     else:
         print('WARNING! Subset contained genes not present in background list...')
         print([AC for AC in subset if AC not in background])
+        print('Removing these genes from the set of interest...')
+        print(subset)
+        return subset.difference([AC for AC in subset if AC not in background])
 

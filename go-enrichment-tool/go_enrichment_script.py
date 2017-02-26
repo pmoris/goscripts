@@ -43,31 +43,31 @@ if __name__ == '__main__':
 
     # Import the uniprot set of interest
     interest = genelist_importer.importSubset(args.subset)
-    # If no background was provided, retrieve the full set
+
+    # If no background is provided, import the gene association file and retrieve
+    # the full background set from it
     if args.background == 'full annotation set':
+        print('No background gene set provided, retrieving all genes from the gene annotation file...')
         gafDict = gaf_parser.importFullGAF(args.gaf)
         background = set(gafDict.keys())
-    # otherwise import background and use this to limit gene association import
+    # otherwise import the background set and use this to limit gene association import
     else:
         background = genelist_importer.importBackground(args.background)
         gafDict = gaf_parser.importGAF(args.gaf, background)
 
-    # import obo file
+    # Generate a gene association file for the subset of interest too
     gafSubset = gaf_parser.createSubsetGafDict(interest, gafDict)
 
+    # Check if the background/interest gene sets contain genes not present in the gene association file
+    background = gaf_parser.removeObsoleteGenes(background, gafDict, 'background')
+    interest = gaf_parser.removeObsoleteGenes(interest, gafSubset, 'interest')
+
     # Check if the set of interest contains uniprot ac's not present in the background set
-    if not genelist_importer.isValidSubset(interest, background):
-        print("WARNING! Subset contains genes not present in background set!")
-        print(interest - background)
-        print('Terminating script...')
-        exit()
+    interest = genelist_importer.isValidSubset(interest, background)
 
     # import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
-    print('background\n', background)
-    print('interest\n', interest)
-    #
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
 
@@ -89,7 +89,9 @@ if __name__ == '__main__':
 
     output = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
-    print('\nGO-term, uncorrected and FDR-corrected p-values:')
+
+
+    print('\nGO-term, description and uncorrected and FDR-corrected p-values:')
     print(output)
 
     # import numpy as np
