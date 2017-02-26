@@ -164,9 +164,11 @@ def removeObsoleteGenes(set, gafDict, indicator):
     set : set of str
         The set after removal of extra AC's.
     """
+
     if len(set) != len(gafDict):
         obsoleteGenes = [AC for AC in set if AC not in gafDict]
         print('WARNING!', indicator, 'gene set contained genes not present in the gene association file...')
-        print(obsoleteGenes)
         print('Removing these genes from the', indicator, 'set...')
         return set.difference(obsoleteGenes)
+    else:
+        return set
