@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
 
-    print('\nGO-term, description and uncorrected and FDR-corrected p-values:')
+    print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:')
     print(output)
 
     # import numpy as np
