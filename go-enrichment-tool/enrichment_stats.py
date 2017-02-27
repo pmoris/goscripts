@@ -5,6 +5,7 @@
 '''
 
 import numpy as np
+import pandas as pd
 import statsmodels.sandbox.stats.multicomp
 
 from scipy.stats import hypergeom
@@ -348,11 +349,17 @@ def annotateOutput(pValuesArray, GOdict):
         A numpy array containing GO id's, descriptions, p-values and corrected q-values.
     """
 
+    # Retrieve GO id names
     goidNames = np.array([GOdict[id].name for id in pValuesArray[:,0]])
 
+    # Append names to array
     outputArray = np.hstack((pValuesArray, goidNames[:,None]))
 
-    return outputArray
+    # Convert array to DataFrame and sort columns
+    outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name'])
+    outputDataFrame = outputDataFrame[['GO id', 'GO name', 'p-value', 'fdr-corrected p-value']]
+
+    return outputDataFrame
 
 
 # class goResults():

@@ -5,6 +5,7 @@
 '''
 
 import argparse
+import pandas as pd
 
 import enrichment_stats
 import gaf_parser
@@ -80,27 +81,24 @@ if __name__ == '__main__':
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
 
+    # Perform enrichment test
     pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
 
-    print('\nTested GO-terms and their p-values:')
-    print(pValues)
-    print('\nOrdered p-values:')
-    print(sorted(pValues.values()))
+    # print('\nTested GO-terms and their p-values:')
+    # print(pValues)
+    # print('\nOrdered p-values:')
+    # print(sorted(pValues.values()))
 
+    # Perform multiple testing correction
     correctedPvalues = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
+    print(correctedPvalues)
+
+    # Create dataframe with tested GO terms and results
     output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
 
     print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:')
     print(output)
 
-    # import numpy as np
-
-    # np.savetxt('enrichment_results.txt', output, delimiter='\t')
-    #
-    # print('Saving output to', args.outputFile)
-    # with open(args.outputFile, 'wb') as outFile:
-    #     for line in output:
-    #         np.savetxt(outFile, line, '<U100')
-        # output.tofile(outFile, '\t')
-        # np.savetxt(args.outputFile, output, delimiter='\t')
+    print('Saving output to', args.outputFile)
+    output.to_csv(args.outputFile)
