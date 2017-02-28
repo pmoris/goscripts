@@ -34,10 +34,12 @@ if __name__ == '__main__':
     # help='Specifies the name or path of the output csv file')
     parser.add_argument('-O', '--output', type=str, default='enrichment_results.csv', dest='outputFile',
                         help='Output file or path')
+    parser.add_argument('-n', '--namespace', type=str, default='all',
+                        help='Select the GO namespace to limit the enrichment test to')
     parser.add_argument('-m', '--min', type=int, default='3', dest='minGenes',
                         help='Minimum number of genes before considering a GO category')
     parser.add_argument('-T', '--testing-thresh', type=float, default='0.05', dest='testing_threshold',
-                        help='P-value cut-off to use to stop GO tree propogation during testing')
+                        help='P-value cut-off to use to stop GO tree propagation during testing')
     parser.add_argument('-t', '--thresh', type=float, default='0.1', dest='threshold',
                         help='P-value cut-off to use for significance testing')
     parser.add_argument('-c', '--condense', action="store_true",
@@ -70,6 +72,10 @@ if __name__ == '__main__':
 
     # import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
+
+    # Reduce gene ontology file to selected namespace
+    if not args.namespace == 'all':
+        GOterms = obo_tools.filterOnNamespace(GOterms, args.namespace)
 
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
