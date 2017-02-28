@@ -40,7 +40,7 @@ if __name__ == '__main__':
                         help='P-value cut-off to use to stop GO tree propogation during testing')
     parser.add_argument('-t', '--thresh', type=float, default='0.1', dest='threshold',
                         help='P-value cut-off to use for significance testing')
-    parser.add_argument('-s', '--suppress', action="store_false",
+    parser.add_argument('-c', '--condense', action="store_true",
                         help='Suppress verbose output.')
     args = parser.parse_args()
 
@@ -94,13 +94,13 @@ if __name__ == '__main__':
     # Perform multiple testing correction
     correctedPvalues = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
-    if not args.suppress:
+    if not args.condense:
         print(correctedPvalues)
 
     # Create dataframe with tested GO terms and results
     output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
 
-    if not args.suppress:
+    if not args.condense:
         print(correctedPvalues)
         print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:')
         print(output)
