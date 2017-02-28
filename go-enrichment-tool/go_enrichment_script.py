@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     # Check provided arguments
     parser = argparse.ArgumentParser(
-        description='Script to perform GO enrichment analysis')
+        description='Script to perform GO enrichment analysis', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     # https://stackoverflow.com/questions/18862836/how-to-open-file-using-argparse
     parser.add_argument('-b', '--background', type=str, default='full annotation set', dest='background',
                         help='File containing a list of uniprot accession numbers for the background set of genes')
