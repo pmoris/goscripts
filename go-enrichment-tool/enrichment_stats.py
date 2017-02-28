@@ -214,9 +214,9 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
         recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
                         gafDict, gafSubset, minGenes, threshold, pValues)
 
-    print('Tested', len(pValues), 'GO categories.')
+    print('Tested', len(pValues), 'GO categories.\n')
     sig = sum(i < threshold for i in pValues.values())
-    print(sig, 'were significant at alpha =',threshold)
+    print(sig, 'were significant at alpha =',threshold, '\n')
     return pValues
 
 
@@ -322,7 +322,7 @@ def multipleTestingCorrection(pValues, testType='fdr', threshold = 0.05):
     # Perform multiple testing correction
     fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvals, threshold)
 
-    print(sum(fdr[0]),'GO categories out of',len(pvals),'were significant after FDR multiple testing correction.')
+    print(sum(fdr[0]),'GO categories out of',len(pvals),'were significant after FDR multiple testing correction.\n')
 
     # Create array with ID's, p-values and q-values
     pValuesArray = np.column_stack((keys, pvals, fdr[1]))

@@ -80,7 +80,7 @@ def isValidSubset(subset, background):
     else:
         print('WARNING! Subset contained genes not present in background list...')
         print([AC for AC in subset if AC not in background])
-        print('Removing these genes from the set of interest...')
+        print('Removing these genes from the set of interest...\n')
         print(subset)
         return subset.difference([AC for AC in subset if AC not in background])
 

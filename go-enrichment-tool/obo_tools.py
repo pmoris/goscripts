@@ -120,7 +120,7 @@ def importOBO(path):
                 elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
 
-    print('Retrieved', len(GOdict), 'GO terms from', path)
+    print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
     return GOdict
 
 def filterOnNamespace(GOdict, namespace):
@@ -142,10 +142,10 @@ def filterOnNamespace(GOdict, namespace):
     filteredGOdict = { GOid:GOobj for GOid, GOobj in GOdict.items() if GOobj.namespace == namespace }
 
     if not filteredGOdict:
-        print('Namespace', namespace, 'was not found in the obo file. Exiting now...')
+        print('Namespace', namespace, 'was not found in the obo file. Exiting now...\n')
         exit()
 
-    print('Found', len(filteredGOdict), 'GO terms belonging to', namespace, '.')
+    print('Found', len(filteredGOdict), 'GO terms belonging to', namespace, '.\n')
 
     return filteredGOdict
 
@@ -211,7 +211,7 @@ def propagateParents(currentTerm, baseGOid, GOdict, parentSet):
     # recursion
     if currentTerm not in GOdict:
         print('WARNING!\n' + currentTerm, 'was defined as a parent for',
-              baseGOid, ', but was not found in the OBO file.')
+              baseGOid, ', but was not found in the OBO file.\n')
         parentSet.pop(currentTerm)      # remove missing value
         return
 

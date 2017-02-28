@@ -52,7 +52,7 @@ if __name__ == '__main__':
     # If no background is provided, import the gene association file and retrieve
     # the full background set from it
     if args.background == 'full annotation set':
-        print('No background gene set provided, retrieving all genes from the gene annotation file...')
+        print('No background gene set provided, retrieving all genes from the gene annotation file...\n')
         gafDict = gaf_parser.importFullGAF(args.gaf)
         background = set(gafDict.keys())
     # otherwise import the background set and use this to limit gene association import
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     #     print('id', i, 'parents', GOterms[i].parents)
 
     # Build full GO hierarchy
-    print('Propagating through ontology to find all children and parents for each term...')
+    print('Propagating through ontology to find all children and parents for each term...\n')
     obo_tools.buildGOtree(GOterms)
 
     # print('\n After propagating through parents')
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     if not args.condense:
         print(correctedPvalues)
-        print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:')
+        print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:\m')
         print(output)
 
     print('Saving output to', args.outputFile)
