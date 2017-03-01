@@ -177,7 +177,6 @@ def removeObsoleteGenes(set, gafDict, indicator):
 def removeObsoleteGOids(gafDict, filteredGOdict):
     """
     Removes GOids from gaf dictionary if they do not belong to the chose namespace,
-    i.e. if they are not present in the filtered GO dictionary.
 
     Parameters
     ----------
