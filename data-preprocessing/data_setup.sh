@@ -65,7 +65,7 @@ python ../data-preprocessing/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebo
 cut -f27 ppi-human-ebola-bat-ortholog.csv | tail -n +2 | sort -u > background.txt
 cut -f27 ppi-human-ebola-missing-bat.csv | tail -n +2 | sort -u > interest.txt
 cut -f27 ppi-human-ebola-present-bat.csv | tail -n +2 | sort -u > interest-complement.txt
-echo -e "\nThe number of ebola-interacting human proteins lacking a bat orthologue is `wc -l interest.txt` out of `wc -l background.txt`."
+echo -e "\nThe number of ebola-interacting human proteins lacking a bat orthologue is `wc -l interest.txt | awk '{print $1}'` out of `wc -l background.txt | awk '{print $1}'`."
 
 
 cd ..
