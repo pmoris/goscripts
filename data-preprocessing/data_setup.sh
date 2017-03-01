@@ -87,3 +87,4 @@ wget -nc http://purl.obolibrary.org/obo/go/releases/2016-11-26/go.obo -O data/go
 
 
 # NOTE: KEEP RESTON VIRUS OR NOT?
+wget http://purl.obolibrary.org/obo/go/releases/2017-02-11/go.obo -O data/go_data/go.obo
