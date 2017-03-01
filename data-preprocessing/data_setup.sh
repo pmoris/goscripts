@@ -36,7 +36,8 @@ cat taxonomyID.csv | tail -n +2 | while read x; do echo "${x} count: $(cut -f10,
 # cut -f1 taxonomyID.csv | tail -n +2 | while read x; do echo "$x count: $(cut -f11 ppi-human-ebola.csv | grep $x | wc -l)"; done
 
 # Print the size of the PPI network
-echo -e "\nThe size of the PPI network is `tail -n +2 ppi-human-ebola.csv | wc -l | awk '{print $1}' `."
+echo -e "\nThe size of the ebola-human PPI network is `tail -n +2 ppi-human-ebola.csv | wc -l | awk '{print $1}' `."
+echo -e "\nThe number of unique interactions is `tail -n +2 ppi-human-ebola-bat-ortholog-dedup.csv | wc -l | awk '{print $1}'`."
 echo "`tail -n +2 ppi-human-ebola.csv | cut -f1 | sort -u | wc -l | awk '{print $1}' ` of which are unique human proteins."
 cd ../..
 
@@ -59,12 +60,13 @@ python ../data-preprocessing/OMA-orthology-search-pandas.py hpidb2/ppi-human-ebo
 #	updated hpidb2-human-ebola-ortholog-dedup.csv with same output but omitting duplicate pairs
 #	ppi-human-ebola-present-bat.csv that contains only entries with a bat ortholog
 #	ppi-human-ebola-missing-bat.csv	that contains only entries without a bat ortholog
-echo -e "\nThe number of unique human proteins in the ebola - human PPI is `tail -n +2 ppi-human-ebola-bat-ortholog-dedup.csv | wc -l | awk '{print $1}'`."
 
 # Create deduplicated lists of uniprot ac's.
 cut -f27 ppi-human-ebola-bat-ortholog.csv | tail -n +2 | sort -u > background.txt
 cut -f27 ppi-human-ebola-missing-bat.csv | tail -n +2 | sort -u > interest.txt
 cut -f27 ppi-human-ebola-present-bat.csv | tail -n +2 | sort -u > interest-complement.txt
+echo -e "\nThe number of ebola-interacting human proteins lacking a bat orthologue is `wc -l interest.txt` out of `wc -l background.txt`."
+
 
 cd ..
 
