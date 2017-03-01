@@ -2,10 +2,39 @@
 # -*- coding: utf-8 -*-
 '''
 @author: Pieter Moris
+
+Main script to perform a gene enrichment analysis.
+
+# Method
+
+Performs one-sided hypergeometric tests, starting from the most specific (child) GO terms associated with the
+genes in the set of interest. If the p-value of the test does not fall below the specified significance level alpha,
+the test wll be carried out for all of the term's parent terms, otherwise the process will terminate. This method
+attempts to limit the total number of tests that need to be carried out, since a term that is enriched will likely
+also have enriched parent terms. Furthermore, GO terms associated with a small number of genes are skipped.
+Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing correction are applied to the test results.
+Finally, a csv file containing all the GO terms that were evaluated and their p-values are returned.
+
+# Requires the following input files:
+    - gene association file in .gaf format
+    - gene ontology file in .obo format
+    - text file with genes of interest separated by new lines
+        expects uniprot AC's
+    - optional text file with background set
+        if not provided, the entire gene annotation found in the association file will be used
+
+# The following options can be specified:
+    - The output file in which results will be stored
+    - The minimum number of genes required to be associated with a term before it will be tested.
+    - The FDR cut-off to utilise.
+    - The p-value threshold to limit the recursive testing of the GO tree.
+    - The namespace to test: all, biological_process, molecular_function or cellular_component
+        Uses the naming convention found in the .obo file.
+
 '''
 
 import argparse
-import pandas as pd
+import pandas
 
 import enrichment_stats
 import gaf_parser
@@ -70,7 +99,7 @@ if __name__ == '__main__':
     # Check if the set of interest contains uniprot ac's not present in the background set
     interest = genelist_importer.isValidSubset(interest, background)
 
-    # import gene ontology file
+    # Import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
     # Reduce gene ontology file to selected namespace
@@ -103,16 +132,19 @@ if __name__ == '__main__':
     # Perform multiple testing correction
     correctedPvalues = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
 
+    # Print intermediate output
     if not args.condense:
         print(correctedPvalues)
 
     # Create dataframe with tested GO terms and results
     output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
 
+    # Print intermediate output
     if not args.condense:
         print(correctedPvalues)
         print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:\m')
         print(output)
 
+    # Save results
     print('Saving output to', args.outputFile)
     output.to_csv(args.outputFile)
