@@ -31,10 +31,12 @@ Finally, a csv file containing all the GO terms that were evaluated and their p-
     - The namespace to test: all, biological_process, molecular_function or cellular_component
         Uses the naming convention found in the .obo file.
 
+# Dependencies:
+    numpy, pandas, scipy.stats, statsmodels.sandbox.stats.multicomp
+
 '''
 
 import argparse
-import pandas
 
 import enrichment_stats
 import gaf_parser
