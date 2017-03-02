@@ -26,7 +26,7 @@ class goTerm:
         The domain of the GO term (Cellular Component, Molecular Function or Biological Process).
     parents : set of str
         The parent terms of the GO term, as indicated by the `is_a` relationship.
-    childs : set of str
+    children : set of str
         The child terms of the GO term, derived from other GO terms after a complete OBO file is processed initially.
 
     not necessary... Methods
@@ -48,14 +48,14 @@ class goTerm:
 
     goCount = 0
 
-    __slots__ = ('id', 'name', 'altid', 'namespace', 'childs', 'parents')
+    __slots__ = ('id', 'name', 'altid', 'namespace', 'children', 'parents')
 
     def __init__(self, GOid):
         self.id = GOid
         self.altid = []
         self.name = ''
         self.namespace = ''
-        self.childs = set()
+        self.children = set()
         self.parents = set()
 
         goTerm.goCount += 1
@@ -257,6 +257,6 @@ def completeChildHierarchy(GOdict):
         Keys are of the format `GO-0000001` and map to OBO objects.
     """
     for GOid, GOobj in GOdict.items():
-        [GOdict[parent].childs.add(GOid) for parent in GOobj.parents]
+        [GOdict[parent].children.add(GOid) for parent in GOobj.parents]
 
     return None

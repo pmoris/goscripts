@@ -41,7 +41,7 @@ from scipy.stats import hypergeom
 #     subsetTotal = len(subset)
 
 #     validTerms = set([GOid])
-#     validTerms.update(GOdict['GOid'].childs)
+#     validTerms.update(GOdict['GOid'].children)
 
 #     backgroundGO = countGOassociations(validTerms, gafDict)
 #     subsetGO = countGOassociations(validTerms, gafDict)
@@ -108,7 +108,7 @@ def countGOassociations(validTerms, gafDict):
      Parameters
      ----------
      validTerms : set
-         A set of GO terms. Should include the GO id of interest and all of its childs.
+         A set of GO terms. Should include the GO id of interest and all of its children.
      gafDict : dict
          A dictionary mapping gene uniprot AC's to GO ID's.        
 
@@ -189,17 +189,17 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
     # generate a list of all base GO id's to test
     # i.e. those of all genes in the subset of interest
     baseGOids = [GOid for gene, GOids in gafSubset.items()
-                 for GOid in GOids if not GOdict[GOid].childs]
+                 for GOid in GOids if not GOdict[GOid].children]
 
     # baseGOids = {gene:set() for gene in gafSubset}
     # for gene, GOids in gafSubset.items():
     #     for GOid in GOids:
-    #         if not GOdict[GOid].childs:
+    #         if not GOdict[GOid].children:
     #             baseGOids[gene].add(GOid)
     # baseGOids = []
     # for gene, GOids in gafSubset.items():
     #     for GOid in GOids:
-    #         if not GOdict[GOid].childs:
+    #         if not GOdict[GOid].children:
     #             baseGOids.append(GOid)
 
     pValues = {}
@@ -259,14 +259,18 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     if GOid not in pValues:
 
         # While testing for a term, also test all terms that were associated
-        # with one of its childs
+        # with one of its children
         validTerms = set([GOid]) # https://stackoverflow.com/questions/36674083/why-is-it-possible-to-replace-set-with
-        validTerms.update(GOdict[GOid].childs)
+        validTerms.update(GOdict[GOid].children)
 
         # Count the number of genes in the background and subset that were
         # associated with the current terms
         backgroundGO = countGOassociations(validTerms, gafDict)
         subsetGO = countGOassociations(validTerms, gafSubset)
+
+        # if GOid == 'GO:0032993':
+        #     print('bg Count', backgroundGO, 'interestCount', subsetGO, 'pval', pVal)
+        #     print('bgTotal', backgroundTotal, 'subsetTotal', subsetTotal)
 
         # If the number of associated genes for the current GO category is too low,
         # skip and move up hierarchy to test the parents
