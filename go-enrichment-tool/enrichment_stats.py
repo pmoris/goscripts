@@ -349,24 +349,16 @@ def annotateOutput(pValuesArray, GOdict):
         A numpy array containing GO id's, descriptions, p-values and corrected q-values.
     """
 
-    # Retrieve GO id names
+    # Retrieve GO id names and namespaces
     goidNames = np.array([GOdict[id].name for id in pValuesArray[:,0]])
+    goidNamespaces = np.array([GOdict[id].namespace for id in pValuesArray[:,0]])
 
-    # Append names to array
-    outputArray = np.hstack((pValuesArray, goidNames[:,None]))
+    # Append names and namespaces to array
+    outputArray = np.hstack((pValuesArray, goidNames[:,None], goidNamespaces[:,None]))
+    # requires [:,] because otherwise 1d array is passed)
 
-    # Convert array to DataFrame and sort columns
-    outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name'])
-    outputDataFrame = outputDataFrame[['GO id', 'GO name', 'p-value', 'fdr-corrected p-value']]
+    # Convert array to DataFrame and re-arrange columns
+    outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name', 'GO namespace'])
+    outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'fdr-corrected p-value']]
 
     return outputDataFrame
-
-
-# class goResults():
-#
-#     def __init__(self):
-#         self.pValues = {}
-#         self.qValues = {}
-#         self.threshold = 0
-#
-#     # def multipleTestingCorrection(self, threshold):
