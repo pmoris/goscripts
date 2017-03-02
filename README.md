@@ -22,7 +22,7 @@ Performs one-sided hypergeometric tests, starting from the most specific (child)
 
 ## Data acquisition
 
-This analysis can be reproduced by executing the provided [bash script](data-preprocessing/ebola-data_setup.sh) to retrieve the utilised data and preprocess it, followed by the GO enrichment analyses described in the [documentation](docs/Overview.ipynb).
+This analysis can be reproduced by executing the provided [bash script](data-preprocessing/data_setup.sh) to retrieve the utilised data and preprocess it, followed by the GO enrichment analyses described in the [documentation](docs/Overview.ipynb).
 
 ---
 
