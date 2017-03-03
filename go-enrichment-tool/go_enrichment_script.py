@@ -124,26 +124,17 @@ if __name__ == '__main__':
     #     print('id', i, 'parents', GOterms[i].parents)
 
     # Perform enrichment test
-    pValues = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
+    print('Finished completing ontology...proceeding with enrichment tests...\n')
+    enrichmentResults = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
 
-    # print('\nTested GO-terms and their p-values:')
-    # print(pValues)
-    # print('\nOrdered p-values:')
-    # print(sorted(pValues.values()))
-
-    # Perform multiple testing correction
-    correctedPvalues = enrichment_stats.multipleTestingCorrection(pValues, threshold = args.threshold)
-
-    # Print intermediate output
-    if not args.condense:
-        print(correctedPvalues)
+    # Update results with multiple testing correction
+    enrichment_stats.multipleTestingCorrection(enrichmentResults, testType='fdr', threshold=args.threshold)
 
     # Create dataframe with tested GO terms and results
-    output = enrichment_stats.annotateOutput(correctedPvalues, GOterms)
+    output = enrichment_stats.annotateOutput(enrichmentResults, GOterms, background, interest)
 
     # Print intermediate output
     if not args.condense:
-        print(correctedPvalues)
         print('\nGO term, uncorrected and FDR-corrected p-values and description of GO term:\m')
         print(output)
 
