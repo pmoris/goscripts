@@ -107,7 +107,7 @@ def importFullGAF(path):
                         gafDict[uniprotAC].add(goTerm)
 
     print('Retrieved', len(gafDict),
-          'annotated uniprot AC\'s from', gafPath, 'after filtering on the background set.' + '\n')
+          'annotated uniprot AC\'s from', gafPath + '\n')
 
     return gafDict
 

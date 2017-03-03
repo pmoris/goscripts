@@ -181,9 +181,9 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
 
     Returns
     -------
-    dict
-        A dictionary mapping GO id's to p-values. Only GO id's that
-        were tested are returned.
+    dict of dicts
+        A dictionary of dictionaries mapping GO id's to p-values and frequencies.
+        Only GO id's that were tested are returned.
     """
 
     # generate a list of all base GO id's to test
@@ -202,7 +202,7 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
     #         if not GOdict[GOid].children:
     #             baseGOids.append(GOid)
 
-    pValues = {}
+    enrichmentTestResults = { 'pValues' : {}, 'interestCount' : {}, 'backgroundCount' : {}}
 
     backgroundTotal = len(background)
     subsetTotal = len(subset)
@@ -210,24 +210,22 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
     # Perform a onesided enrichment test for each of the base GO id's,
     # Recurse to parents if not significant
     for GOid in baseGOids:
-
         recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
-                        gafDict, gafSubset, minGenes, threshold, pValues)
+                        gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
 
-    print('Tested', len(pValues), 'GO categories.\n')
-    sig = sum(i < threshold for i in pValues.values())
-    print(sig, 'were significant at alpha =',threshold, '\n')
-    return pValues
+    print('Tested', len(enrichmentTestResults['pValues']), 'GO categories.\n')
+    sig = sum(i < threshold for i in enrichmentTestResults['pValues'].values())
+    print(sig, 'were significant at alpha =', threshold, '\n')
+
+    return enrichmentTestResults
 
 
 def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
-                    gafSubset, minGenes, threshold, pValues):
+                    gafSubset, minGenes, threshold, enrichmentTestResults):
     """
     Implements the recursive enrichment tests for the enrichmentAnalysis() function
     by propagating through parent terms in case of an insignificant result or low
     gene count.
-
-    NOTE: Does not return anything, but fills in the passed pValues dictionary.
 
     Parameters
     ----------
@@ -249,17 +247,21 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     threshold: float
         The threshold of the hypergeometric test for which the GO term's
         parents will not be further recursively tested for enrichment.
-    pValues : dict
-        An empty dictionary that gets passed through the recursion and
-        filled with a GO id : p-value pair for every enrichment test.     
+    enrichmentTestResults : dict of dicts
+        An dictionary of dictionaries that gets passed through the recursion and
+        filled with mappings of GO id's to p-values and frequencies for every enrichment test.
+
+    Returns
+    -------
+    Does not return anything, but fills in the passed pValues dictionary (which
+    is nested in the enrichmentTestResults dictionary).
     """
 
     # If a certain GOid already has a p-value stored,
     # it can be skipped and so can its parents
-    if GOid not in pValues:
+    if GOid not in enrichmentTestResults['pValues']:
 
-        # While testing for a term, also test all terms that were associated
-        # with one of its children
+        # While testing for a term, also count all of its child terms
         validTerms = set([GOid]) # https://stackoverflow.com/questions/36674083/why-is-it-possible-to-replace-set-with
         validTerms.update(GOdict[GOid].children)
 
@@ -278,13 +280,15 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
             for parent in GOdict[GOid].parents:
                 recursiveTester(parent, backgroundTotal, subsetTotal,
                                 GOdict, gafDict, gafSubset, minGenes,
-                                threshold, pValues)
+                                threshold, enrichmentTestResults)
 
         else:
-            # Map GOid to p-value
+            # Map GOid to p-value and the number of associated genes in the interest and background set
             pVal = enrichmentOneSided(
                 subsetGO, backgroundTotal, backgroundGO, subsetTotal)
-            pValues[GOid] = pVal
+            enrichmentTestResults['pValues'][GOid] = pVal
+            enrichmentTestResults['interestCount'][GOid] = subsetGO
+            enrichmentTestResults['backgroundCount'][GOid] = backgroundGO
 
             # If test is not significant, move up the hierarchy to perform
             # additional tests on parent terms
@@ -292,21 +296,21 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
                 for parent in GOdict[GOid].parents:
                     recursiveTester(parent, backgroundTotal, subsetTotal,
                                     GOdict, gafDict, gafSubset, minGenes,
-                                    threshold, pValues)
+                                    threshold, enrichmentTestResults)
 
             # Otherwise stop recursion and don't perform any higher up tests
             else:
                 return
 
-def multipleTestingCorrection(pValues, testType='fdr', threshold = 0.05):
+def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold = 0.05):
     """
-    Performs multiple testing correction for a list of supplied p-values.
+    Updates the original enrichmentTestResults dictionary of dictionaries by appending
+    an additional dictionary mapping GO id's to corrected p-values.
 
     Parameters
     ----------
-    pValues : dict
-        A dictionary mapping GO id's to p-values. Only GO id's that
-        were tested are returned.
+    enrichmentTestResults : dict of dicts
+        An dictionary of dictionaries mapping GO id's to p-values and counts.
     testType : str
         Specifies the type of multiple correction.
         Options include: `bonferroni` and `fdr` (Benjamini Hochberg).
@@ -315,54 +319,100 @@ def multipleTestingCorrection(pValues, testType='fdr', threshold = 0.05):
 
     Returns
     -------
-    array
-        A numpy array containing GO id's, p-values and corrected q-values.
+    None
+        Modifies the provided enrichmenTestResults dictionary in-place.
     """
 
     # Convert uniprot AC's and associated p-values to np arrays
-    keys = np.array(list(pValues.keys()))
-    pvals = np.array(list(pValues.values()))
+    pValues = enrichmentTestResults['pValues'].values()
+    ids = enrichmentTestResults['pValues'].keys()
 
     # Perform multiple testing correction
-    fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvals, threshold)
+    if testType == 'bonferroni':
+        print('Performing multiple testing correction using the Bonferroni FWER method.')
+        corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')
+        print(np.sum(corr[0]),'GO categories out of', len(corr[0]), 'were significant after bonferroni multiple testing correction.\n')
+    else:
+        print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.')
+        corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='fdr_bh')
+        print(np.sum(corr[0]),'GO categories out of', len(corr[0]), 'were significant after FDR multiple testing correction.\n')
 
-    print(sum(fdr[0]),'GO categories out of',len(pvals),'were significant after FDR multiple testing correction.\n')
+    # Append corrected p-values as a new dictionary
+    enrichmentTestResults['corr'] = { id : corrValue for id, corrValue in zip(ids, corr[1]) }
 
-    # Create array with ID's, p-values and q-values
-    pValuesArray = np.column_stack((keys, pvals, fdr[1]))
+    return None
 
-    # Sort on ascending p-values
-    pValuesArray = pValuesArray[pValuesArray[:,2].argsort()]
-
-    return pValuesArray
-
-def annotateOutput(pValuesArray, GOdict):
+def annotateOutput(enrichmentTestResults, GOdict, background, subset):
     """
     Adds the GO id names to the array with enrichment results.
 
     Parameters
     ----------
-    pValuesArray : numpy array
-        A numpy array containing a column of go id's,
+    enrichmentTestResults : dict of dicts
+        A dictionary containing dictionaries mapping the GO id's to their frequency counts
+        for both the interest and background set.
     GOdict : dict
         A dictionary of GO objects generated by importOBO().
         Keys are of the format `GO-0000001` and map to OBO objects.
+    background : set
+        A set of background gene uniprot AC's.
+    subset : set
+        A subset of gene uniprot AC's of interest.
+
     Returns
     -------
-    array
-        A numpy array containing GO id's, descriptions, p-values and corrected q-values.
+    DataFrame
+        A pandas DataFrame containing GO id's, descriptions, frequency counts and p-values and corrected p-values.
     """
 
+    # Convert dictionary to dataframe with level 1 dictionary keys as columns
+    # https://stackoverflow.com/questions/37839136/convert-dictionary-of-dictionaries-into-dataframe-python
+    outputDataFrame = pd.DataFrame.from_records(enrichmentTestResults).reset_index().rename(columns=dict(index='GO id',
+                                                                                                         backgroundCount='background freq',
+                                                                                                         interestCount='cluster freq',
+                                                                                                         corr='corrected p-value',
+                                                                                                         pValues='p-value'))
+
     # Retrieve GO id names and namespaces
-    goidNames = np.array([GOdict[id].name for id in pValuesArray[:,0]])
-    goidNamespaces = np.array([GOdict[id].namespace for id in pValuesArray[:,0]])
+    outputDataFrame['GO name'] = [GOdict[id].name for id in outputDataFrame['GO id']]
+    outputDataFrame['GO namespace'] = [GOdict[id].namespace for id in outputDataFrame['GO id']]
 
-    # Append names and namespaces to array
-    outputArray = np.hstack((pValuesArray, goidNames[:,None], goidNamespaces[:,None]))
-    # requires [:,] because otherwise 1d array is passed)
+    # Retrieve GO id counts in background and interest set
+    backgroundTotal = len(background)
+    subsetTotal = len(subset)
+    outputDataFrame['cluster freq'] = outputDataFrame['cluster freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(subsetTotal), str(x/subsetTotal)))
+    outputDataFrame['background freq'] = outputDataFrame['background freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(backgroundTotal), str(x/backgroundTotal)))
+    # https://stackoverflow.com/questions/34859135/find-key-from-value-for-pandas-series
+    # outputDataFrame['background freq'] = pd.Series(['{0}/{1} ({2}%)'.format(str(outputDataFrame[outputDataFrame['GO id'] == id]['background freq']), str(backgroundTotal),
+    #                                                   str(outputDataFrame[outputDataFrame['GO id'] == id]['background freq'] / backgroundTotal)) for id in outputDataFrame['GO id']])
+    # outputDataFrame['GO namespace'] = GOdict[outputDataFrame['GO id']].namespace
 
-    # Convert array to DataFrame and re-arrange columns
-    outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name', 'GO namespace'])
-    outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'fdr-corrected p-value']]
+    # Sort on corrected p-values
+    outputDataFrame = outputDataFrame.sort_values(by=['corrected p-value']).reset_index(drop=True)
+
+    # Re-arrange columns
+    outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'corrected p-value', 'cluster freq', 'background freq']]
 
     return outputDataFrame
+
+    # Deprecated code
+
+    # goidNames = np.array([GOdict[id].name for id in pValuesArray[:,0]])
+    # goidNamespaces = np.array([GOdict[id].namespace for id in pValuesArray[:,0]])
+
+    # # Retrieve GO id counts in background and interest set
+    # backgroundTotal = len(background)
+    # subsetTotal = len(subset)
+    # interestCounts = pd.Series(['{0}/{1} ({2}%)'.format(str(enrichmentTestResults['interestCount'][id]), str(subsetTotal),
+    #                                                   str(enrichmentTestResults['interestCount'][id] / subsetTotal)) for id in pValuesArray[:, 0]])
+    # backgroundCounts = pd.Series(['{0}/{1} ({2}%)'.format(str(enrichmentTestResults['backgroundCount'][id]), str(backgroundTotal),
+    #                                                   str(enrichmentTestResults['backgroundCount'][id] / backgroundTotal)) for id in pValuesArray[:, 0]])
+
+    # # Append names and namespaces to array
+    # outputArray = np.hstack((pValuesArray, goidNames[:,None], goidNamespaces[:,None], interestCounts[:,None], backgroundCounts[:,None]))
+    # # requires [:,] because otherwise 1d array is passed)
+    #
+    # # Convert array to DataFrame and re-arrange columns
+    # outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name', 'GO namespace', 'cluster freq', 'background freq'])
+    # outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'fdr-corrected p-value', 'cluster freq', 'background freq']]
+

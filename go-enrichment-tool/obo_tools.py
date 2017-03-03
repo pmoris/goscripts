@@ -139,7 +139,7 @@ def filterOnNamespace(GOdict, namespace):
         A filtered dictionary of GO objects all belonging to the namespace.
     """
 
-    filteredGOdict = { GOid:GOobj for GOid, GOobj in GOdict.items() if GOobj.namespace == namespace }
+    filteredGOdict = { GOid : GOobj for GOid, GOobj in GOdict.items() if GOobj.namespace == namespace }
 
     if not filteredGOdict:
         print('Namespace', namespace, 'was not found in the obo file. Exiting now...\n')
