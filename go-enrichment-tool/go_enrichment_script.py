@@ -127,6 +127,22 @@ if __name__ == '__main__':
     print('Finished completing ontology...proceeding with enrichment tests...\n')
     enrichmentResults = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
 
+    print(enrichmentResults)
+    import numpy as np
+    keys = np.array(list(enrichmentResults['pValues'].keys()))
+    pvals = np.array(list(enrichmentResults['pValues'].values()))
+    pValuesArray = np.column_stack((keys, pvals))
+    pValuesArray = pValuesArray[pValuesArray[:,1].argsort()]
+    print(pValuesArray)
+    #### THIS IS STILL CORRECT!
+    import statsmodels.sandbox.stats.multicomp
+
+    fdr = statsmodels.sandbox.stats.multicomp.multipletests(pvals, alpha=args.threshold, method='fdr_bh')
+    pValuesArray = np.column_stack((keys, pvals, fdr[1]))
+    pValuesArray = pValuesArray[pValuesArray[:,2].argsort()]
+    print('\n sorted on corrected', pValuesArray)
+
+
     # Update results with multiple testing correction
     enrichment_stats.multipleTestingCorrection(enrichmentResults, testType='fdr', threshold=args.threshold)
 
