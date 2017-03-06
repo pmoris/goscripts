@@ -388,7 +388,7 @@ def annotateOutput(enrichmentTestResults, GOdict, background, subset):
     # outputDataFrame['GO namespace'] = GOdict[outputDataFrame['GO id']].namespace
 
     # Sort on corrected p-values
-    outputDataFrame = outputDataFrame.sort_values(by=['corrected p-value']).reset_index(drop=True)
+    outputDataFrame = outputDataFrame.sort_values(by=['corrected p-value', 'p-value']).reset_index(drop=True)
 
     # Re-arrange columns
     outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'corrected p-value', 'cluster freq', 'background freq']]
@@ -415,4 +415,3 @@ def annotateOutput(enrichmentTestResults, GOdict, background, subset):
     # # Convert array to DataFrame and re-arrange columns
     # outputDataFrame = pd.DataFrame(outputArray, columns=['GO id', 'p-value', 'fdr-corrected p-value', 'GO name', 'GO namespace', 'cluster freq', 'background freq'])
     # outputDataFrame = outputDataFrame[['GO id', 'GO name', 'GO namespace', 'p-value', 'fdr-corrected p-value', 'cluster freq', 'background freq']]
-
