@@ -176,7 +176,7 @@ def removeObsoleteGenes(set, gafDict, indicator):
 
 def removeObsoleteGOids(gafDict, filteredGOdict):
     """
-    Removes GOids from gaf dictionary if they do not belong to the chose namespace,
+    Removes GOids from gaf dictionary if they do not belong to the chosen namespace.
 
     Parameters
     ----------
@@ -188,9 +188,13 @@ def removeObsoleteGOids(gafDict, filteredGOdict):
 
     Returns
     -------
-    None
-        Updates the supplied gaf dictionary in place.
+    filteredGafDict
+        The gaf dictionary after removal of GO terms belonging to different namespaces.
     """
 
     for gene, goids in gafDict.items():
         gafDict[gene] = goids.intersection(filteredGOdict.keys())
+
+    filteredGafDict = {k:v for k,v in gafDict.items() if v}
+
+    return filteredGafDict

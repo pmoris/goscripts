@@ -104,12 +104,20 @@ if __name__ == '__main__':
     # Import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
+    print('lenGOterms',len(GOterms))
+    print('lengafdict',len(gafDict))
+
     # Reduce gene ontology file to selected namespace
     if not args.namespace == 'all':
         GOterms = obo_tools.filterOnNamespace(GOterms, args.namespace)
         # and reduce the gene association files to these GO terms
-        gaf_parser.removeObsoleteGOids(gafDict, GOterms)
-        gaf_parser.removeObsoleteGOids(gafSubset, GOterms)
+        gafDict = gaf_parser.removeObsoleteGOids(gafDict, GOterms)
+        gafSubset = gaf_parser.removeObsoleteGOids(gafSubset, GOterms)
+
+    print('lenFilteredGOterms', len(GOterms))
+    print('lenFilteredgafDict', len(gafDict))
+    print('lenbackground',len(background))
+    # TODO: remove interest/background set and get lengths from gaf/gafsubset dict?
 
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
     #     print('id', i, 'parents', GOterms[i].parents)
