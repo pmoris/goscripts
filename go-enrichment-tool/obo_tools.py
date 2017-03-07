@@ -4,8 +4,7 @@
 @author: Pieter Moris
 '''
 
-import os
-import re
+import os, re, sys
 
 
 class goTerm:
@@ -68,6 +67,9 @@ def importOBO(path):
     """
     Imports an OBO file and generates a dictionary containing an OBO object for each GO term.
 
+    Every entry that is referred to via either "is_a" or "relationship: part_of" is considered
+    a parent of the referring entry.
+
     Parameters
     ----------
     path : str
@@ -119,6 +121,8 @@ def importOBO(path):
                     GOdict[GOid].altid.append(line.split(': ')[1].rstrip())
                 elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
+                elif line.startswith('relationship: part_of'):
+                    GOdict[GOid].parents.add(line.split()[2].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
     return GOdict
@@ -143,9 +147,9 @@ def filterOnNamespace(GOdict, namespace):
 
     if not filteredGOdict:
         print('Namespace', namespace, 'was not found in the obo file. Exiting now...\n')
-        exit()
+        sys.exit()
 
-    print('Found', len(filteredGOdict), 'GO terms belonging to', namespace, '.\n')
+    print('Found', len(filteredGOdict), 'GO terms belonging to', namespace + '.\n')
 
     return filteredGOdict
 

@@ -186,10 +186,13 @@ def enrichmentAnalysis(background, subset, GOdict, gafDict, gafSubset,
         Only GO id's that were tested are returned.
     """
 
-    # generate a list of all base GO id's to test
-    # i.e. those of all genes in the subset of interest
-    baseGOids = [GOid for gene, GOids in gafSubset.items()
-                 for GOid in GOids if not GOdict[GOid].children]
+    # generate a list of all base GO terms to test
+    # i.e. the terms of all the genes in the subset of interest
+    # but starting at the most specific child terms since the function
+    # will propagate upwards.
+    subsetGOids = {GOid for gene, GOids in gafSubset.items() for GOid in GOids}
+    subsetGOidsParents = {parent for GOid in subsetGOids for parent in GOdict[GOid].parents}
+    baseGOids = [GOid for GOid in subsetGOids if not GOid in subsetGOidsParents]
 
     # baseGOids = {gene:set() for gene in gafSubset}
     # for gene, GOids in gafSubset.items():
@@ -333,7 +336,7 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold =
         corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')
         print(np.sum(corr[0]),'GO categories out of', len(corr[0]), 'were significant after bonferroni multiple testing correction.\n')
     else:
-        print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.')
+        print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.\n')
         corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='fdr_bh')
         print(np.sum(corr[0]),'GO categories out of', len(corr[0]), 'were significant after FDR multiple testing correction.\n')
 
@@ -380,8 +383,8 @@ def annotateOutput(enrichmentTestResults, GOdict, background, subset):
     # Retrieve GO id counts in background and interest set
     backgroundTotal = len(background)
     subsetTotal = len(subset)
-    outputDataFrame['cluster freq'] = outputDataFrame['cluster freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(subsetTotal), str(x/subsetTotal)))
-    outputDataFrame['background freq'] = outputDataFrame['background freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(backgroundTotal), str(x/backgroundTotal)))
+    outputDataFrame['cluster freq'] = outputDataFrame['cluster freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(subsetTotal), "{0:.2f}".format(100*x/subsetTotal)))
+    outputDataFrame['background freq'] = outputDataFrame['background freq'].apply(lambda x: '{0}/{1} ({2}%)'.format(str(x), str(backgroundTotal), "{0:.2f}".format(100*x/backgroundTotal)))
     # https://stackoverflow.com/questions/34859135/find-key-from-value-for-pandas-series
     # outputDataFrame['background freq'] = pd.Series(['{0}/{1} ({2}%)'.format(str(outputDataFrame[outputDataFrame['GO id'] == id]['background freq']), str(backgroundTotal),
     #                                                   str(outputDataFrame[outputDataFrame['GO id'] == id]['background freq'] / backgroundTotal)) for id in outputDataFrame['GO id']])
