@@ -77,46 +77,64 @@ if __name__ == '__main__':
                         help='Suppress verbose output.')
     args = parser.parse_args()
 
-    # Import the uniprot set of interest
-    interest = genelist_importer.importSubset(args.subset)
+    # Import the gene set of interest (uniprot AC format)
+    interest = genelist_importer.importGeneList(args.subset)
 
-    # If no background is provided, import the gene association file and retrieve
-    # the full background set from it
+    # If no background is provided, import the gene association file and
+    # retrieve the full background set from it
     if args.background == 'full annotation set':
         print('No background gene set provided, retrieving all genes from the gene annotation file...\n')
-        gafDict = gaf_parser.importFullGAF(args.gaf)
+        gafDict = gaf_parser.importGAF(args.gaf, args.background)
         background = set(gafDict.keys())
-    # otherwise import the background set and use this to limit gene association import
+    # otherwise, import the background set first and use this to limit gene association import
     else:
-        background = genelist_importer.importBackground(args.background)
+        background = genelist_importer.importGeneList(args.background)
         gafDict = gaf_parser.importGAF(args.gaf, background)
 
-    # Generate a gene association file for the subset of interest too
+    # Check if the set of interest contains uniprot AC's not present in the background set and
+    # report and remove them
+    interest = genelist_importer.isValidSubset(interest, background)
+
+    # Generate a gene association file for the (pruned) subset of interest too.
     gafSubset = gaf_parser.createSubsetGafDict(interest, gafDict)
 
     # Check if the background/interest gene sets contain genes not present in the gene association file
-    background = gaf_parser.removeObsoleteGenes(background, gafDict, 'background')
-    interest = gaf_parser.removeObsoleteGenes(interest, gafSubset, 'interest')
-
-    # Check if the set of interest contains uniprot ac's not present in the background set
-    interest = genelist_importer.isValidSubset(interest, background)
+    # and report that they won't be considered during the analysis
+    background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
+    interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
     # Import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
     print('lenGOterms',len(GOterms))
     print('lengafdict',len(gafDict))
+    print('lensubsetgafdict',len(gafSubset))
+
 
     # Reduce gene ontology file to selected namespace
     if not args.namespace == 'all':
         GOterms = obo_tools.filterOnNamespace(GOterms, args.namespace)
         # and reduce the gene association files to these GO terms
-        gafDict = gaf_parser.removeObsoleteGOids(gafDict, GOterms)
-        gafSubset = gaf_parser.removeObsoleteGOids(gafSubset, GOterms)
+        gafDict = gaf_parser.cleanGafTerms(gafDict, GOterms)
+        gafSubset = gaf_parser.cleanGafTerms(gafSubset, GOterms)
+        print(len(gafDict), 'out of', len(background), 'genes are annotated for', args.namespace)
+        print(len(gafSubset), 'out of', len(interest), 'genes are annotated for', args.namespace)
 
     print('lenFilteredGOterms', len(GOterms))
     print('lenFilteredgafDict', len(gafDict))
     print('lenbackground',len(background))
+    print('lensubsetgafdict',len(gafSubset))
+    print('leninterest',len(interest))
+
+    background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
+    interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
+
+    print('lenFilteredGOterms', len(GOterms))
+    print('lenFilteredgafDict', len(gafDict))
+    print('lenbackground',len(background))
+    print('lensubsetgafdict',len(gafSubset))
+    print('leninterest',len(interest))
+
     # TODO: remove interest/background set and get lengths from gaf/gafsubset dict?
 
     # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
