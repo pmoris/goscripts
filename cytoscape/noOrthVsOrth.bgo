@@ -1,0 +1,20 @@
+File created with bingo (c) on Mar 7, 2017 at 10:15:08 AM
+
+ontology: unknown
+curator:  unknown
+
+Selected ontology file : /media/pieter/DATA/ebola-go/data/go_data/go.obo
+Selected annotation file : /media/pieter/DATA/ebola-go/data/go_data/gene_association.gaf
+Discarded evidence codes : 
+Overrepresentation
+Selected statistical test : Hypergeometric test
+Selected correction : Benjamini & Hochberg False Discovery Rate (FDR) correction
+Selected significance level : 0.05
+Testing option : Use network as reference set
+The selected cluster :
+Q8TAQ2	Q96AX9	A8CG34	P35637	P0DMV9	Q71UM5	Q5VTE0	F8VVM2	P10412	Q9Y5M8	P35613	P12036	Q96KK5	P27708	Q16695	Q9BQE3	P31943	Q32P51	P49411	O15131	P35268	Q14839	P51532	Q99877	P62988	Q8N257	Q99879	
+
+No annotations were retrieved for the following entities:
+F8VVM2	P62988	
+
+GO-ID	p-value	corr p-value	x	n	X	N	Description	Genes in test set
