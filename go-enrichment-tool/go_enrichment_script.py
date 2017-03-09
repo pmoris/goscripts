@@ -15,6 +15,15 @@ also have enriched parent terms. Furthermore, GO terms associated with a small n
 Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing correction are applied to the test results.
 Finally, a csv file containing all the GO terms that were evaluated and their p-values are returned.
 
+# Special cases
+
+If a GO namespace is provided, any genes that lack an annotation of this type are ignored. I.e. this can lower
+the total counts for the background and interest gene sets.
+
+If any of the provided genes are absent from the gene association file / gene ontology file, they are ignored.
+
+If the subset of interest is disjoint from the background, the extra genes will be ignored.
+
 # Requires the following input files:
     - gene association file in .gaf format
     - gene ontology file in .obo format

@@ -233,7 +233,7 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     Parameters
     ----------
     GOid : str
-        The GO id that is being tested for enrichment. 
+        The GO term id that is being tested for enrichment.
     backgroundTotal : int
         The total number of genes in the background set.
     subsetTotal : int
