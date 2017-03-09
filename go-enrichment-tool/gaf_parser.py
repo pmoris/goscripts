@@ -126,9 +126,15 @@ def cleanGafTerms(gafDict, filteredGOdict):
         The gaf dictionary after removal of GO terms belonging to different namespaces.
     """
 
-    for gene, goids in gafDict.items():
-        gafDict[gene] = goids.intersection(filteredGOdict.keys())
+    filteredGafDict = {}
 
-    filteredGafDict = {k:v for k,v in gafDict.items() if v}
+    for gene,goids in gafDict.items():
+        # for the associated GO terms of each gene in the gaf dictionary
+        # find its intersection with the namespace-filtered GO terms.
+        intersection = goids.intersection(filteredGOdict.keys())
+        # if the intersection is not empty
+        if intersection:
+            # add gene keys and reduced GO term sets to a dictionary
+            filteredGafDict[gene] = intersection
 
     return filteredGafDict
