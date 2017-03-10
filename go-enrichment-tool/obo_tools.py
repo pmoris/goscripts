@@ -88,6 +88,7 @@ def importOBO(path):
 
     path = os.path.abspath(path)
     with open(path, 'r') as oboFile:
+
         # find re pattern to match '[Entry]'
         entryPattern = re.compile('^\[.+\]')
         validEntry = False
@@ -103,16 +104,16 @@ def importOBO(path):
 
             # if [Entry] was encountered previously, parse annotation
             elif validEntry:
-                # and hierarchy from subsequent lines
                 if line.startswith('id'):
                     # Store ID for lookup of other attributes in next lines
                     GOid = line.split(': ')[1].rstrip()
 
-                    if not GOid in GOdict:               # check if id is already stored as a key in dictionary
-                        # if not, create new GOid object as the value for this
-                        # key
+                    if GOid not in GOdict:
+                        # check if ID is already stored as a key in dictionary and if not,
+                        # create a new GOid object as the value for this key
                         GOdict[GOid] = goTerm(GOid)
 
+                # Store all the other attributes for the current term as an object attribute
                 elif line.startswith('name:'):
                     GOdict[GOid].name = line.split(': ')[1].rstrip()
                 elif line.startswith('namespace:'):
@@ -125,7 +126,9 @@ def importOBO(path):
                     GOdict[GOid].parents.add(line.split()[2].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
+
     return GOdict
+
 
 def filterOnNamespace(GOdict, namespace):
     """
@@ -143,19 +146,20 @@ def filterOnNamespace(GOdict, namespace):
         A filtered dictionary of GO objects all belonging to the namespace.
     """
 
-    filteredGOdict = { GOid : GOobj for GOid, GOobj in GOdict.items() if GOobj.namespace == namespace }
+    filteredGOdict = {GOid: GOobj for GOid, GOobj in GOdict.items() if GOobj.namespace == namespace}
 
     if not filteredGOdict:
-        print('Namespace', namespace, 'was not found in the obo file. Exiting now...\n')
-        sys.exit()
+        print('Namespace', namespace, 'was not found in the obo file. Using all annotations in obo file instead.\n')
+        return GOdict
 
     print('Found', len(filteredGOdict), 'GO terms belonging to', namespace + '.\n')
 
     return filteredGOdict
 
+
 def buildGOtree(GOdict):
     """
-    Generates the entire GO tree's parent structure by walking through the parent hierarchy of each GO entry.
+    Generates the entire GO tree's parent structure by walking through the hierarchy of each GO entry.
 
     Parameters
     ----------
@@ -211,19 +215,18 @@ def propagateParents(currentTerm, baseGOid, GOdict, parentSet):
         Keys are of the format `GO-0000001` and map to OBO objects.
     """
 
-    # If current term is not present in GO dictionary, print warning and end
-    # recursion
+    # If current term is not present in GO dictionary, print warning and end recursion
     if currentTerm not in GOdict:
         print('WARNING!\n' + currentTerm, 'was defined as a parent for',
               baseGOid, ', but was not found in the OBO file.\n')
-        parentSet.pop(currentTerm)      # remove missing value
+        # remove missing value
+        parentSet.pop(currentTerm)
         return
 
     # If current term has no further parents the recursion will end and move
     # back up the stack, since there are no parents to iterate over
     parents = GOdict.get(currentTerm).parents
     for parent in parents:
-
         # # Check if parent is present in GO dictionary
         # if parent not in GOdict:
         #     print('WARNING!\n' + parent, 'was defined as a parent for',
@@ -256,11 +259,14 @@ def completeChildHierarchy(GOdict):
 
     Returns
     -------
-    dict of OBO objects
-        Updated GO dict where child attributes trace back over the full tree hierarchy.
-        Keys are of the format `GO-0000001` and map to OBO objects.
+    None
+        Updates the provided GO dictionary in place so that the child attributes
+        trace back over the full GO hierarchy.
     """
+
+    # For every GO term
     for GOid, GOobj in GOdict.items():
+        # add this term as a child for all of its parents
         [GOdict[parent].children.add(GOid) for parent in GOobj.parents]
 
     return None

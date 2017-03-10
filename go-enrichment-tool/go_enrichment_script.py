@@ -93,8 +93,10 @@ if __name__ == '__main__':
     # retrieve the full background set from it
     if args.background == 'full annotation set':
         print('No background gene set provided, retrieving all genes from the gene annotation file...\n')
+
         gafDict = gaf_parser.importGAF(args.gaf, args.background)
         background = set(gafDict.keys())
+
     # otherwise, import the background set first and use this to limit gene association import
     else:
         background = genelist_importer.importGeneList(args.background)
@@ -126,8 +128,16 @@ if __name__ == '__main__':
         # and reduce the gene association files to these GO terms
         gafDict = gaf_parser.cleanGafTerms(gafDict, GOterms)
         gafSubset = gaf_parser.cleanGafTerms(gafSubset, GOterms)
-        print(len(gafDict), 'out of', len(background), 'genes are annotated for', args.namespace)
-        print(len(gafSubset), 'out of', len(interest), 'genes are annotated for', args.namespace)
+
+        print(len(gafDict), 'out of', len(background), 'genes found annotated for', args.namespace)
+        print(len(gafSubset), 'out of', len(interest), 'genes found annotated for', args.namespace)
+
+        # If for some reason the gene association dictionaries' length can't be used for determining
+        # the size of the background and interest sets after namespace reduction
+        # the set objects themselves need to be filtered once more as well. Note that this
+        # will output a long list of removed (unannotated) genes to the screen.
+        # background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
+        # interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
     print('lenFilteredGOterms', len(GOterms))
     print('lenFilteredgafDict', len(gafDict))
@@ -135,38 +145,26 @@ if __name__ == '__main__':
     print('lensubsetgafdict',len(gafSubset))
     print('leninterest',len(interest))
 
-    background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
-    interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
     print('lenFilteredGOterms', len(GOterms))
     print('lenFilteredgafDict', len(gafDict))
     print('lenbackground',len(background))
     print('lensubsetgafdict',len(gafSubset))
     print('leninterest',len(interest))
-
-    # TODO: remove interest/background set and get lengths from gaf/gafsubset dict?
-
-    # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
-    #     print('id', i, 'parents', GOterms[i].parents)
 
     # Build full GO hierarchy
     print('Propagating through ontology to find all children and parents for each term...\n')
     obo_tools.buildGOtree(GOterms)
 
-    # print('\n After propagating through parents')
-    #
-    # for i in ['GO:0060373', 'GO:0048245', 'GO:0044077', 'GO:0042925', 'GO:1902361', 'GO:1902361', 'GO:1902361', 'GO:0000001', 'GO:0000002']:
-    #     print('id', i, 'parents', GOterms[i].parents)
-
     # Perform enrichment test
     print('Finished completing ontology...proceeding with enrichment tests...\n')
-    enrichmentResults = enrichment_stats.enrichmentAnalysis(background, interest, GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
+    enrichmentResults = enrichment_stats.enrichmentAnalysis(GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
 
     # Update results with multiple testing correction
     enrichment_stats.multipleTestingCorrection(enrichmentResults, testType='fdr', threshold=args.threshold)
 
     # Create dataframe with tested GO terms and results
-    output = enrichment_stats.annotateOutput(enrichmentResults, GOterms, background, interest)
+    output = enrichment_stats.annotateOutput(enrichmentResults, GOterms, gafDict, gafSubset)
 
     # Print intermediate output
     if not args.condense:
