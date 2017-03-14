@@ -28,7 +28,7 @@ If the subset of interest is disjoint from the background, the extra genes will 
     - gene association file in .gaf format
     - gene ontology file in .obo format
     - text file with genes of interest separated by new lines
-        expects uniprot AC's
+        expects Uniprot AC's
     - optional text file with background set
         if not provided, the entire gene annotation found in the association file will be used
 
@@ -42,7 +42,6 @@ If the subset of interest is disjoint from the background, the extra genes will 
 
 # Dependencies:
     numpy, pandas, scipy.stats, statsmodels.sandbox.stats.multicomp
-
 '''
 
 import argparse
@@ -62,9 +61,9 @@ if __name__ == '__main__':
         description='Script to perform GO enrichment analysis', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     # https://stackoverflow.com/questions/18862836/how-to-open-file-using-argparse
     parser.add_argument('-b', '--background', type=str, default='full annotation set', dest='background',
-                        help='File containing a list of uniprot accession numbers for the background set of genes')
+                        help='File containing a list of Uniprot accession numbers for the background set of genes')
     parser.add_argument('-s', '--subset', type=str, required=True, dest='subset',
-                        help='File containing a list of uniprot accession numbers for the subset of genes of interest')
+                        help='File containing a list of Uniprot accession numbers for the subset of genes of interest')
     parser.add_argument('-o', '--obo', type=str, required=True, dest='obo',
                         help='.obo file containing gene ontology')
     parser.add_argument('-g', '--gaf', type=str, required=True, dest='gaf',
@@ -86,7 +85,7 @@ if __name__ == '__main__':
                         help='Suppress verbose output.')
     args = parser.parse_args()
 
-    # Import the gene set of interest (uniprot AC format)
+    # Import the gene set of interest (Uniprot AC format)
     interest = genelist_importer.importGeneList(args.subset)
 
     # If no background is provided, import the gene association file and
@@ -102,7 +101,7 @@ if __name__ == '__main__':
         background = genelist_importer.importGeneList(args.background)
         gafDict = gaf_parser.importGAF(args.gaf, background)
 
-    # Check if the set of interest contains uniprot AC's not present in the background set and
+    # Check if the set of interest contains Uniprot AC's not present in the background set and
     # report and remove them
     interest = genelist_importer.isValidSubset(interest, background)
 
@@ -117,11 +116,6 @@ if __name__ == '__main__':
     # Import gene ontology file
     GOterms = obo_tools.importOBO(args.obo)
 
-    print('lenGOterms',len(GOterms))
-    print('lengafdict',len(gafDict))
-    print('lensubsetgafdict',len(gafSubset))
-
-
     # Reduce gene ontology file to selected namespace
     if not args.namespace == 'all':
         GOterms = obo_tools.filterOnNamespace(GOterms, args.namespace)
@@ -129,8 +123,8 @@ if __name__ == '__main__':
         gafDict = gaf_parser.cleanGafTerms(gafDict, GOterms)
         gafSubset = gaf_parser.cleanGafTerms(gafSubset, GOterms)
 
-        print(len(gafDict), 'out of', len(background), 'genes found annotated for', args.namespace)
-        print(len(gafSubset), 'out of', len(interest), 'genes found annotated for', args.namespace)
+        print(len(gafDict), 'out of', len(background), 'background genes found annotated for', args.namespace)
+        print(len(gafSubset), 'out of', len(interest), 'genes of interest found annotated for', args.namespace)
 
         # If for some reason the gene association dictionaries' length can't be used for determining
         # the size of the background and interest sets after namespace reduction
@@ -139,21 +133,8 @@ if __name__ == '__main__':
         # background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
         # interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
-    print('lenFilteredGOterms', len(GOterms))
-    print('lenFilteredgafDict', len(gafDict))
-    print('lenbackground',len(background))
-    print('lensubsetgafdict',len(gafSubset))
-    print('leninterest',len(interest))
-
-
-    print('lenFilteredGOterms', len(GOterms))
-    print('lenFilteredgafDict', len(gafDict))
-    print('lenbackground',len(background))
-    print('lensubsetgafdict',len(gafSubset))
-    print('leninterest',len(interest))
-
     # Build full GO hierarchy
-    print('Propagating through ontology to find all children and parents for each term...\n')
+    print('\nPropagating through ontology to find all children and parents for each term...\n')
     obo_tools.buildGOtree(GOterms)
 
     # Perform enrichment test
@@ -172,5 +153,5 @@ if __name__ == '__main__':
         print(output)
 
     # Save results
-    print('Saving output to', args.outputFile)
+    print('\nSaving output to', args.outputFile)
     output.to_csv(args.outputFile)

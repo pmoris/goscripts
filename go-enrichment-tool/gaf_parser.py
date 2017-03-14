@@ -4,12 +4,12 @@
 @author: Pieter Moris
 '''
 
-import os, sys
+import os
 
 
 def importGAF(path, geneSet):
     """
-    Imports a GAF file (gene association format) and generates a dictionary mapping the gene uniprot AC to the GO ID.
+    Imports a GAF file (gene association format) and generates a dictionary mapping the gene Uniprot AC to the GO ID.
     Only imports genes which are present in the provided (background) gene set, if one is provided.
 
     Information on the GAF 2.1 format can be found at
@@ -20,12 +20,12 @@ def importGAF(path, geneSet):
     path : str
         The path to the file.
     geneSet : set
-        A set containing the uniprot AC's of all the genes under consideration (background).
+        A set containing the Uniprot AC's of all the genes under consideration (background).
 
     Returns
     -------
     dict of str mapping to set
-        A dictionary mapping gene uniprot AC's (str) to a set GO ID's.
+        A dictionary mapping gene Uniprot AC's (str) to a set GO ID's.
 
     Possible improvements:
         Check for `is_obsolete` and `replaced_by`, although the replacement term should be in OBO file as an entry.
@@ -42,18 +42,19 @@ def importGAF(path, geneSet):
             gafDict = {}
             for line in gafFile:
                 if line.startswith('UniProtKB'):
-                    splitLine = line.split('\t')            # split column-wise
+                    splitLine = line.split('\t')  # split column-wise
                     uniprotAC = splitLine[1]
                     goTerm = splitLine[4]
                     goQualifier = splitLine[3]
-                    if 'NOT' not in goQualifier:            # ignore annotations with "NOT"
-                        if uniprotAC not in gafDict:        # Create new key if uniprot AC does not already appear in dictionary
-                            gafDict[uniprotAC] = {goTerm}   # make dictionary containing uniprot AC as key and
+                    if 'NOT' not in goQualifier:  # ignore annotations with "NOT"
+                        # Create new key if Uniprot AC does not already appear in dictionary
+                        if uniprotAC not in gafDict:
+                            gafDict[uniprotAC] = {goTerm}   # make dictionary containing Uniprot AC as key and
                         else:                               # set of GO's as value
                             gafDict[uniprotAC].add(goTerm)
 
         print('Retrieved', len(gafDict),
-              'annotated uniprot AC\'s from', gafPath + '\n')
+              'annotated Uniprot AC\'s from', gafPath + '\n')
 
         return gafDict
 
@@ -63,39 +64,41 @@ def importGAF(path, geneSet):
             gafDict = {}
             for line in gafFile:
                 if line.startswith('UniProtKB'):
-                    splitLine = line.split('\t')                # split column-wise
+                    splitLine = line.split('\t')  # split column-wise
                     uniprotAC = splitLine[1]
                     goTerm = splitLine[4]
                     goQualifier = splitLine[3]
-                    if 'NOT' not in goQualifier:                # ignore annotations with "NOT"
-                        if uniprotAC in geneSet:                # only keep genes present in background gene set
-                            if uniprotAC not in gafDict:        # Create new key if uniprot AC does not already appear in dictionary
-                                gafDict[uniprotAC] = {goTerm}   # make dictionary containing uniprot AC as key and
+                    if 'NOT' not in goQualifier:  # ignore annotations with "NOT"
+                        if uniprotAC in geneSet:  # only keep genes present in background gene set
+                            # Create new key if Uniprot AC does not already appear in dictionary
+                            if uniprotAC not in gafDict:
+                                gafDict[uniprotAC] = {goTerm}   # make dictionary containing Uniprot AC as key and
                             else:                               # set of GO terms as value
                                 gafDict[uniprotAC].add(goTerm)
 
         print('Retrieved', len(gafDict),
-              'annotated (background filtered) uniprot AC\'s from', gafPath + '\n')
+              'annotated (background filtered) Uniprot AC\'s from', gafPath + '\n')
 
         return gafDict
 
+
 def createSubsetGafDict(subset, gafDict):
     """
-    Generates a dictionary mapping the subset's gene uniprot AC's to the GO ID's,
+    Generates a dictionary mapping the subset's gene Uniprot AC's to the GO ID's,
     based on the provided gene subset and the gaf dictionary.
 
     Parameters
     ----------
     subset : set of str
-        A subset of uniprot ACs of interest.
+        A subset of Uniprot ACs of interest.
     gafDict : dict of str mapping to set
-        A dictionary mapping gene uniprot AC's (str) to a set GO ID's.
+        A dictionary mapping gene Uniprot AC's (str) to a set GO ID's.
         Generated by importGAF() or importFullGAF().
 
     Returns
     -------
     dict of str mapping to set
-        A dictionary mapping the subset's gene uniprot AC's to GO ID's.
+        A dictionary mapping the subset's gene Uniprot AC's to GO ID's.
     """
 
     gafSubsetDict = {}
@@ -105,6 +108,7 @@ def createSubsetGafDict(subset, gafDict):
             gafSubsetDict[gene] = GOids
 
     return gafSubsetDict
+
 
 def cleanGafTerms(gafDict, filteredGOdict):
     """
@@ -128,13 +132,13 @@ def cleanGafTerms(gafDict, filteredGOdict):
 
     filteredGafDict = {}
 
-    for gene,goids in gafDict.items():
+    for gene, goids in gafDict.items():
         # for the associated GO terms of each gene in the gaf dictionary
         # find its intersection with the namespace-filtered GO terms.
         intersection = goids.intersection(filteredGOdict.keys())
         # if the intersection is not empty
         if intersection:
-            # add gene keys and reduced GO term sets to a dictionary
+            # add gene keys and intersected reduced GO term sets to a dictionary
             filteredGafDict[gene] = intersection
 
     return filteredGafDict
