@@ -332,7 +332,7 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0
         print('Performing multiple testing correction using the Bonferroni FWER method.\n')
         corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')
         print(np.sum(corr[0]), 'GO terms out of', len(corr[0]),
-              'were significant after bonferroni multiple testing correction.')
+              'were significant after Bonferroni multiple testing correction.')
     else:
         print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.\n')
         corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='fdr_bh')
