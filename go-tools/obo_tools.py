@@ -54,7 +54,7 @@ class goTerm:
 
         goTerm.goCount += 1
 
-def importOBO(path):
+def importOBO(path, ignore_partof=True):
     """
     Imports an OBO file and generates a dictionary containing an OBO object for each GO term.
 
@@ -65,6 +65,8 @@ def importOBO(path):
     ----------
     path : str
         The path to the file.
+    ignore_partof : bool
+        A boolean indicating whether or not the "part_of" relationship should be ignored.
 
     Returns
     -------
@@ -113,8 +115,9 @@ def importOBO(path):
                     GOdict[GOid].altid.append(line.split(': ')[1].rstrip())
                 elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
-                # elif line.startswith('relationship: part_of'):
-                #     GOdict[GOid].parents.add(line.split()[2].rstrip())
+                elif line.startswith('relationship: part_of'):
+                    if not ignore_partof:
+                        GOdict[GOid].parents.add(line.split()[2].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
 
