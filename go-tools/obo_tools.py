@@ -54,6 +54,7 @@ class goTerm:
 
         goTerm.goCount += 1
 
+
 def importOBO(path, ignore_partof=True):
     """
     Imports an OBO file and generates a dictionary containing an OBO object for each GO term.
@@ -155,8 +156,15 @@ def filterOnNamespace(GOdict, namespace):
 
 
 def buildGOtree(GOdict):
+    # TODO: add  3 functions + add assign_depth function
     """
     Generates the entire GO tree's parent structure by walking through the hierarchy of each GO entry.
+
+    Performs three main functions:
+    a) assign complete/recursive
+
+    assign immediate child terms to each node.
+    b)
 
     Parameters
     ----------
