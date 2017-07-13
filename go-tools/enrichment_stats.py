@@ -182,7 +182,13 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     # 2) retrieve all recursive parents for these terms
     # 3) retain terms that are not a parent of any other terms
     subsetGOids = {GOid for gene, GOids in gafSubset.items() for GOid in GOids}
-    subsetGOidsParents = {parent for GOid in subsetGOids for parent in GOdict[GOid].parents}
+    # Use full recursive parent set here because a low non specific term might be associated with a specific gene
+    # and not be a direct parent of any of the other terms (i.e. it is a distant ancestor). We have to look through
+    # the full ancestor set to find out whether it's an ancestor of any of the other terms. In that case, it can be
+    # removed from the base set because it will automatically be visited during propagation.
+    # If we fail to remove it, more tests than necessary will be conducted. This will take longer, but not affect
+    # multiple testing correction in any way (since a repeatedly tested term will just overwrite its value).
+    subsetGOidsParents = {parent for GOid in subsetGOids for parent in GOdict[GOid].recursive_parents}
     baseGOids = [GOid for GOid in subsetGOids if GOid not in subsetGOidsParents]
 
     # Deprecated code with unintended effect!
