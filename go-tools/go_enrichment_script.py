@@ -74,10 +74,11 @@ if __name__ == '__main__':
     parser.add_argument('-O', '--output', type=str, default='enrichment_results.csv', dest='outputFile',
                         help='Output file or path')
     parser.add_argument('-n', '--namespace', type=str, default='all',
+                        choices=['all', 'biological_process', 'molecular_function', 'cellular_component'],
                         help='Select the GO namespace to limit the enrichment test to')
     parser.add_argument('-m', '--min', type=int, default='3', dest='minGenes',
                         help='Minimum number of genes before considering a GO category')
-    parser.add_argument('-T', '--testing-thresh', type=float, default='0.05', dest='testing_threshold',
+    parser.add_argument('-l', '--limit-tests', type=float, default='0.05', dest='testing_limit',
                         help='P-value cut-off to use to stop GO tree propagation during testing')
     parser.add_argument('-t', '--thresh', type=float, default='0.1', dest='threshold',
                         help='P-value cut-off to use for significance testing')
@@ -134,12 +135,13 @@ if __name__ == '__main__':
         # interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
     # Build full GO hierarchy
+    root_nodes = obo_tools.set_namespace_root(args.namespace)
     print('\nPropagating through ontology to find all children and parents for each term...\n')
-    obo_tools.buildGOtree(GOterms)
+    obo_tools.buildGOtree(GOterms, root_nodes)
 
     # Perform enrichment test
     print('Finished completing ontology...proceeding with enrichment tests...\n')
-    enrichmentResults = enrichment_stats.enrichmentAnalysis(GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_threshold)
+    enrichmentResults = enrichment_stats.enrichmentAnalysis(GOterms, gafDict, gafSubset, minGenes=args.minGenes, threshold=args.testing_limit)
 
     # Update results with multiple testing correction
     enrichment_stats.multipleTestingCorrection(enrichmentResults, testType='fdr', threshold=args.threshold)
