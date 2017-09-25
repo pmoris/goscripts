@@ -153,9 +153,31 @@ def filterOnNamespace(GOdict, namespace):
 
     return filteredGOdict
 
+def set_namespace_root(namespace):
+    """
+    Stores the GO ID for the root of the selected namespace.
 
-def buildGOtree(GOdict, root_nodes=list(('GO:0008150', 'GO:0005575', 'GO:0003674'))):
-    # TODO: add  3 functions + add assign_depth function
+    Parameters
+    ----------
+    namespace : str
+        A string containing the desired namespace. E.g. biological_process, cellular_component
+        or molecular_function.
+
+    Returns
+    -------
+    list
+        The list of GO ID's of the root terms of the selected namespace.
+    """
+    if namespace == 'biological_process':
+        return ['GO:0008150']
+    elif namespace == 'cellular_component':
+        return ['GO:0005575']
+    elif namespace == 'molecular_function':
+        return ['GO:0003674']
+    else:
+        return ['GO:0008150', 'GO:0005575', 'GO:0003674']
+
+def buildGOtree(GOdict, root_nodes):
     """
     Generates the entire GO tree's parent structure by walking through the hierarchy of each GO entry.
 
@@ -208,7 +230,7 @@ def buildGOtree(GOdict, root_nodes=list(('GO:0008150', 'GO:0005575', 'GO:0003674
                 print(f'WARNING: The .obo file provided {parent} as a parent of {GOid}, but {parent} itself '
                       f'was not found in the GO dictionary. Check if it exists in the .obo file.')
 
-    # C) After all parents have been found, for each GO ID, add it as a child for all of its parents
+    # C) After all parents have been found, for each GO ID, add it as a child for all of its parents/ancestors
     completeChildHierarchy(GOdict)
 
     # D) Assign depth to each node.
