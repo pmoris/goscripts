@@ -266,9 +266,9 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     # it can be skipped and so can its parents
     if GOid not in enrichmentTestResults['pValues']:
 
-        # While testing for a term, also count all of its child terms
+        # While testing for a term, also count all of its (recursive) child terms
         validTerms = set([GOid])  # https://stackoverflow.com/questions/36674083/why-is-it-possible-to-replace-set-with
-        validTerms.update(GOdict[GOid].children)
+        validTerms.update(GOdict[GOid].recursive_children)
 
         # Count the number of genes in the background and subset that were
         # associated with the current terms
