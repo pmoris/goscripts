@@ -1,7 +1,9 @@
 data/go_data/
 data/hpidb2/hpidb2*
 docs/.*
-go-enrichment-tool/__pycache__/
+go-tools/__pycache__/
 data/__pycache__/
-go-enrichment-tool/__pycache__/*
+go-tools/__pycache__/*
 .idea/
+
+go-tools/\.cache/
