@@ -1,0 +1,851 @@
+File created with bingo (c) on 26-Sep-2017 at 16:33:18
+
+ontology: unknown
+curator:  unknown
+
+Selected ontology file : /media/pieter/DATA/Wetenschap/Doctoraat/host-pathogen-project/ebola-project/ebola-network-GO/data/go_data/go.obo
+Selected annotation file : /media/pieter/DATA/Wetenschap/Doctoraat/host-pathogen-project/ebola-project/ebola-network-GO/data/go_data/gene_association.gaf
+Discarded evidence codes : 
+Overrepresentation
+Selected statistical test : Hypergeometric test
+Selected correction : Benjamini & Hochberg False Discovery Rate (FDR) correction
+Selected significance level : 0.05
+Testing option : /media/pieter/DATA/Wetenschap/Doctoraat/host-pathogen-project/ebola-project/ebola-network-GO/data/background.txt
+The selected cluster :
+Q8TAQ2	Q96AX9	A8CG34	P35637	P0DMV9	Q71UM5	Q5VTE0	F8VVM2	P10412	Q9Y5M8	P35613	P12036	Q96KK5	P27708	Q16695	Q9BQE3	P31943	Q32P51	P49411	O15131	P35268	Q14839	P51532	Q99877	P62988	Q8N257	Q99879	
+
+No annotations were retrieved for the following entities:
+F8VVM2	P62988	
+
+GO-ID	p-value	corr p-value	x	n	X	N	Description	Genes in test set
+14074	3.0832E-2	8.8290E-1	2	225	140		response to purine-containing compound	P27708|P35613
+51091	3.0832E-2	8.8290E-1	2	225	140		positive regulation of sequence-specific DNA binding transcription factor activity	P0DMV9|P51532
+16569	7.8615E-2	8.8290E-1	4	1025	140		covalent chromatin modification	Q8TAQ2|Q14839|P10412|P51532
+34641	8.0298E-2	8.8290E-1	14	5825	140		cellular nitrogen compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532|P27708|Q16695
+32886	8.2220E-2	8.8290E-1	2	325	140		regulation of microtubule-based process	P0DMV9|P12036
+51090	8.2220E-2	8.8290E-1	2	325	140		regulation of sequence-specific DNA binding transcription factor activity	P0DMV9|P51532
+10467	9.0520E-2	8.8290E-1	11	4325	140		gene expression	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+6807	9.3193E-2	8.8290E-1	14	5925	140		nitrogen compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532|P27708|Q16695
+43044	1.0798E-1	8.8290E-1	3	725	140		ATP-dependent chromatin remodeling	Q8TAQ2|Q14839|P51532
+7010	1.0798E-1	8.8290E-1	3	725	140		cytoskeleton organization	Q14839|P12036|Q9BQE3
+7346	1.0798E-1	8.8290E-1	3	725	140		regulation of mitotic cell cycle	P0DMV9|Q71UM5|P51532
+1901564	1.4042E-1	8.8290E-1	6	2125	140		organonitrogen compound metabolic process	P0DMV9|P27708|P49411|Q71UM5|Q5VTE0|P35268
+1902807	1.4636E-1	8.8290E-1	2	425	140		negative regulation of cell cycle G1/S phase transition	Q71UM5|P51532
+1902806	1.4636E-1	8.8290E-1	2	425	140		regulation of cell cycle G1/S phase transition	Q71UM5|P51532
+45930	1.4636E-1	8.8290E-1	2	425	140		negative regulation of mitotic cell cycle	Q71UM5|P51532
+2000045	1.4636E-1	8.8290E-1	2	425	140		regulation of G1/S transition of mitotic cell cycle	Q71UM5|P51532
+2000134	1.4636E-1	8.8290E-1	2	425	140		negative regulation of G1/S transition of mitotic cell cycle	Q71UM5|P51532
+1901988	1.4636E-1	8.8290E-1	2	425	140		negative regulation of cell cycle phase transition	Q71UM5|P51532
+1901991	1.4636E-1	8.8290E-1	2	425	140		negative regulation of mitotic cell cycle phase transition	Q71UM5|P51532
+10038	1.4636E-1	8.8290E-1	2	425	140		response to metal ion	P35637|P35613
+10564	1.5232E-1	8.8290E-1	3	825	140		regulation of cell cycle process	P0DMV9|Q71UM5|P51532
+44271	1.7093E-1	8.8290E-1	9	3725	140		cellular nitrogen compound biosynthetic process	Q8TAQ2|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+34728	1.7243E-1	8.8290E-1	7	2725	140		nucleosome organization	Q8TAQ2|Q99877|Q16695|P10412|Q8N257|P51532|Q99879
+43010	1.7857E-1	8.8290E-1	1	125	140		camera-type eye development	P51532
+10286	1.7857E-1	8.8290E-1	1	125	140		heat acclimation	P0DMV9
+45103	1.7857E-1	8.8290E-1	1	125	140		intermediate filament-based process	P12036
+45104	1.7857E-1	8.8290E-1	1	125	140		intermediate filament cytoskeleton organization	P12036
+52	1.7857E-1	8.8290E-1	1	125	140		citrulline metabolic process	P27708
+45109	1.7857E-1	8.8290E-1	1	125	140		intermediate filament organization	P12036
+43062	1.7857E-1	8.8290E-1	1	125	140		extracellular structure organization	P35613
+45110	1.7857E-1	8.8290E-1	1	125	140		intermediate filament bundle assembly	P12036
+90169	1.7857E-1	8.8290E-1	1	125	140		regulation of spindle assembly	P0DMV9
+6206	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleobase metabolic process	P27708
+6207	1.7857E-1	8.8290E-1	1	125	140		'de novo' pyrimidine nucleobase biosynthetic process	P27708
+6213	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside metabolic process	P27708
+6220	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleotide metabolic process	P27708
+6221	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleotide biosynthetic process	P27708
+6222	1.7857E-1	8.8290E-1	1	125	140		UMP biosynthetic process	P27708
+6228	1.7857E-1	8.8290E-1	1	125	140		UTP biosynthetic process	P27708
+1902661	1.7857E-1	8.8290E-1	1	125	140		positive regulation of glucose mediated signaling pathway	P51532
+22617	1.7857E-1	8.8290E-1	1	125	140		extracellular matrix disassembly	P35613
+1902659	1.7857E-1	8.8290E-1	1	125	140		regulation of glucose mediated signaling pathway	P51532
+90224	1.7857E-1	8.8290E-1	1	125	140		regulation of spindle organization	P0DMV9
+34968	1.7857E-1	8.8290E-1	1	125	140		histone lysine methylation	P10412
+30879	1.7857E-1	8.8290E-1	1	125	140		mammary gland development	P27708
+16571	1.7857E-1	8.8290E-1	1	125	140		histone methylation	P10412
+16584	1.7857E-1	8.8290E-1	1	125	140		nucleosome positioning	P10412
+51414	1.7857E-1	8.8290E-1	1	125	140		response to cortisol	P27708
+98532	1.7857E-1	8.8290E-1	1	125	140		histone H3-K27 trimethylation	P10412
+30968	1.7857E-1	8.8290E-1	1	125	140		endoplasmic reticulum unfolded protein response	Q9Y5M8
+31000	1.7857E-1	8.8290E-1	1	125	140		response to caffeine	P27708
+1902893	1.7857E-1	8.8290E-1	1	125	140		regulation of pri-miRNA transcription from RNA polymerase II promoter	P51532
+1902895	1.7857E-1	8.8290E-1	1	125	140		positive regulation of pri-miRNA transcription from RNA polymerase II promoter	P51532
+80182	1.7857E-1	8.8290E-1	1	125	140		histone H3-K4 trimethylation	P10412
+2001240	1.7857E-1	8.8290E-1	1	125	140		negative regulation of extrinsic apoptotic signaling pathway in absence of ligand	P0DMV9
+2001239	1.7857E-1	8.8290E-1	1	125	140		regulation of extrinsic apoptotic signaling pathway in absence of ligand	P0DMV9
+2001236	1.7857E-1	8.8290E-1	1	125	140		regulation of extrinsic apoptotic signaling pathway	P0DMV9
+2001237	1.7857E-1	8.8290E-1	1	125	140		negative regulation of extrinsic apoptotic signaling pathway	P0DMV9
+51568	1.7857E-1	8.8290E-1	1	125	140		histone H3-K4 methylation	P10412
+51591	1.7857E-1	8.8290E-1	1	125	140		response to cAMP	P35613
+45471	1.7857E-1	8.8290E-1	1	125	140		response to ethanol	P49411
+10803	1.7857E-1	8.8290E-1	1	125	140		regulation of tumor necrosis factor-mediated signaling pathway	P0DMV9
+1901099	1.7857E-1	8.8290E-1	1	125	140		negative regulation of signal transduction in absence of ligand	P0DMV9
+51783	1.7857E-1	8.8290E-1	1	125	140		regulation of nuclear division	P0DMV9
+60041	1.7857E-1	8.8290E-1	1	125	140		retina development in camera-type eye	P51532
+72332	1.7857E-1	8.8290E-1	1	125	140		intrinsic apoptotic signaling pathway by p53 class mediator	Q71UM5
+60052	1.7857E-1	8.8290E-1	1	125	140		neurofilament cytoskeleton organization	P12036
+1903265	1.7857E-1	8.8290E-1	1	125	140		positive regulation of tumor necrosis factor-mediated signaling pathway	P0DMV9
+10968	1.7857E-1	8.8290E-1	1	125	140		regulation of microtubule nucleation	P0DMV9
+70370	1.7857E-1	8.8290E-1	1	125	140		cellular heat acclimation	P0DMV9
+17144	1.7857E-1	8.8290E-1	1	125	140		drug metabolic process	P27708
+70424	1.7857E-1	8.8290E-1	1	125	140		regulation of nucleotide-binding oligomerization domain containing signaling pathway	P0DMV9
+70426	1.7857E-1	8.8290E-1	1	125	140		positive regulation of nucleotide-binding oligomerization domain containing signaling pathway	P0DMV9
+70432	1.7857E-1	8.8290E-1	1	125	140		regulation of nucleotide-binding oligomerization domain containing 2 signaling pathway	P0DMV9
+70434	1.7857E-1	8.8290E-1	1	125	140		positive regulation of nucleotide-binding oligomerization domain containing 2 signaling pathway	P0DMV9
+33574	1.7857E-1	8.8290E-1	1	125	140		response to testosterone	P27708
+19240	1.7857E-1	8.8290E-1	1	125	140		citrulline biosynthetic process	P27708
+45896	1.7857E-1	8.8290E-1	1	125	140		regulation of transcription during mitotic cell cycle	P51532
+60236	1.7857E-1	8.8290E-1	1	125	140		regulation of mitotic spindle organization	P0DMV9
+72527	1.7857E-1	8.8290E-1	1	125	140		pyrimidine-containing compound metabolic process	P27708
+72528	1.7857E-1	8.8290E-1	1	125	140		pyrimidine-containing compound biosynthetic process	P27708
+72553	1.7857E-1	8.8290E-1	1	125	140		terminal button organization	Q14839
+43921	1.7857E-1	8.8290E-1	1	125	140		modulation by host of viral transcription	P51532
+43923	1.7857E-1	8.8290E-1	1	125	140		positive regulation by host of viral transcription	P51532
+7068	1.7857E-1	8.8290E-1	1	125	140		negative regulation of transcription during mitotic cell cycle	P51532
+33693	1.7857E-1	8.8290E-1	1	125	140		neurofilament bundle assembly	P12036
+7070	1.7857E-1	8.8290E-1	1	125	140		negative regulation of transcription from RNA polymerase II promoter during mitotic cell cycle	P51532
+9129	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside monophosphate metabolic process	P27708
+9130	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside monophosphate biosynthetic process	P27708
+7088	1.7857E-1	8.8290E-1	1	125	140		regulation of mitotic nuclear division	P0DMV9
+9147	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside triphosphate metabolic process	P27708
+9148	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside triphosphate biosynthetic process	P27708
+46021	1.7857E-1	8.8290E-1	1	125	140		regulation of transcription from RNA polymerase II promoter during mitotic cell cycle	P51532
+72661	1.7857E-1	8.8290E-1	1	125	140		protein targeting to plasma membrane	P35613
+9173	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside monophosphate metabolic process	P27708
+9174	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside monophosphate biosynthetic process	P27708
+46049	1.7857E-1	8.8290E-1	1	125	140		UMP metabolic process	P27708
+46051	1.7857E-1	8.8290E-1	1	125	140		UTP metabolic process	P27708
+9208	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside triphosphate metabolic process	P27708
+9209	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside triphosphate biosynthetic process	P27708
+9218	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleotide metabolic process	P27708
+9220	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleotide biosynthetic process	P27708
+97305	1.7857E-1	8.8290E-1	1	125	140		response to alcohol	P49411
+7219	1.7857E-1	8.8290E-1	1	125	140		Notch signaling pathway	Q96AX9
+46131	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside metabolic process	P27708
+46132	1.7857E-1	8.8290E-1	1	125	140		pyrimidine ribonucleoside biosynthetic process	P27708
+46134	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleoside biosynthetic process	P27708
+70734	1.7857E-1	8.8290E-1	1	125	140		histone H3-K27 methylation	P10412
+52312	1.7857E-1	8.8290E-1	1	125	140		modulation of transcription in other organism involved in symbiotic interaction	P51532
+1901673	1.7857E-1	8.8290E-1	1	125	140		regulation of mitotic spindle assembly	P0DMV9
+35967	1.7857E-1	8.8290E-1	1	125	140		cellular response to topologically incorrect protein	Q9Y5M8
+44205	1.7857E-1	8.8290E-1	1	125	140		'de novo' UMP biosynthetic process	P27708
+60632	1.7857E-1	8.8290E-1	1	125	140		regulation of microtubule-based movement	P12036
+52472	1.7857E-1	8.8290E-1	1	125	140		modulation by host of symbiont transcription	P51532
+7422	1.7857E-1	8.8290E-1	1	125	140		peripheral nervous system development	P12036
+50434	1.7857E-1	8.8290E-1	1	125	140		positive regulation of viral transcription	P51532
+3407	1.7857E-1	8.8290E-1	1	125	140		neural retina development	P51532
+60760	1.7857E-1	8.8290E-1	1	125	140		positive regulation of response to cytokine stimulus	P0DMV9
+15718	1.7857E-1	8.8290E-1	1	125	140		monocarboxylic acid transport	P35613
+19856	1.7857E-1	8.8290E-1	1	125	140		pyrimidine nucleobase biosynthetic process	P27708
+7589	1.7857E-1	8.8290E-1	1	125	140		body fluid secretion	P27708
+7595	1.7857E-1	8.8290E-1	1	125	140		lactation	P27708
+42475	1.7857E-1	8.8290E-1	1	125	140		odontogenesis of dentin-containing tooth	P35613
+30198	1.7857E-1	8.8290E-1	1	125	140		extracellular matrix organization	P35613
+46631	1.7857E-1	8.8290E-1	1	125	140		alpha-beta T cell activation	P35268
+46632	1.7857E-1	8.8290E-1	1	125	140		alpha-beta T cell differentiation	P35268
+71248	1.7857E-1	8.8290E-1	1	125	140		cellular response to metal ion	P35637
+46683	1.7857E-1	8.8290E-1	1	125	140		response to organophosphorus	P35613
+46689	1.7857E-1	8.8290E-1	1	125	140		response to mercury ion	P35613
+18022	1.7857E-1	8.8290E-1	1	125	140		peptidyl-lysine methylation	P10412
+18023	1.7857E-1	8.8290E-1	1	125	140		peptidyl-lysine trimethylation	P10412
+46697	1.7857E-1	8.8290E-1	1	125	140		decidualization	P35613
+71277	1.7857E-1	8.8290E-1	1	125	140		cellular response to calcium ion	P35637
+1654	1.7857E-1	8.8290E-1	1	125	140		eye development	P51532
+36498	1.7857E-1	8.8290E-1	1	125	140		IRE1-mediated unfolded protein response	Q9Y5M8
+18107	1.7857E-1	8.8290E-1	1	125	140		peptidyl-threonine phosphorylation	P27708
+46782	1.7857E-1	8.8290E-1	1	125	140		regulation of viral transcription	P51532
+32459	1.7857E-1	8.8290E-1	1	125	140		regulation of protein oligomerization	Q16695
+32460	1.7857E-1	8.8290E-1	1	125	140		negative regulation of protein oligomerization	Q16695
+14075	1.7857E-1	8.8290E-1	1	125	140		response to amine	P27708
+42771	1.7857E-1	8.8290E-1	1	125	140		intrinsic apoptotic signaling pathway in response to DNA damage by p53 class mediator	Q71UM5
+18210	1.7857E-1	8.8290E-1	1	125	140		peptidyl-threonine modification	P27708
+48934	1.7857E-1	8.8290E-1	1	125	140		peripheral nervous system neuron differentiation	P12036
+48935	1.7857E-1	8.8290E-1	1	125	140		peripheral nervous system neuron development	P12036
+48936	1.7857E-1	8.8290E-1	1	125	140		peripheral nervous system neuron axonogenesis	P12036
+34605	1.7857E-1	8.8290E-1	1	125	140		cellular response to heat	P0DMV9
+34620	1.7857E-1	8.8290E-1	1	125	140		cellular response to unfolded protein	Q9Y5M8
+1893	1.7857E-1	8.8290E-1	1	125	140		maternal placenta development	P35613
+90002	1.7857E-1	8.8290E-1	1	125	140		establishment of protein localization to plasma membrane	P35613
+51092	1.7857E-1	8.8290E-1	1	125	140		positive regulation of NF-kappaB transcription factor activity	P0DMV9
+32677	1.7857E-1	8.8290E-1	1	125	140		regulation of interleukin-8 production	P0DMV9
+1961	1.7857E-1	8.8290E-1	1	125	140		positive regulation of cytokine-mediated signaling pathway	P0DMV9
+1902513	1.7857E-1	8.8290E-1	1	125	140		regulation of organelle transport along microtubule	P12036
+6090	1.7857E-1	8.8290E-1	1	125	140		pyruvate metabolic process	P35613
+90063	1.7857E-1	8.8290E-1	1	125	140		positive regulation of microtubule nucleation	P0DMV9
+90083	1.7857E-1	8.8290E-1	1	125	140		regulation of inclusion body assembly	P0DMV9
+90084	1.7857E-1	8.8290E-1	1	125	140		negative regulation of inclusion body assembly	P0DMV9
+32757	1.7857E-1	8.8290E-1	1	125	140		positive regulation of interleukin-8 production	P0DMV9
+43043	1.8071E-1	8.8290E-1	4	1325	140		peptide biosynthetic process	P49411|Q71UM5|Q5VTE0|P35268
+6412	1.8071E-1	8.8290E-1	4	1325	140		translation	P49411|Q71UM5|Q5VTE0|P35268
+6518	1.8071E-1	8.8290E-1	4	1325	140		peptide metabolic process	P49411|Q71UM5|Q5VTE0|P35268
+22411	1.8071E-1	8.8290E-1	4	1325	140		cellular component disassembly	Q8TAQ2|A8CG34|P35613|P51532
+71704	1.8941E-1	8.8290E-1	19	9325	140		organic substance metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P35613|P51532|Q99877|P27708|Q16695|Q99879
+44237	1.8941E-1	8.8290E-1	19	9325	140		cellular metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P35613|P51532|Q99877|P27708|Q16695|Q99879
+1901566	1.9383E-1	8.8290E-1	5	1825	140		organonitrogen compound biosynthetic process	P27708|P49411|Q71UM5|Q5VTE0|P35268
+46483	1.9914E-1	8.8290E-1	12	5425	140		heterocycle metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P27708|Q71UM5|Q16695|P35268|Q14839|P51532
+6139	1.9914E-1	8.8290E-1	12	5425	140		nucleobase-containing compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P27708|Q71UM5|Q16695|P35268|Q14839|P51532
+71824	2.0072E-1	8.8290E-1	7	2825	140		protein-DNA complex subunit organization	Q8TAQ2|Q99877|Q16695|P10412|Q8N257|P51532|Q99879
+6333	2.0072E-1	8.8290E-1	7	2825	140		chromatin assembly or disassembly	Q8TAQ2|Q99877|Q16695|P10412|Q8N257|P51532|Q99879
+6338	2.0158E-1	8.8290E-1	3	925	140		chromatin remodeling	Q8TAQ2|Q14839|P51532
+44260	2.0369E-1	8.8290E-1	17	8225	140		cellular macromolecule metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P51532|Q99877|P27708|Q16695|Q99879
+6337	2.1742E-1	8.8290E-1	2	525	140		nucleosome disassembly	Q8TAQ2|P51532
+32986	2.1742E-1	8.8290E-1	2	525	140		protein-DNA complex disassembly	Q8TAQ2|P51532
+226	2.1742E-1	8.8290E-1	2	525	140		microtubule cytoskeleton organization	Q14839|P12036
+6414	2.1742E-1	8.8290E-1	2	525	140		translational elongation	P49411|Q5VTE0
+43436	2.1742E-1	8.8290E-1	2	525	140		oxoacid metabolic process	P27708|P35613
+51817	2.1742E-1	8.8290E-1	2	525	140		modification of morphology or physiology of other organism involved in symbiotic interaction	O15131|P51532
+10948	2.1742E-1	8.8290E-1	2	525	140		negative regulation of cell cycle process	Q71UM5|P51532
+45786	2.1742E-1	8.8290E-1	2	525	140		negative regulation of cell cycle	Q71UM5|P51532
+31498	2.1742E-1	8.8290E-1	2	525	140		chromatin disassembly	Q8TAQ2|P51532
+9116	2.1742E-1	8.8290E-1	2	525	140		nucleoside metabolic process	P0DMV9|P27708
+9119	2.1742E-1	8.8290E-1	2	525	140		ribonucleoside metabolic process	P0DMV9|P27708
+9141	2.1742E-1	8.8290E-1	2	525	140		nucleoside triphosphate metabolic process	P0DMV9|P27708
+35821	2.1742E-1	8.8290E-1	2	525	140		modification of morphology or physiology of other organism	O15131|P51532
+9199	2.1742E-1	8.8290E-1	2	525	140		ribonucleoside triphosphate metabolic process	P0DMV9|P27708
+1901657	2.1742E-1	8.8290E-1	2	525	140		glycosyl compound metabolic process	P0DMV9|P27708
+19752	2.1742E-1	8.8290E-1	2	525	140		carboxylic acid metabolic process	P27708|P35613
+7565	2.1742E-1	8.8290E-1	2	525	140		female pregnancy	P27708|P35613
+44706	2.1742E-1	8.8290E-1	2	525	140		multi-multicellular organism process	P27708|P35613
+6082	2.1742E-1	8.8290E-1	2	525	140		organic acid metabolic process	P27708|P35613
+6725	2.2297E-1	8.8290E-1	12	5525	140		cellular aromatic compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P27708|Q71UM5|Q16695|P35268|Q14839|P51532
+1901360	2.2297E-1	8.8290E-1	12	5525	140		organic cyclic compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P27708|Q71UM5|Q16695|P35268|Q14839|P51532
+7166	2.5428E-1	8.8290E-1	3	1025	140		cell surface receptor signaling pathway	Q96AX9|P31943|P35613
+44281	2.5428E-1	8.8290E-1	3	1025	140		small molecule metabolic process	P0DMV9|P27708|P35613
+9059	2.5700E-1	8.8290E-1	8	3525	140		macromolecule biosynthetic process	Q8TAQ2|A8CG34|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+44238	2.5833E-1	8.8290E-1	18	9025	140		primary metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P51532|Q99877|P27708|Q16695|Q99879
+43603	2.6599E-1	8.8290E-1	4	1525	140		cellular amide metabolic process	P49411|Q71UM5|Q5VTE0|P35268
+43604	2.6599E-1	8.8290E-1	4	1525	140		amide biosynthetic process	P49411|Q71UM5|Q5VTE0|P35268
+43170	2.7790E-1	8.8290E-1	17	8525	140		macromolecule metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P51532|Q99877|P27708|Q16695|Q99879
+6325	2.7918E-1	8.8290E-1	9	4125	140		chromatin organization	Q8TAQ2|Q99877|Q96KK5|Q16695|Q14839|P10412|Q8N257|P51532|Q99879
+43412	2.7918E-1	8.8290E-1	9	4125	140		macromolecule modification	Q8TAQ2|Q96AX9|Q99877|A8CG34|P27708|Q14839|P10412|P51532|Q99879
+9058	2.7918E-1	8.8290E-1	9	4125	140		biosynthetic process	Q8TAQ2|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+1901576	2.7918E-1	8.8290E-1	9	4125	140		organic substance biosynthetic process	Q8TAQ2|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+44249	2.7918E-1	8.8290E-1	9	4125	140		cellular biosynthetic process	Q8TAQ2|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+51236	2.9111E-1	8.8290E-1	2	625	140		establishment of RNA localization	A8CG34|Q32P51
+16570	2.9111E-1	8.8290E-1	2	625	140		histone modification	Q14839|P10412
+32984	2.9111E-1	8.8290E-1	2	625	140		macromolecular complex disassembly	Q8TAQ2|P51532
+43254	2.9111E-1	8.8290E-1	2	625	140		regulation of protein complex assembly	P0DMV9|Q16695
+43434	2.9111E-1	8.8290E-1	2	625	140		response to peptide hormone	P27708|P35613
+6753	2.9111E-1	8.8290E-1	2	625	140		nucleoside phosphate metabolic process	P0DMV9|P27708
+9117	2.9111E-1	8.8290E-1	2	625	140		nucleotide metabolic process	P0DMV9|P27708
+9123	2.9111E-1	8.8290E-1	2	625	140		nucleoside monophosphate metabolic process	P0DMV9|P27708
+9161	2.9111E-1	8.8290E-1	2	625	140		ribonucleoside monophosphate metabolic process	P0DMV9|P27708
+9259	2.9111E-1	8.8290E-1	2	625	140		ribonucleotide metabolic process	P0DMV9|P27708
+19693	2.9111E-1	8.8290E-1	2	625	140		ribose phosphate metabolic process	P0DMV9|P27708
+1901990	2.9111E-1	8.8290E-1	2	625	140		regulation of mitotic cell cycle phase transition	Q71UM5|P51532
+1901987	2.9111E-1	8.8290E-1	2	625	140		regulation of cell cycle phase transition	Q71UM5|P51532
+50657	2.9111E-1	8.8290E-1	2	625	140		nucleic acid transport	A8CG34|Q32P51
+50658	2.9111E-1	8.8290E-1	2	625	140		RNA transport	A8CG34|Q32P51
+46794	2.9111E-1	8.8290E-1	2	625	140		transport of virus	A8CG34|O15131
+55086	2.9111E-1	8.8290E-1	2	625	140		nucleobase-containing small molecule metabolic process	P0DMV9|P27708
+51028	2.9111E-1	8.8290E-1	2	625	140		mRNA transport	A8CG34|Q32P51
+75733	2.9111E-1	8.8290E-1	2	625	140		intracellular transport of virus	A8CG34|O15131
+8152	2.9167E-1	8.8290E-1	19	9725	140		metabolic process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|P35613|P51532|Q99877|P27708|Q16695|Q99879
+9987	2.9992E-1	8.8290E-1	25	13425	140		cellular process	Q8TAQ2|Q96AX9|A8CG34|P35637|P0DMV9|Q71UM5|Q5VTE0|P10412|Q9Y5M8|P35613|P12036|Q96KK5|P27708|Q16695|Q9BQE3|P31943|Q32P51|P49411|O15131|P35268|Q14839|P51532|Q99877|Q8N257|Q99879
+6605	3.0881E-1	8.8290E-1	5	2125	140		protein targeting	A8CG34|O15131|P35268|Q9Y5M8|P35613
+122	3.0901E-1	8.8290E-1	3	1125	140		negative regulation of transcription from RNA polymerase II promoter	Q14839|P10412|P51532
+6612	3.0901E-1	8.8290E-1	3	1125	140		protein targeting to membrane	P35268|Q9Y5M8|P35613
+51726	3.0901E-1	8.8290E-1	3	1125	140		regulation of cell cycle	P0DMV9|Q71UM5|P51532
+7017	3.0901E-1	8.8290E-1	3	1125	140		microtubule-based process	Q14839|P12036|Q9BQE3
+1990778	3.2631E-1	8.8290E-1	1	225	140		protein localization to cell periphery	P35613
+61564	3.2631E-1	8.8290E-1	1	225	140		axon development	P12036
+2181	3.2631E-1	8.8290E-1	1	225	140		cytoplasmic translation	P35268
+51384	3.2631E-1	8.8290E-1	1	225	140		response to glucocorticoid	P27708
+209	3.2631E-1	8.8290E-1	1	225	140		protein polyubiquitination	Q96AX9
+6356	3.2631E-1	8.8290E-1	1	225	140		regulation of transcription from RNA polymerase I promoter	P51532
+1904837	3.2631E-1	8.8290E-1	1	225	140		beta-catenin-TCF complex assembly	P51532
+32989	3.2631E-1	8.8290E-1	1	225	140		cellular component morphogenesis	P12036
+32990	3.2631E-1	8.8290E-1	1	225	140		cell part morphogenesis	P12036
+1902905	3.2631E-1	8.8290E-1	1	225	140		positive regulation of supramolecular fiber organization	P0DMV9
+51493	3.2631E-1	8.8290E-1	1	225	140		regulation of cytoskeleton organization	P0DMV9
+51495	3.2631E-1	8.8290E-1	1	225	140		positive regulation of cytoskeleton organization	P0DMV9
+33143	3.2631E-1	8.8290E-1	1	225	140		regulation of intracellular steroid hormone receptor signaling pathway	P51532
+33144	3.2631E-1	8.8290E-1	1	225	140		negative regulation of intracellular steroid hormone receptor signaling pathway	P51532
+31099	3.2631E-1	8.8290E-1	1	225	140		regeneration	P27708
+31100	3.2631E-1	8.8290E-1	1	225	140		animal organ regeneration	P27708
+31110	3.2631E-1	8.8290E-1	1	225	140		regulation of microtubule polymerization or depolymerization	P0DMV9
+51592	3.2631E-1	8.8290E-1	1	225	140		response to calcium ion	P35637
+31112	3.2631E-1	8.8290E-1	1	225	140		positive regulation of microtubule polymerization or depolymerization	P0DMV9
+31113	3.2631E-1	8.8290E-1	1	225	140		regulation of microtubule polymerization	P0DMV9
+31116	3.2631E-1	8.8290E-1	1	225	140		positive regulation of microtubule polymerization	P0DMV9
+6541	3.2631E-1	8.8290E-1	1	225	140		glutamine metabolic process	P27708
+1905039	3.2631E-1	8.8290E-1	1	225	140		carboxylic acid transmembrane transport	P35613
+8652	3.2631E-1	8.8290E-1	1	225	140		cellular amino acid biosynthetic process	P27708
+2520	3.2631E-1	8.8290E-1	1	225	140		immune system development	P35268
+2521	3.2631E-1	8.8290E-1	1	225	140		leukocyte differentiation	P35268
+31333	3.2631E-1	8.8290E-1	1	225	140		negative regulation of protein complex assembly	Q16695
+72331	3.2631E-1	8.8290E-1	1	225	140		signal transduction by p53 class mediator	Q71UM5
+51851	3.2631E-1	8.8290E-1	1	225	140		modification by host of symbiont morphology or physiology	P51532
+45727	3.2631E-1	8.8290E-1	1	225	140		positive regulation of translation	Q71UM5
+60135	3.2631E-1	8.8290E-1	1	225	140		maternal process involved in female pregnancy	P35613
+9064	3.2631E-1	8.8290E-1	1	225	140		glutamine family amino acid metabolic process	P27708
+70507	3.2631E-1	8.8290E-1	1	225	140		regulation of microtubule cytoskeleton organization	P0DMV9
+35690	3.2631E-1	8.8290E-1	1	225	140		cellular response to drug	P27708
+45943	3.2631E-1	8.8290E-1	1	225	140		positive regulation of transcription from RNA polymerase I promoter	P51532
+902	3.2631E-1	8.8290E-1	1	225	140		cell morphogenesis	P12036
+904	3.2631E-1	8.8290E-1	1	225	140		cell morphogenesis involved in differentiation	P12036
+9112	3.2631E-1	8.8290E-1	1	225	140		nucleobase metabolic process	P27708
+9142	3.2631E-1	8.8290E-1	1	225	140		nucleoside triphosphate biosynthetic process	P27708
+9163	3.2631E-1	8.8290E-1	1	225	140		nucleoside biosynthetic process	P27708
+72659	3.2631E-1	8.8290E-1	1	225	140		protein localization to plasma membrane	P35613
+9201	3.2631E-1	8.8290E-1	1	225	140		ribonucleoside triphosphate biosynthetic process	P27708
+46112	3.2631E-1	8.8290E-1	1	225	140		nucleobase biosynthetic process	P27708
+42026	3.2631E-1	8.8290E-1	1	225	140		protein refolding	P0DMV9
+9266	3.2631E-1	8.8290E-1	1	225	140		response to temperature stimulus	P0DMV9
+1901607	3.2631E-1	8.8290E-1	1	225	140		alpha-amino acid biosynthetic process	P27708
+1901659	3.2631E-1	8.8290E-1	1	225	140		glycosyl compound biosynthetic process	P27708
+9408	3.2631E-1	8.8290E-1	1	225	140		response to heat	P0DMV9
+1903825	3.2631E-1	8.8290E-1	1	225	140		organic acid transmembrane transport	P35613
+7409	3.2631E-1	8.8290E-1	1	225	140		axonogenesis	P12036
+1901836	3.2631E-1	8.8290E-1	1	225	140		regulation of transcription of nuclear large rRNA transcript from RNA polymerase I promoter	P51532
+1901838	3.2631E-1	8.8290E-1	1	225	140		positive regulation of transcription of nuclear large rRNA transcript from RNA polymerase I promoter	P51532
+60759	3.2631E-1	8.8290E-1	1	225	140		regulation of response to cytokine stimulus	P0DMV9
+60765	3.2631E-1	8.8290E-1	1	225	140		regulation of androgen receptor signaling pathway	P51532
+60766	3.2631E-1	8.8290E-1	1	225	140		negative regulation of androgen receptor signaling pathway	P51532
+30097	3.2631E-1	8.8290E-1	1	225	140		hemopoiesis	P35268
+30098	3.2631E-1	8.8290E-1	1	225	140		lymphocyte differentiation	P35268
+48534	3.2631E-1	8.8290E-1	1	225	140		hematopoietic or lymphoid organ development	P35268
+34250	3.2631E-1	8.8290E-1	1	225	140		positive regulation of cellular amide metabolic process	Q71UM5
+42455	3.2631E-1	8.8290E-1	1	225	140		ribonucleoside biosynthetic process	P27708
+30177	3.2631E-1	8.8290E-1	1	225	140		positive regulation of Wnt signaling pathway	P51532
+15849	3.2631E-1	8.8290E-1	1	225	140		organic acid transport	P35613
+42476	3.2631E-1	8.8290E-1	1	225	140		odontogenesis	P35613
+30217	3.2631E-1	8.8290E-1	1	225	140		T cell differentiation	P35268
+32273	3.2631E-1	8.8290E-1	1	225	140		positive regulation of protein polymerization	P0DMV9
+48667	3.2631E-1	8.8290E-1	1	225	140		cell morphogenesis involved in neuron differentiation	P12036
+71241	3.2631E-1	8.8290E-1	1	225	140		cellular response to inorganic substance	P35637
+61008	3.2631E-1	8.8290E-1	1	225	140		hepaticobiliary system development	P27708
+48812	3.2631E-1	8.8290E-1	1	225	140		neuron projection morphogenesis	P12036
+46777	3.2631E-1	8.8290E-1	1	225	140		protein autophosphorylation	P27708
+50900	3.2631E-1	8.8290E-1	1	225	140		leukocyte migration	P35613
+48858	3.2631E-1	8.8290E-1	1	225	140		cell projection morphogenesis	P12036
+46942	3.2631E-1	8.8290E-1	1	225	140		carboxylic acid transport	P35613
+1889	3.2631E-1	8.8290E-1	1	225	140		liver development	P27708
+1959	3.2631E-1	8.8290E-1	1	225	140		regulation of cytokine-mediated signaling pathway	P0DMV9
+34645	3.3082E-1	8.8290E-1	7	3225	140		cellular macromolecule biosynthetic process	Q8TAQ2|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532
+90304	3.5960E-1	8.8290E-1	10	4925	140		nucleic acid metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|Q71UM5|Q16695|P35268|Q14839|P51532
+1902593	3.6436E-1	8.8290E-1	2	725	140		single-organism nuclear import	A8CG34|O15131
+6403	3.6436E-1	8.8290E-1	2	725	140		RNA localization	A8CG34|Q32P51
+6606	3.6436E-1	8.8290E-1	2	725	140		protein import into nucleus	A8CG34|O15131
+17038	3.6436E-1	8.8290E-1	2	725	140		protein import	A8CG34|O15131
+1901652	3.6436E-1	8.8290E-1	2	725	140		response to peptide	P27708|P35613
+19637	3.6436E-1	8.8290E-1	2	725	140		organophosphate metabolic process	P0DMV9|P27708
+15931	3.6436E-1	8.8290E-1	2	725	140		nucleobase-containing compound transport	A8CG34|Q32P51
+34504	3.6436E-1	8.8290E-1	2	725	140		protein localization to nucleus	A8CG34|O15131
+44744	3.6436E-1	8.8290E-1	2	725	140		protein targeting to nucleus	A8CG34|O15131
+18205	3.6436E-1	8.8290E-1	2	725	140		peptidyl-lysine modification	A8CG34|P10412
+1902581	3.6436E-1	8.8290E-1	2	725	140		multi-organism cellular localization	A8CG34|O15131
+1902583	3.6436E-1	8.8290E-1	2	725	140		multi-organism intracellular transport	A8CG34|O15131
+90150	3.6449E-1	8.8290E-1	3	1225	140		establishment of protein localization to membrane	P35268|Q9Y5M8|P35613
+71103	3.7889E-1	8.8290E-1	6	2825	140		DNA conformation change	Q99877|Q16695|Q14839|P10412|Q8N257|Q99879
+48731	3.7889E-1	8.8290E-1	6	2825	140		system development	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+16070	3.8777E-1	8.8290E-1	8	3925	140		RNA metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P35268|Q14839|P51532
+6334	3.9183E-1	8.8290E-1	5	2325	140		nucleosome assembly	Q99877|Q16695|P10412|Q8N257|Q99879
+31497	3.9183E-1	8.8290E-1	5	2325	140		chromatin assembly	Q99877|Q16695|P10412|Q8N257|Q99879
+6357	4.0530E-1	8.8290E-1	4	1825	140		regulation of transcription from RNA polymerase II promoter	Q8TAQ2|Q14839|P10412|P51532
+19058	4.0530E-1	8.8290E-1	4	1825	140		viral life cycle	A8CG34|P0DMV9|O15131|P35268
+7275	4.1749E-1	8.8290E-1	6	2925	140		multicellular organism development	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+72657	4.1962E-1	8.8290E-1	3	1325	140		protein localization to membrane	P35268|Q9Y5M8|P35613
+6323	4.3380E-1	8.8290E-1	5	2425	140		DNA packaging	Q99877|Q16695|P10412|Q8N257|Q99879
+65004	4.3380E-1	8.8290E-1	5	2425	140		protein-DNA complex assembly	Q99877|Q16695|P10412|Q8N257|Q99879
+1901135	4.3504E-1	8.8290E-1	2	825	140		carbohydrate derivative metabolic process	P0DMV9|P27708
+70848	4.3504E-1	8.8290E-1	2	825	140		response to growth factor	P31943|P27708
+1900034	4.3504E-1	8.8290E-1	2	825	140		regulation of cellular response to heat	A8CG34|P0DMV9
+71363	4.3504E-1	8.8290E-1	2	825	140		cellular response to growth factor stimulus	P31943|P27708
+44766	4.3504E-1	8.8290E-1	2	825	140		multi-organism transport	A8CG34|O15131
+51170	4.3504E-1	8.8290E-1	2	825	140		nuclear import	A8CG34|O15131
+1902579	4.3504E-1	8.8290E-1	2	825	140		multi-organism localization	A8CG34|O15131
+44267	4.3922E-1	8.8290E-1	11	5725	140		cellular protein metabolic process	Q96AX9|Q99877|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|Q99879
+32787	4.4836E-1	8.8290E-1	1	325	140		monocarboxylic acid metabolic process	P35613
+8213	4.4836E-1	8.8290E-1	1	325	140		protein alkylation	P10412
+28	4.4836E-1	8.8290E-1	1	325	140		ribosomal small subunit assembly	Q71UM5
+51262	4.4836E-1	8.8290E-1	1	325	140		protein tetramerization	Q16695
+75	4.4836E-1	8.8290E-1	1	325	140		cell cycle checkpoint	Q71UM5
+77	4.4836E-1	8.8290E-1	1	325	140		DNA damage checkpoint	Q71UM5
+51290	4.4836E-1	8.8290E-1	1	325	140		protein heterotetramerization	Q16695
+51291	4.4836E-1	8.8290E-1	1	325	140		protein heterooligomerization	Q16695
+16477	4.4836E-1	8.8290E-1	1	325	140		cell migration	P35613
+71774	4.4836E-1	8.8290E-1	1	325	140		response to fibroblast growth factor	P31943
+32868	4.4836E-1	8.8290E-1	1	325	140		response to insulin	P27708
+43122	4.4836E-1	8.8290E-1	1	325	140		regulation of I-kappaB kinase/NF-kappaB signaling	Q96AX9
+43123	4.4836E-1	8.8290E-1	1	325	140		positive regulation of I-kappaB kinase/NF-kappaB signaling	Q96AX9
+6303	4.4836E-1	8.8290E-1	1	325	140		double-strand break repair via nonhomologous end joining	Q16695
+16575	4.4836E-1	8.8290E-1	1	325	140		histone deacetylation	Q14839
+6366	4.4836E-1	8.8290E-1	1	325	140		transcription from RNA polymerase II promoter	P51532
+6409	4.4836E-1	8.8290E-1	1	325	140		tRNA export from nucleus	A8CG34
+43279	4.4836E-1	8.8290E-1	1	325	140		response to alkaloid	P27708
+1902903	4.4836E-1	8.8290E-1	1	325	140		regulation of supramolecular fiber organization	P0DMV9
+6476	4.4836E-1	8.8290E-1	1	325	140		protein deacetylation	Q14839
+6479	4.4836E-1	8.8290E-1	1	325	140		protein methylation	P10412
+8543	4.4836E-1	8.8290E-1	1	325	140		fibroblast growth factor receptor signaling pathway	P31943
+6520	4.4836E-1	8.8290E-1	1	325	140		cellular amino acid metabolic process	P27708
+98732	4.4836E-1	8.8290E-1	1	325	140		macromolecule deacylation	Q14839
+8630	4.4836E-1	8.8290E-1	1	325	140		intrinsic apoptotic signaling pathway in response to DNA damage	Q71UM5
+51702	4.4836E-1	8.8290E-1	1	325	140		interaction with symbiont	P51532
+10827	4.4836E-1	8.8290E-1	1	325	140		regulation of glucose transport	A8CG34
+51806	4.4836E-1	8.8290E-1	1	325	140		entry into cell of other organism involved in symbiotic interaction	P0DMV9
+31334	4.4836E-1	8.8290E-1	1	325	140		positive regulation of protein complex assembly	P0DMV9
+19048	4.4836E-1	8.8290E-1	1	325	140		modulation by virus of host morphology or physiology	O15131
+19054	4.4836E-1	8.8290E-1	1	325	140		modulation by virus of host process	O15131
+51828	4.4836E-1	8.8290E-1	1	325	140		entry into other organism involved in symbiotic interaction	P0DMV9
+31397	4.4836E-1	8.8290E-1	1	325	140		negative regulation of protein ubiquitination	P0DMV9
+1903321	4.4836E-1	8.8290E-1	1	325	140		negative regulation of protein modification by small protein conjugation or removal	P0DMV9
+726	4.4836E-1	8.8290E-1	1	325	140		non-recombinational repair	Q16695
+1901293	4.4836E-1	8.8290E-1	1	325	140		nucleoside phosphate biosynthetic process	P27708
+6919	4.4836E-1	8.8290E-1	1	325	140		activation of cysteine-type endopeptidase activity involved in apoptotic process	Q71UM5
+35601	4.4836E-1	8.8290E-1	1	325	140		protein deacylation	Q14839
+31570	4.4836E-1	8.8290E-1	1	325	140		DNA integrity checkpoint	Q71UM5
+31571	4.4836E-1	8.8290E-1	1	325	140		mitotic G1 DNA damage checkpoint	Q71UM5
+7009	4.4836E-1	8.8290E-1	1	325	140		plasma membrane organization	P35613
+45926	4.4836E-1	8.8290E-1	1	325	140		negative regulation of growth	P51532
+9124	4.4836E-1	8.8290E-1	1	325	140		nucleoside monophosphate biosynthetic process	P27708
+7093	4.4836E-1	8.8290E-1	1	325	140		mitotic cell cycle checkpoint	Q71UM5
+9156	4.4836E-1	8.8290E-1	1	325	140		ribonucleoside monophosphate biosynthetic process	P27708
+9165	4.4836E-1	8.8290E-1	1	325	140		nucleotide biosynthetic process	P27708
+44003	4.4836E-1	8.8290E-1	1	325	140		modification by symbiont of host morphology or physiology	O15131
+7169	4.4836E-1	8.8290E-1	1	325	140		transmembrane receptor protein tyrosine kinase signaling pathway	P31943
+44068	4.4836E-1	8.8290E-1	1	325	140		modulation by symbiont of host cellular process	O15131
+9260	4.4836E-1	8.8290E-1	1	325	140		ribonucleotide biosynthetic process	P27708
+1901605	4.4836E-1	8.8290E-1	1	325	140		alpha-amino acid metabolic process	P27708
+1901654	4.4836E-1	8.8290E-1	1	325	140		response to ketone	P27708
+42110	4.4836E-1	8.8290E-1	1	325	140		T cell activation	P35268
+97435	4.4836E-1	8.8290E-1	1	325	140		supramolecular fiber organization	P12036
+70849	4.4836E-1	8.8290E-1	1	325	140		response to epidermal growth factor	P27708
+31960	4.4836E-1	8.8290E-1	1	325	140		response to corticosteroid	P27708
+1901796	4.4836E-1	8.8290E-1	1	325	140		regulation of signal transduction by p53 class mediator	Q14839
+7423	4.4836E-1	8.8290E-1	1	325	140		sensory organ development	P51532
+1903902	4.4836E-1	8.8290E-1	1	325	140		positive regulation of viral life cycle	P51532
+42274	4.4836E-1	8.8290E-1	1	325	140		ribosomal small subunit biogenesis	Q71UM5
+46390	4.4836E-1	8.8290E-1	1	325	140		ribose phosphate biosynthetic process	P27708
+44344	4.4836E-1	8.8290E-1	1	325	140		cellular response to fibroblast growth factor stimulus	P31943
+15711	4.4836E-1	8.8290E-1	1	325	140		organic anion transport	P35613
+44409	4.4836E-1	8.8290E-1	1	325	140		entry into host	P0DMV9
+7566	4.4836E-1	8.8290E-1	1	325	140		embryo implantation	P35613
+30111	4.4836E-1	8.8290E-1	1	325	140		regulation of Wnt signaling pathway	P51532
+32271	4.4836E-1	8.8290E-1	1	325	140		regulation of protein polymerization	P0DMV9
+30260	4.4836E-1	8.8290E-1	1	325	140		entry into host cell	P0DMV9
+48732	4.4836E-1	8.8290E-1	1	325	140		gland development	P27708
+42594	4.4836E-1	8.8290E-1	1	325	140		response to starvation	P27708
+30308	4.4836E-1	8.8290E-1	1	325	140		negative regulation of cell growth	P51532
+50808	4.4836E-1	8.8290E-1	1	325	140		synapse organization	Q14839
+46718	4.4836E-1	8.8290E-1	1	325	140		viral entry into host cell	P0DMV9
+71364	4.4836E-1	8.8290E-1	1	325	140		cellular response to epidermal growth factor stimulus	P27708
+44773	4.4836E-1	8.8290E-1	1	325	140		mitotic DNA damage checkpoint	Q71UM5
+44774	4.4836E-1	8.8290E-1	1	325	140		mitotic DNA integrity checkpoint	Q71UM5
+44783	4.4836E-1	8.8290E-1	1	325	140		G1 DNA damage checkpoint	Q71UM5
+32508	4.4836E-1	8.8290E-1	1	325	140		DNA duplex unwinding	Q14839
+71431	4.4836E-1	8.8290E-1	1	325	140		tRNA-containing ribonucleoprotein complex export from nucleus	A8CG34
+44819	4.4836E-1	8.8290E-1	1	325	140		mitotic G1/S transition checkpoint	Q71UM5
+51031	4.4836E-1	8.8290E-1	1	325	140		tRNA transport	A8CG34
+1890	4.4836E-1	8.8290E-1	1	325	140		placenta development	P35613
+16233	4.4836E-1	8.8290E-1	1	325	140		telomere capping	Q16695
+44085	4.5608E-1	8.9598E-1	10	5225	140		cellular component biogenesis	Q99877|Q71UM5|Q16695|P35268|Q14839|P10412|Q8N257|P51532|P12036|Q99879
+51716	4.7341E-1	9.0240E-1	9	4725	140		cellular response to stimulus	Q96AX9|P35637|P31943|P0DMV9|P27708|Q71UM5|Q16695|Q9Y5M8|P35613
+8380	4.7349E-1	9.0240E-1	3	1425	140		RNA splicing	P35637|P31943|Q32P51
+6397	4.7349E-1	9.0240E-1	3	1425	140		mRNA processing	P35637|P31943|Q32P51
+10647	4.7349E-1	9.0240E-1	3	1425	140		positive regulation of cell communication	Q96AX9|P0DMV9|P51532
+23056	4.7349E-1	9.0240E-1	3	1425	140		positive regulation of signaling	Q96AX9|P0DMV9|P51532
+1901700	4.7349E-1	9.0240E-1	3	1425	140		response to oxygen-containing compound	P27708|P49411|P35613
+9967	4.7349E-1	9.0240E-1	3	1425	140		positive regulation of signal transduction	Q96AX9|P0DMV9|P51532
+18193	4.7349E-1	9.0240E-1	3	1425	140		peptidyl-amino acid modification	A8CG34|P27708|P10412
+43933	4.9157E-1	9.0240E-1	8	4225	140		macromolecular complex subunit organization	Q8TAQ2|Q99877|Q71UM5|Q16695|P10412|Q8N257|P51532|Q99879
+72594	4.9781E-1	9.0240E-1	4	2025	140		establishment of protein localization to organelle	A8CG34|O15131|P35268|Q9Y5M8
+10256	5.0174E-1	9.0240E-1	2	925	140		endomembrane system organization	A8CG34|P35613
+10648	5.0174E-1	9.0240E-1	2	925	140		negative regulation of cell communication	P0DMV9|P51532
+51701	5.0174E-1	9.0240E-1	2	925	140		interaction with host	P0DMV9|O15131
+23057	5.0174E-1	9.0240E-1	2	925	140		negative regulation of signaling	P0DMV9|P51532
+9968	5.0174E-1	9.0240E-1	2	925	140		negative regulation of signal transduction	P0DMV9|P51532
+10035	5.0174E-1	9.0240E-1	2	925	140		response to inorganic substance	P35637|P35613
+1902533	5.0174E-1	9.0240E-1	2	925	140		positive regulation of intracellular signal transduction	Q96AX9|P0DMV9
+19538	5.0329E-1	9.0240E-1	11	5925	140		protein metabolic process	Q96AX9|Q99877|A8CG34|P27708|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P10412|Q99879
+22607	5.0683E-1	9.0240E-1	9	4825	140		cellular component assembly	Q99877|Q71UM5|Q16695|Q14839|P10412|Q8N257|P51532|P12036|Q99879
+32774	5.1648E-1	9.0240E-1	5	2625	140		RNA biosynthetic process	Q8TAQ2|A8CG34|P35268|Q14839|P51532
+1902580	5.2537E-1	9.0240E-1	3	1525	140		single-organism cellular localization	A8CG34|O15131|P35613
+1902582	5.2537E-1	9.0240E-1	3	1525	140		single-organism intracellular transport	A8CG34|O15131|P35613
+18130	5.3229E-1	9.0240E-1	6	3225	140		heterocycle biosynthetic process	Q8TAQ2|A8CG34|P27708|P35268|Q14839|P51532
+34654	5.3229E-1	9.0240E-1	6	3225	140		nucleobase-containing compound biosynthetic process	Q8TAQ2|A8CG34|P27708|P35268|Q14839|P51532
+48513	5.4228E-1	9.0240E-1	4	2125	140		animal organ development	P27708|P35268|P35613|P51532
+6464	5.4649E-1	9.0240E-1	7	3825	140		cellular protein modification process	Q96AX9|Q99877|A8CG34|P27708|Q14839|P10412|Q99879
+36211	5.4649E-1	9.0240E-1	7	3825	140		protein modification process	Q96AX9|Q99877|A8CG34|P27708|Q14839|P10412|Q99879
+65003	5.4649E-1	9.0240E-1	7	3825	140		macromolecular complex assembly	Q99877|Q71UM5|Q16695|P10412|Q8N257|P51532|Q99879
+61458	5.4902E-1	9.0240E-1	1	425	140		reproductive system development	P35613
+51225	5.4902E-1	9.0240E-1	1	425	140		spindle assembly	Q14839
+45088	5.4902E-1	9.0240E-1	1	425	140		regulation of innate immune response	P0DMV9
+51270	5.4902E-1	9.0240E-1	1	425	140		regulation of cellular component movement	P12036
+6302	5.4902E-1	9.0240E-1	1	425	140		double-strand break repair	Q16695
+34976	5.4902E-1	9.0240E-1	1	425	140		response to endoplasmic reticulum stress	Q9Y5M8
+2001056	5.4902E-1	9.0240E-1	1	425	140		positive regulation of cysteine-type endopeptidase activity	Q71UM5
+6406	5.4902E-1	9.0240E-1	1	425	140		mRNA export from nucleus	A8CG34
+43280	5.4902E-1	9.0240E-1	1	425	140		positive regulation of cysteine-type endopeptidase activity involved in apoptotic process	Q71UM5
+43281	5.4902E-1	9.0240E-1	1	425	140		regulation of cysteine-type endopeptidase activity involved in apoptotic process	Q71UM5
+90407	5.4902E-1	9.0240E-1	1	425	140		organophosphate biosynthetic process	P27708
+43414	5.4902E-1	9.0240E-1	1	425	140		macromolecule methylation	P10412
+6607	5.4902E-1	9.0240E-1	1	425	140		NLS-bearing protein import into nucleus	O15131
+6611	5.4902E-1	9.0240E-1	1	425	140		protein export from nucleus	A8CG34
+51674	5.4902E-1	9.0240E-1	1	425	140		localization of cell	P35613
+31396	5.4902E-1	9.0240E-1	1	425	140		regulation of protein ubiquitination	P0DMV9
+1903320	5.4902E-1	9.0240E-1	1	425	140		regulation of protein modification by small protein conjugation or removal	P0DMV9
+10950	5.4902E-1	9.0240E-1	1	425	140		positive regulation of endopeptidase activity	Q71UM5
+10952	5.4902E-1	9.0240E-1	1	425	140		positive regulation of peptidase activity	Q71UM5
+6998	5.4902E-1	9.0240E-1	1	425	140		nuclear envelope organization	A8CG34
+7051	5.4902E-1	9.0240E-1	1	425	140		spindle organization	Q14839
+7077	5.4902E-1	9.0240E-1	1	425	140		mitotic nuclear envelope disassembly	A8CG34
+97190	5.4902E-1	9.0240E-1	1	425	140		apoptotic signaling pathway	Q71UM5
+97193	5.4902E-1	9.0240E-1	1	425	140		intrinsic apoptotic signaling pathway	Q71UM5
+31667	5.4902E-1	9.0240E-1	1	425	140		response to nutrient levels	P27708
+9144	5.4902E-1	9.0240E-1	1	425	140		purine nucleoside triphosphate metabolic process	P0DMV9
+46034	5.4902E-1	9.0240E-1	1	425	140		ATP metabolic process	P0DMV9
+9205	5.4902E-1	9.0240E-1	1	425	140		purine ribonucleoside triphosphate metabolic process	P0DMV9
+7167	5.4902E-1	9.0240E-1	1	425	140		enzyme linked receptor protein signaling pathway	P31943
+46128	5.4902E-1	9.0240E-1	1	425	140		purine ribonucleoside metabolic process	P0DMV9
+2000116	5.4902E-1	9.0240E-1	1	425	140		regulation of cysteine-type endopeptidase activity	Q71UM5
+42278	5.4902E-1	9.0240E-1	1	425	140		purine nucleoside metabolic process	P0DMV9
+46394	5.4902E-1	9.0240E-1	1	425	140		carboxylic acid biosynthetic process	P27708
+52547	5.4902E-1	9.0240E-1	1	425	140		regulation of peptidase activity	Q71UM5
+52548	5.4902E-1	9.0240E-1	1	425	140		regulation of endopeptidase activity	Q71UM5
+48524	5.4902E-1	9.0240E-1	1	425	140		positive regulation of viral process	P51532
+48608	5.4902E-1	9.0240E-1	1	425	140		reproductive structure development	P35613
+42493	5.4902E-1	9.0240E-1	1	425	140		response to drug	P27708
+71166	5.4902E-1	9.0240E-1	1	425	140		ribonucleoprotein complex localization	A8CG34
+32259	5.4902E-1	9.0240E-1	1	425	140		methylation	P10412
+46649	5.4902E-1	9.0240E-1	1	425	140		lymphocyte activation	P35268
+1902115	5.4902E-1	9.0240E-1	1	425	140		regulation of organelle assembly	P0DMV9
+32392	5.4902E-1	9.0240E-1	1	425	140		DNA geometric change	Q14839
+16053	5.4902E-1	9.0240E-1	1	425	140		organic acid biosynthetic process	P27708
+30397	5.4902E-1	9.0240E-1	1	425	140		membrane disassembly	A8CG34
+50878	5.4902E-1	9.0240E-1	1	425	140		regulation of body fluid levels	P27708
+48870	5.4902E-1	9.0240E-1	1	425	140		cell motility	P35613
+71427	5.4902E-1	9.0240E-1	1	425	140		mRNA-containing ribonucleoprotein complex export from nucleus	A8CG34
+71426	5.4902E-1	9.0240E-1	1	425	140		ribonucleoprotein complex export from nucleus	A8CG34
+9991	5.4902E-1	9.0240E-1	1	425	140		response to extracellular stimulus	P27708
+1819	5.4902E-1	9.0240E-1	1	425	140		positive regulation of cytokine production	P0DMV9
+51081	5.4902E-1	9.0240E-1	1	425	140		nuclear envelope disassembly	A8CG34
+6886	5.5643E-1	9.0240E-1	5	2725	140		intracellular protein transport	A8CG34|O15131|P35268|Q9Y5M8|P35613
+70887	5.5643E-1	9.0240E-1	5	2725	140		cellular response to chemical stimulus	P35637|P31943|P0DMV9|P27708|Q9Y5M8
+71705	5.6360E-1	9.0240E-1	2	1025	140		nitrogen compound transport	A8CG34|Q32P51
+6281	5.6360E-1	9.0240E-1	2	1025	140		DNA repair	Q71UM5|Q16695
+6461	5.6360E-1	9.0240E-1	2	1025	140		protein complex assembly	Q16695|P51532
+6613	5.6360E-1	9.0240E-1	2	1025	140		cotranslational protein targeting to membrane	P35268|Q9Y5M8
+6614	5.6360E-1	9.0240E-1	2	1025	140		SRP-dependent cotranslational protein targeting to membrane	P35268|Q9Y5M8
+70271	5.6360E-1	9.0240E-1	2	1025	140		protein complex biogenesis	Q16695|P51532
+6913	5.6360E-1	9.0240E-1	2	1025	140		nucleocytoplasmic transport	A8CG34|O15131
+72599	5.6360E-1	9.0240E-1	2	1025	140		establishment of protein localization to endoplasmic reticulum	P35268|Q9Y5M8
+42254	5.6360E-1	9.0240E-1	2	1025	140		ribosome biogenesis	Q71UM5|P35268
+70972	5.6360E-1	9.0240E-1	2	1025	140		protein localization to endoplasmic reticulum	P35268|Q9Y5M8
+9653	5.6360E-1	9.0240E-1	2	1025	140		anatomical structure morphogenesis	P35613|P12036
+51129	5.6360E-1	9.0240E-1	2	1025	140		negative regulation of cellular component organization	P0DMV9|Q16695
+51169	5.6360E-1	9.0240E-1	2	1025	140		nuclear transport	A8CG34|O15131
+45047	5.6360E-1	9.0240E-1	2	1025	140		protein targeting to ER	P35268|Q9Y5M8
+1901362	5.6918E-1	9.0240E-1	6	3325	140		organic cyclic compound biosynthetic process	Q8TAQ2|A8CG34|P27708|P35268|Q14839|P51532
+19438	5.6918E-1	9.0240E-1	6	3325	140		aromatic compound biosynthetic process	Q8TAQ2|A8CG34|P27708|P35268|Q14839|P51532
+48856	5.6918E-1	9.0240E-1	6	3325	140		anatomical structure development	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+51276	5.7258E-1	9.0240E-1	9	5025	140		chromosome organization	Q8TAQ2|Q99877|Q96KK5|Q16695|Q14839|P10412|Q8N257|P51532|Q99879
+6351	5.7469E-1	9.0240E-1	3	1625	140		transcription, DNA-templated	Q8TAQ2|Q14839|P51532
+7399	5.7469E-1	9.0240E-1	3	1625	140		nervous system development	Q8TAQ2|P51532|P12036
+97659	5.7469E-1	9.0240E-1	3	1625	140		nucleic acid-templated transcription	Q8TAQ2|Q14839|P51532
+48584	5.7469E-1	9.0240E-1	3	1625	140		positive regulation of response to stimulus	Q96AX9|P0DMV9|P51532
+1902531	5.7469E-1	9.0240E-1	3	1625	140		regulation of intracellular signal transduction	Q96AX9|P0DMV9|Q14839
+10628	5.8501E-1	9.0240E-1	4	2225	140		positive regulation of gene expression	Q8TAQ2|P0DMV9|Q71UM5|P51532
+33554	5.8501E-1	9.0240E-1	4	2225	140		cellular response to stress	P0DMV9|Q71UM5|Q16695|Q9Y5M8
+7165	5.9502E-1	9.0240E-1	5	2825	140		signal transduction	Q96AX9|P31943|Q71UM5|Q9Y5M8|P35613
+71702	6.0494E-1	9.0240E-1	6	3425	140		organic substance transport	A8CG34|Q32P51|O15131|P35268|Q9Y5M8|P35613
+34622	6.0494E-1	9.0240E-1	6	3425	140		cellular macromolecular complex assembly	Q99877|Q71UM5|Q16695|P10412|Q8N257|Q99879
+42221	6.1493E-1	9.0240E-1	7	4025	140		response to chemical	P35637|P31943|P0DMV9|P27708|P49411|Q9Y5M8|P35613
+10243	6.2018E-1	9.0240E-1	2	1125	140		response to organonitrogen compound	P27708|P35613
+71822	6.2018E-1	9.0240E-1	2	1125	140		protein complex subunit organization	Q16695|P51532
+19080	6.2018E-1	9.0240E-1	2	1125	140		viral gene expression	A8CG34|P35268
+19083	6.2018E-1	9.0240E-1	2	1125	140		viral transcription	A8CG34|P35268
+44033	6.2018E-1	9.0240E-1	2	1125	140		multi-organism metabolic process	A8CG34|P35268
+44087	6.2018E-1	9.0240E-1	2	1125	140		regulation of cellular component biogenesis	P0DMV9|Q16695
+48585	6.2018E-1	9.0240E-1	2	1125	140		negative regulation of response to stimulus	P0DMV9|P51532
+44703	6.2018E-1	9.0240E-1	2	1125	140		multi-organism reproductive process	P27708|P35613
+14070	6.2018E-1	9.0240E-1	2	1125	140		response to organic cyclic compound	P27708|P35613
+44802	6.2018E-1	9.0240E-1	2	1125	140		single-organism membrane organization	A8CG34|P35613
+22402	6.2106E-1	9.0240E-1	3	1725	140		cell cycle process	A8CG34|Q71UM5|Q14839
+6396	6.2568E-1	9.0240E-1	4	2325	140		RNA processing	P35637|P31943|Q32P51|P35268
+33365	6.2568E-1	9.0240E-1	4	2325	140		protein localization to organelle	A8CG34|O15131|P35268|Q9Y5M8
+70647	6.2568E-1	9.0240E-1	4	2325	140		protein modification by small protein conjugation or removal	Q96AX9|Q99877|A8CG34|Q99879
+32446	6.2568E-1	9.0240E-1	4	2325	140		protein modification by small protein conjugation	Q96AX9|Q99877|A8CG34|Q99879
+16071	6.2568E-1	9.0240E-1	4	2325	140		mRNA metabolic process	P35637|P31943|Q32P51|P35268
+6163	6.3192E-1	9.0240E-1	1	525	140		purine nucleotide metabolic process	P0DMV9
+6405	6.3192E-1	9.0240E-1	1	525	140		RNA export from nucleus	A8CG34
+2001234	6.3192E-1	9.0240E-1	1	525	140		negative regulation of apoptotic signaling pathway	P0DMV9
+31175	6.3192E-1	9.0240E-1	1	525	140		neuron projection development	P12036
+16925	6.3192E-1	9.0240E-1	1	525	140		protein sumoylation	A8CG34
+1901137	6.3192E-1	9.0240E-1	1	525	140		carbohydrate derivative biosynthetic process	P27708
+31347	6.3192E-1	9.0240E-1	1	525	140		regulation of defense response	P0DMV9
+31400	6.3192E-1	9.0240E-1	1	525	140		negative regulation of protein modification process	P0DMV9
+723	6.3192E-1	9.0240E-1	1	525	140		telomere maintenance	Q16695
+45862	6.3192E-1	9.0240E-1	1	525	140		positive regulation of proteolysis	Q71UM5
+72521	6.3192E-1	9.0240E-1	1	525	140		purine-containing compound metabolic process	P0DMV9
+6986	6.3192E-1	9.0240E-1	1	525	140		response to unfolded protein	Q9Y5M8
+43902	6.3192E-1	9.0240E-1	1	525	140		positive regulation of multi-organism process	P51532
+9126	6.3192E-1	9.0240E-1	1	525	140		purine nucleoside monophosphate metabolic process	P0DMV9
+9150	6.3192E-1	9.0240E-1	1	525	140		purine ribonucleotide metabolic process	P0DMV9
+9167	6.3192E-1	9.0240E-1	1	525	140		purine ribonucleoside monophosphate metabolic process	P0DMV9
+44089	6.3192E-1	9.0240E-1	1	525	140		positive regulation of cellular component biogenesis	P0DMV9
+7264	6.3192E-1	9.0240E-1	1	525	140		small GTPase mediated signal transduction	Q9Y5M8
+35966	6.3192E-1	9.0240E-1	1	525	140		response to topologically incorrect protein	Q9Y5M8
+44283	6.3192E-1	9.0240E-1	1	525	140		small molecule biosynthetic process	P27708
+1903900	6.3192E-1	9.0240E-1	1	525	140		regulation of viral life cycle	P51532
+42255	6.3192E-1	9.0240E-1	1	525	140		ribosome assembly	Q71UM5
+30031	6.3192E-1	9.0240E-1	1	525	140		cell projection assembly	P12036
+7507	6.3192E-1	9.0240E-1	1	525	140		heart development	P27708
+1558	6.3192E-1	9.0240E-1	1	525	140		regulation of cell growth	P51532
+50776	6.3192E-1	9.0240E-1	1	525	140		regulation of immune response	P0DMV9
+9887	6.3192E-1	9.0240E-1	1	525	140		animal organ morphogenesis	P35613
+1817	6.3192E-1	9.0240E-1	1	525	140		regulation of cytokine production	P0DMV9
+51168	6.3192E-1	9.0240E-1	1	525	140		nuclear export	A8CG34
+1902679	6.3201E-1	9.0240E-1	5	2925	140		negative regulation of RNA biosynthetic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+45892	6.3201E-1	9.0240E-1	5	2925	140		negative regulation of transcription, DNA-templated	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+1903507	6.3201E-1	9.0240E-1	5	2925	140		negative regulation of nucleic acid-templated transcription	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+33036	6.3935E-1	9.1125E-1	6	3525	140		macromolecule localization	A8CG34|Q32P51|O15131|P35268|Q9Y5M8|P35613
+50794	6.4040E-1	9.1125E-1	16	9125	140		regulation of cellular process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|P0DMV9|Q71UM5|O15131|Q14839|P10412|Q9Y5M8|P35613|P51532|P12036|Q96KK5|Q16695
+51252	6.5622E-1	9.3008E-1	8	4725	140		regulation of RNA metabolic process	Q8TAQ2|Q96KK5|P35637|P31943|P0DMV9|Q14839|P10412|P51532
+9966	6.6405E-1	9.3008E-1	4	2425	140		regulation of signal transduction	Q96AX9|P0DMV9|Q14839|P51532
+15031	6.6718E-1	9.3008E-1	5	3025	140		protein transport	A8CG34|O15131|P35268|Q9Y5M8|P35613
+44765	6.6718E-1	9.3008E-1	5	3025	140		single-organism transport	A8CG34|P0DMV9|P27708|O15131|P35613
+1902578	6.6718E-1	9.3008E-1	5	3025	140		single-organism localization	A8CG34|P0DMV9|P27708|O15131|P35613
+1902680	6.7132E-1	9.3008E-1	2	1225	140		positive regulation of RNA biosynthetic process	Q8TAQ2|P51532
+22613	6.7132E-1	9.3008E-1	2	1225	140		ribonucleoprotein complex biogenesis	Q71UM5|P35268
+375	6.7132E-1	9.3008E-1	2	1225	140		RNA splicing, via transesterification reactions	P35637|P31943
+377	6.7132E-1	9.3008E-1	2	1225	140		RNA splicing, via transesterification reactions with bulged adenosine as nucleophile	P35637|P31943
+398	6.7132E-1	9.3008E-1	2	1225	140		mRNA splicing, via spliceosome	P35637|P31943
+45893	6.7132E-1	9.3008E-1	2	1225	140		positive regulation of transcription, DNA-templated	Q8TAQ2|P51532
+1903508	6.7132E-1	9.3008E-1	2	1225	140		positive regulation of nucleic acid-templated transcription	Q8TAQ2|P51532
+65007	6.7953E-1	9.3008E-1	18	10325	140		biological regulation	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|P0DMV9|Q71UM5|O15131|P35268|Q14839|P10412|Q9Y5M8|P35613|P51532|P12036|Q96KK5|P27708|Q16695
+6996	6.8329E-1	9.3008E-1	13	7625	140		organelle organization	Q8TAQ2|A8CG34|Q71UM5|Q14839|P10412|P51532|P12036|Q99877|Q96KK5|Q16695|Q8N257|Q9BQE3|Q99879
+10646	6.9997E-1	9.3008E-1	4	2525	140		regulation of cell communication	Q96AX9|P0DMV9|Q14839|P51532
+51240	7.0008E-1	9.3008E-1	1	625	140		positive regulation of multicellular organismal process	P0DMV9
+51259	7.0008E-1	9.3008E-1	1	625	140		protein oligomerization	Q16695
+32846	7.0008E-1	9.3008E-1	1	625	140		positive regulation of homeostatic process	P51532
+51301	7.0008E-1	9.3008E-1	1	625	140		cell division	Q9BQE3
+6417	7.0008E-1	9.3008E-1	1	625	140		regulation of translation	Q71UM5
+98656	7.0008E-1	9.3008E-1	1	625	140		anion transmembrane transport	P35613
+43484	7.0008E-1	9.3008E-1	1	625	140		regulation of RNA splicing	P31943
+2684	7.0008E-1	9.3008E-1	1	625	140		positive regulation of immune system process	P0DMV9
+6820	7.0008E-1	9.3008E-1	1	625	140		anion transport	P35613
+6979	7.0008E-1	9.3008E-1	1	625	140		response to oxidative stress	P0DMV9
+6997	7.0008E-1	9.3008E-1	1	625	140		nucleus organization	A8CG34
+60249	7.0008E-1	9.3008E-1	1	625	140		anatomical structure homeostasis	Q16695
+43903	7.0008E-1	9.3008E-1	1	625	140		regulation of symbiosis, encompassing mutualism through parasitism	P51532
+3006	7.0008E-1	9.3008E-1	1	625	140		developmental process involved in reproduction	P35613
+40008	7.0008E-1	9.3008E-1	1	625	140		regulation of growth	P51532
+30182	7.0008E-1	9.3008E-1	1	625	140		neuron differentiation	P12036
+48666	7.0008E-1	9.3008E-1	1	625	140		neuron development	P12036
+48699	7.0008E-1	9.3008E-1	1	625	140		generation of neurons	P12036
+50792	7.0008E-1	9.3008E-1	1	625	140		regulation of viral process	P51532
+50821	7.0008E-1	9.3008E-1	1	625	140		protein stabilization	P0DMV9
+44711	7.0008E-1	9.3008E-1	1	625	140		single-organism biosynthetic process	P27708
+34599	7.0008E-1	9.3008E-1	1	625	140		cellular response to oxidative stress	P0DMV9
+51253	7.0039E-1	9.3008E-1	5	3125	140		negative regulation of RNA metabolic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+45184	7.0039E-1	9.3008E-1	5	3125	140		establishment of protein localization	A8CG34|O15131|P35268|Q9Y5M8|P35613
+44767	7.0345E-1	9.3008E-1	6	3725	140		single-organism developmental process	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+32502	7.0345E-1	9.3008E-1	6	3725	140		developmental process	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+16567	7.0400E-1	9.3008E-1	3	1925	140		protein ubiquitination	Q96AX9|Q99877|Q99879
+7049	7.0400E-1	9.3008E-1	3	1925	140		cell cycle	A8CG34|Q71UM5|Q14839
+44093	7.0400E-1	9.3008E-1	3	1925	140		positive regulation of molecular function	P0DMV9|Q71UM5|P51532
+44710	7.0400E-1	9.3008E-1	3	1925	140		single-organism metabolic process	P0DMV9|P27708|P35613
+51254	7.1708E-1	9.3626E-1	2	1325	140		positive regulation of RNA metabolic process	Q8TAQ2|P51532
+35556	7.1708E-1	9.3626E-1	2	1325	140		intracellular signal transduction	Q71UM5|Q9Y5M8
+6974	7.1708E-1	9.3626E-1	2	1325	140		cellular response to DNA damage stimulus	Q71UM5|Q16695
+1901698	7.1708E-1	9.3626E-1	2	1325	140		response to nitrogen compound	P27708|P35613
+9725	7.1708E-1	9.3626E-1	2	1325	140		response to hormone	P27708|P35613
+23052	7.3152E-1	9.3626E-1	5	3225	140		signaling	Q96AX9|P31943|Q71UM5|Q9Y5M8|P35613
+70727	7.3152E-1	9.3626E-1	5	3225	140		cellular macromolecule localization	A8CG34|O15131|P35268|Q9Y5M8|P35613
+44700	7.3152E-1	9.3626E-1	5	3225	140		single organism signaling	Q96AX9|P31943|Q71UM5|Q9Y5M8|P35613
+34613	7.3152E-1	9.3626E-1	5	3225	140		cellular protein localization	A8CG34|O15131|P35268|Q9Y5M8|P35613
+51649	7.3288E-1	9.3626E-1	6	3825	140		establishment of localization in cell	A8CG34|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+46907	7.3288E-1	9.3626E-1	6	3825	140		intracellular transport	A8CG34|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+2001141	7.3643E-1	9.3626E-1	7	4425	140		regulation of RNA biosynthetic process	Q8TAQ2|Q96KK5|P35637|P0DMV9|Q14839|P10412|P51532
+1903506	7.3643E-1	9.3626E-1	7	4425	140		regulation of nucleic acid-templated transcription	Q8TAQ2|Q96KK5|P35637|P0DMV9|Q14839|P10412|P51532
+71840	7.4081E-1	9.3626E-1	15	8925	140		cellular component organization or biogenesis	Q8TAQ2|A8CG34|Q71UM5|P35268|Q14839|P10412|P35613|P51532|P12036|Q99877|Q96KK5|Q16695|Q8N257|Q9BQE3|Q99879
+6810	7.4831E-1	9.3626E-1	9	5625	140		transport	A8CG34|Q32P51|P0DMV9|P27708|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+50789	7.5012E-1	9.3626E-1	17	10025	140		regulation of biological process	Q8TAQ2|Q96AX9|A8CG34|P35637|P31943|P0DMV9|Q71UM5|O15131|P35268|Q14839|P10412|Q9Y5M8|P35613|P51532|P12036|Q96KK5|Q16695
+22618	7.5604E-1	9.3626E-1	1	725	140		ribonucleoprotein complex assembly	Q71UM5
+71826	7.5604E-1	9.3626E-1	1	725	140		ribonucleoprotein complex subunit organization	Q71UM5
+72359	7.5604E-1	9.3626E-1	1	725	140		circulatory system development	P27708
+45944	7.5604E-1	9.3626E-1	1	725	140		positive regulation of transcription from RNA polymerase II promoter	P51532
+43900	7.5604E-1	9.3626E-1	1	725	140		regulation of multi-organism process	P51532
+40011	7.5604E-1	9.3626E-1	1	725	140		locomotion	P35613
+33993	7.5604E-1	9.3626E-1	1	725	140		response to lipid	P27708
+48545	7.5604E-1	9.3626E-1	1	725	140		response to steroid hormone	P27708
+34248	7.5604E-1	9.3626E-1	1	725	140		regulation of cellular amide metabolic process	Q71UM5
+32200	7.5604E-1	9.3626E-1	1	725	140		telomere organization	Q16695
+48609	7.5604E-1	9.3626E-1	1	725	140		multicellular organismal reproductive process	P35613
+22008	7.5604E-1	9.3626E-1	1	725	140		neurogenesis	P12036
+32504	7.5604E-1	9.3626E-1	1	725	140		multicellular organism reproduction	P35613
+3	7.5768E-1	9.3626E-1	2	1425	140		reproduction	P27708|P35613
+45321	7.5768E-1	9.3626E-1	2	1425	140		leukocyte activation	P0DMV9|P35268
+278	7.5768E-1	9.3626E-1	2	1425	140		mitotic cell cycle	A8CG34|Q71UM5
+1903047	7.5768E-1	9.3626E-1	2	1425	140		mitotic cell cycle process	A8CG34|Q71UM5
+70925	7.5768E-1	9.3626E-1	2	1425	140		organelle assembly	Q71UM5|Q14839
+1775	7.5768E-1	9.3626E-1	2	1425	140		cell activation	P0DMV9|P35268
+46903	7.5768E-1	9.3626E-1	2	1425	140		secretion	P0DMV9|P27708
+22414	7.5768E-1	9.3626E-1	2	1425	140		reproductive process	P27708|P35613
+44707	7.6045E-1	9.3626E-1	6	3925	140		single-multicellular organism process	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+10558	7.6050E-1	9.3626E-1	5	3325	140		negative regulation of macromolecule biosynthetic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+7154	7.6050E-1	9.3626E-1	5	3325	140		cell communication	Q96AX9|P31943|Q71UM5|Q9Y5M8|P35613
+2000113	7.6050E-1	9.3626E-1	5	3325	140		negative regulation of cellular macromolecule biosynthetic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+44403	7.6050E-1	9.3626E-1	5	3325	140		symbiosis, encompassing mutualism through parasitism	A8CG34|P0DMV9|O15131|P35268|P51532
+44419	7.6050E-1	9.3626E-1	5	3325	140		interspecies interaction between organisms	A8CG34|P0DMV9|O15131|P35268|P51532
+48583	7.6050E-1	9.3626E-1	5	3325	140		regulation of response to stimulus	Q96AX9|A8CG34|P0DMV9|Q14839|P51532
+10033	7.6050E-1	9.3626E-1	5	3325	140		response to organic substance	P31943|P27708|P49411|Q9Y5M8|P35613
+8104	7.6050E-1	9.3626E-1	5	3325	140		protein localization	A8CG34|O15131|P35268|Q9Y5M8|P35613
+23051	7.6410E-1	9.3930E-1	4	2725	140		regulation of signaling	Q96AX9|P0DMV9|Q14839|P51532
+51234	7.7307E-1	9.4267E-1	9	5725	140		establishment of localization	A8CG34|Q32P51|P0DMV9|P27708|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+10557	7.7340E-1	9.4267E-1	3	2125	140		positive regulation of macromolecule biosynthetic process	Q8TAQ2|Q71UM5|P51532
+31328	7.7340E-1	9.4267E-1	3	2125	140		positive regulation of cellular biosynthetic process	Q8TAQ2|Q71UM5|P51532
+9891	7.7340E-1	9.4267E-1	3	2125	140		positive regulation of biosynthetic process	Q8TAQ2|Q71UM5|P51532
+16043	7.7703E-1	9.4267E-1	14	8525	140		cellular component organization	Q8TAQ2|A8CG34|Q71UM5|Q14839|P10412|P35613|P51532|P12036|Q99877|Q96KK5|Q16695|Q8N257|Q9BQE3|Q99879
+10468	7.8036E-1	9.4267E-1	10	6325	140		regulation of gene expression	Q8TAQ2|Q96KK5|A8CG34|P31943|P0DMV9|Q71UM5|P35268|Q14839|P10412|P51532
+31327	7.8732E-1	9.4267E-1	5	3425	140		negative regulation of cellular biosynthetic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+45934	7.8732E-1	9.4267E-1	5	3425	140		negative regulation of nucleobase-containing compound metabolic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+9890	7.8732E-1	9.4267E-1	5	3425	140		negative regulation of biosynthetic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+10629	7.8760E-1	9.4267E-1	7	4625	140		negative regulation of gene expression	Q8TAQ2|Q96KK5|A8CG34|P35268|Q14839|P10412|P51532
+10605	7.9111E-1	9.4267E-1	8	5225	140		negative regulation of macromolecule metabolic process	Q8TAQ2|Q96KK5|A8CG34|P0DMV9|P35268|Q14839|P10412|P51532
+6259	7.9342E-1	9.4267E-1	2	1525	140		DNA metabolic process	Q71UM5|Q16695
+80135	7.9342E-1	9.4267E-1	2	1525	140		regulation of cellular response to stress	A8CG34|P0DMV9
+6793	7.9342E-1	9.4267E-1	2	1525	140		phosphorus metabolic process	P0DMV9|P27708
+6796	7.9342E-1	9.4267E-1	2	1525	140		phosphate-containing compound metabolic process	P0DMV9|P27708
+61024	7.9342E-1	9.4267E-1	2	1525	140		membrane organization	A8CG34|P35613
+71495	7.9342E-1	9.4267E-1	2	1525	140		cellular response to endogenous stimulus	P31943|P27708
+51171	7.9631E-1	9.4267E-1	9	5825	140		regulation of nitrogen compound metabolic process	Q8TAQ2|Q96KK5|P35637|P31943|P0DMV9|Q71UM5|Q14839|P10412|P51532
+32844	8.0190E-1	9.4267E-1	1	825	140		regulation of homeostatic process	P51532
+51336	8.0190E-1	9.4267E-1	1	825	140		regulation of hydrolase activity	Q71UM5
+51345	8.0190E-1	9.4267E-1	1	825	140		positive regulation of hydrolase activity	Q71UM5
+184	8.0190E-1	9.4267E-1	1	825	140		nuclear-transcribed mRNA catabolic process, nonsense-mediated decay	P35268
+6364	8.0190E-1	9.4267E-1	1	825	140		rRNA processing	P35268
+6413	8.0190E-1	9.4267E-1	1	825	140		translational initiation	P35268
+6468	8.0190E-1	9.4267E-1	1	825	140		protein phosphorylation	P27708
+2682	8.0190E-1	9.4267E-1	1	825	140		regulation of immune system process	P0DMV9
+30162	8.0190E-1	9.4267E-1	1	825	140		regulation of proteolysis	Q71UM5
+32386	8.0190E-1	9.4267E-1	1	825	140		regulation of intracellular transport	P12036
+16072	8.0190E-1	9.4267E-1	1	825	140		rRNA metabolic process	P35268
+30705	8.0190E-1	9.4267E-1	1	825	140		cytoskeleton-dependent intracellular transport	Q9BQE3
+9719	8.0314E-1	9.4267E-1	3	2225	140		response to endogenous stimulus	P31943|P27708|P35613
+71310	8.0314E-1	9.4267E-1	3	2225	140		cellular response to organic substance	P31943|P27708|Q9Y5M8
+51641	8.0991E-1	9.4760E-1	6	4125	140		cellular localization	A8CG34|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+51704	8.1059E-1	9.4760E-1	7	4725	140		multi-organism process	A8CG34|P0DMV9|P27708|O15131|P35268|P35613|P51532
+51172	8.1199E-1	9.4760E-1	5	3525	140		negative regulation of nitrogen compound metabolic process	Q8TAQ2|Q96KK5|Q14839|P10412|P51532
+10556	8.1341E-1	9.4760E-1	8	5325	140		regulation of macromolecule biosynthetic process	Q8TAQ2|Q96KK5|P35637|P0DMV9|Q71UM5|Q14839|P10412|P51532
+32268	8.2467E-1	9.4760E-1	2	1625	140		regulation of cellular protein metabolic process	P0DMV9|Q71UM5
+51173	8.2976E-1	9.4760E-1	3	2325	140		positive regulation of nitrogen compound metabolic process	Q8TAQ2|Q71UM5|P51532
+31324	8.3178E-1	9.4760E-1	6	4225	140		negative regulation of cellular metabolic process	Q8TAQ2|Q96KK5|P0DMV9|Q14839|P10412|P51532
+31326	8.3409E-1	9.4760E-1	8	5425	140		regulation of cellular biosynthetic process	Q8TAQ2|Q96KK5|P35637|P0DMV9|Q71UM5|Q14839|P10412|P51532
+48523	8.3409E-1	9.4760E-1	8	5425	140		negative regulation of cellular process	Q8TAQ2|Q96KK5|P0DMV9|Q71UM5|Q16695|Q14839|P10412|P51532
+9889	8.3409E-1	9.4760E-1	8	5425	140		regulation of biosynthetic process	Q8TAQ2|Q96KK5|P35637|P0DMV9|Q71UM5|Q14839|P10412|P51532
+51179	8.3816E-1	9.4760E-1	9	6025	140		localization	A8CG34|Q32P51|P0DMV9|P27708|O15131|P35268|Q9Y5M8|P35613|Q9BQE3
+6401	8.3942E-1	9.4760E-1	1	925	140		RNA catabolic process	P35268
+6402	8.3942E-1	9.4760E-1	1	925	140		mRNA catabolic process	P35268
+6457	8.3942E-1	9.4760E-1	1	925	140		protein folding	P0DMV9
+31047	8.3942E-1	9.4760E-1	1	925	140		gene silencing by RNA	A8CG34
+31399	8.3942E-1	9.4760E-1	1	925	140		regulation of protein modification process	P0DMV9
+31647	8.3942E-1	9.4760E-1	1	925	140		regulation of protein stability	P0DMV9
+956	8.3942E-1	9.4760E-1	1	925	140		nuclear-transcribed mRNA catabolic process	P35268
+30030	8.3942E-1	9.4760E-1	1	925	140		cell projection organization	P12036
+32270	8.3942E-1	9.4760E-1	1	925	140		positive regulation of cellular protein metabolic process	Q71UM5
+6355	8.5181E-1	9.4760E-1	6	4325	140		regulation of transcription, DNA-templated	Q8TAQ2|Q96KK5|P0DMV9|Q14839|P10412|P51532
+32501	8.5181E-1	9.4760E-1	6	4325	140		multicellular organismal process	Q8TAQ2|P27708|P35268|P35613|P51532|P12036
+19219	8.5315E-1	9.4760E-1	8	5525	140		regulation of nucleobase-containing compound metabolic process	Q8TAQ2|Q96KK5|P35637|P31943|P0DMV9|Q14839|P10412|P51532
+9892	8.5315E-1	9.4760E-1	8	5525	140		negative regulation of metabolic process	Q8TAQ2|Q96KK5|A8CG34|P0DMV9|P35268|Q14839|P10412|P51532
+6950	8.5501E-1	9.4760E-1	5	3725	140		response to stress	P0DMV9|P27708|Q71UM5|Q16695|Q9Y5M8
+16032	8.6196E-1	9.4760E-1	4	3125	140		viral process	A8CG34|P0DMV9|O15131|P35268
+44764	8.6196E-1	9.4760E-1	4	3125	140		multi-organism cellular process	A8CG34|P0DMV9|O15131|P35268
+8219	8.7006E-1	9.4760E-1	1	1025	140		cell death	Q71UM5
+51239	8.7006E-1	9.4760E-1	1	1025	140		regulation of multicellular organismal process	P0DMV9
+51248	8.7006E-1	9.4760E-1	1	1025	140		negative regulation of protein metabolic process	P0DMV9
+43066	8.7006E-1	9.4760E-1	1	1025	140		negative regulation of apoptotic process	P0DMV9
+43069	8.7006E-1	9.4760E-1	1	1025	140		negative regulation of programmed cell death	P0DMV9
+12501	8.7006E-1	9.4760E-1	1	1025	140		programmed cell death	Q71UM5
+2263	8.7006E-1	9.4760E-1	1	1025	140		cell activation involved in immune response	P0DMV9
+2274	8.7006E-1	9.4760E-1	1	1025	140		myeloid leukocyte activation	P0DMV9
+2275	8.7006E-1	9.4760E-1	1	1025	140		myeloid cell activation involved in immune response	P0DMV9
+2283	8.7006E-1	9.4760E-1	1	1025	140		neutrophil activation involved in immune response	P0DMV9
+43299	8.7006E-1	9.4760E-1	1	1025	140		leukocyte degranulation	P0DMV9
+43312	8.7006E-1	9.4760E-1	1	1025	140		neutrophil degranulation	P0DMV9
+2366	8.7006E-1	9.4760E-1	1	1025	140		leukocyte activation involved in immune response	P0DMV9
+10608	8.7006E-1	9.4760E-1	1	1025	140		posttranscriptional regulation of gene expression	Q71UM5
+2443	8.7006E-1	9.4760E-1	1	1025	140		leukocyte mediated immunity	P0DMV9
+2444	8.7006E-1	9.4760E-1	1	1025	140		myeloid leukocyte mediated immunity	P0DMV9
+2446	8.7006E-1	9.4760E-1	1	1025	140		neutrophil mediated immunity	P0DMV9
+10638	8.7006E-1	9.4760E-1	1	1025	140		positive regulation of organelle organization	P0DMV9
+6915	8.7006E-1	9.4760E-1	1	1025	140		apoptotic process	Q71UM5
+60548	8.7006E-1	9.4760E-1	1	1025	140		negative regulation of cell death	P0DMV9
+42119	8.7006E-1	9.4760E-1	1	1025	140		neutrophil activation	P0DMV9
+48468	8.7006E-1	9.4760E-1	1	1025	140		cell development	P12036
+36230	8.7006E-1	9.4760E-1	1	1025	140		granulocyte activation	P0DMV9
+34220	8.7006E-1	9.4760E-1	1	1025	140		ion transmembrane transport	P35613
+32269	8.7006E-1	9.4760E-1	1	1025	140		negative regulation of cellular protein metabolic process	P0DMV9
+34470	8.7006E-1	9.4760E-1	1	1025	140		ncRNA processing	P35268
+34660	8.7006E-1	9.4760E-1	1	1025	140		ncRNA metabolic process	P35268
+16310	8.7006E-1	9.4760E-1	1	1025	140		phosphorylation	P27708
+80134	8.7527E-1	9.5202E-1	2	1825	140		regulation of response to stress	A8CG34|P0DMV9
+48519	8.7863E-1	9.5443E-1	10	6825	140		negative regulation of biological process	Q8TAQ2|Q96KK5|A8CG34|P0DMV9|Q71UM5|Q16695|P35268|Q14839|P10412|P51532
+44699	8.9225E-1	9.5765E-1	16	10125	140		single-organism process	Q8TAQ2|Q96AX9|A8CG34|P31943|P0DMV9|Q71UM5|O15131|P35268|Q14839|Q9Y5M8|P35613|P51532|P12036|Q96KK5|P27708|Q9BQE3
+65009	8.9276E-1	9.5765E-1	3	2625	140		regulation of molecular function	P0DMV9|Q71UM5|P51532
+50896	8.9382E-1	9.5765E-1	10	6925	140		response to stimulus	Q96AX9|P35637|P31943|P0DMV9|P27708|P49411|Q71UM5|Q16695|Q9Y5M8|P35613
+2001233	8.9505E-1	9.5765E-1	1	1125	140		regulation of apoptotic signaling pathway	P0DMV9
+6811	8.9505E-1	9.5765E-1	1	1125	140		ion transport	P35613
+1901361	8.9505E-1	9.5765E-1	1	1125	140		organic cyclic compound catabolic process	P35268
+19439	8.9505E-1	9.5765E-1	1	1125	140		aromatic compound catabolic process	P35268
+44270	8.9505E-1	9.5765E-1	1	1125	140		cellular nitrogen compound catabolic process	P35268
+46700	8.9505E-1	9.5765E-1	1	1125	140		heterocycle catabolic process	P35268
+34655	8.9505E-1	9.5765E-1	1	1125	140		nucleobase-containing compound catabolic process	P35268
+1902589	8.9505E-1	9.5765E-1	1	1125	140		single-organism organelle organization	P12036
+16458	8.9542E-1	9.5765E-1	2	1925	140		gene silencing	Q96KK5|A8CG34
+2000112	9.0016E-1	9.6148E-1	7	5225	140		regulation of cellular macromolecule biosynthetic process	Q8TAQ2|Q96KK5|P0DMV9|Q71UM5|Q14839|P10412|P51532
+65008	9.0500E-1	9.6264E-1	5	4025	140		regulation of biological quality	P0DMV9|P27708|O15131|Q16695|P51532
+10604	9.1181E-1	9.6264E-1	4	3425	140		positive regulation of macromolecule metabolic process	Q8TAQ2|P0DMV9|Q71UM5|P51532
+60255	9.1302E-1	9.6264E-1	11	7625	140		regulation of macromolecule metabolic process	Q8TAQ2|Q96KK5|A8CG34|P35637|P31943|P0DMV9|Q71UM5|P35268|Q14839|P10412|P51532
+51247	9.1539E-1	9.6264E-1	1	1225	140		positive regulation of protein metabolic process	Q71UM5
+43065	9.1539E-1	9.6264E-1	1	1225	140		positive regulation of apoptotic process	Q71UM5
+43068	9.1539E-1	9.6264E-1	1	1225	140		positive regulation of programmed cell death	Q71UM5
+2252	9.1539E-1	9.6264E-1	1	1225	140		immune effector process	P0DMV9
+6928	9.1539E-1	9.6264E-1	1	1225	140		movement of cell or subcellular component	P35613
+9888	9.1539E-1	9.6264E-1	1	1225	140		tissue development	P35613
+55085	9.1539E-1	9.6264E-1	1	1225	140		transmembrane transport	P35613
+51130	9.1539E-1	9.6264E-1	1	1225	140		positive regulation of cellular component organization	P0DMV9
+45055	9.1539E-1	9.6264E-1	1	1225	140		regulated exocytosis	P0DMV9
+80090	9.1630E-1	9.6264E-1	9	6525	140		regulation of primary metabolic process	Q8TAQ2|Q96KK5|P35637|P31943|P0DMV9|Q71UM5|Q14839|P10412|P51532
+2376	9.2283E-1	9.6321E-1	3	2825	140		immune system process	P0DMV9|P35268|P35613
+31325	9.2283E-1	9.6321E-1	3	2825	140		positive regulation of cellular metabolic process	Q8TAQ2|Q71UM5|P51532
+51128	9.2283E-1	9.6321E-1	3	2825	140		regulation of cellular component organization	P0DMV9|Q16695|P51532
+43067	9.2730E-1	9.6321E-1	2	2125	140		regulation of programmed cell death	P0DMV9|Q71UM5
+45935	9.2730E-1	9.6321E-1	2	2125	140		positive regulation of nucleobase-containing compound metabolic process	Q8TAQ2|P51532
+42981	9.2730E-1	9.6321E-1	2	2125	140		regulation of apoptotic process	P0DMV9|Q71UM5
+31323	9.2774E-1	9.6321E-1	9	6625	140		regulation of cellular metabolic process	Q8TAQ2|Q96KK5|P35637|P31943|P0DMV9|Q71UM5|Q14839|P10412|P51532
+43085	9.3191E-1	9.6321E-1	1	1325	140		positive regulation of catalytic activity	Q71UM5
+32940	9.3191E-1	9.6321E-1	1	1325	140		secretion by cell	P0DMV9
+10942	9.3191E-1	9.6321E-1	1	1325	140		positive regulation of cell death	Q71UM5
+6887	9.3191E-1	9.6321E-1	1	1325	140		exocytosis	P0DMV9
+9628	9.3191E-1	9.6321E-1	1	1325	140		response to abiotic stimulus	P0DMV9
+44702	9.3191E-1	9.6321E-1	1	1325	140		single organism reproductive process	P35613
+9893	9.3596E-1	9.6527E-1	4	3625	140		positive regulation of metabolic process	Q8TAQ2|P0DMV9|Q71UM5|P51532
+10941	9.3972E-1	9.6527E-1	2	2225	140		regulation of cell death	P0DMV9|Q71UM5
+30154	9.3972E-1	9.6527E-1	2	2225	140		cell differentiation	P35268|P12036
+48869	9.3972E-1	9.6527E-1	2	2225	140		cellular developmental process	P35268|P12036
+51049	9.3972E-1	9.6527E-1	2	2225	140		regulation of transport	A8CG34|P12036
+44763	9.4154E-1	9.6595E-1	12	8425	140		single-organism cellular process	Q8TAQ2|Q96KK5|A8CG34|P0DMV9|P27708|Q71UM5|P35268|Q14839|P35613|P51532|P12036|Q9BQE3
+6342	9.4532E-1	9.6628E-1	1	1425	140		chromatin silencing	Q96KK5
+42592	9.4532E-1	9.6628E-1	1	1425	140		homeostatic process	Q16695
+19222	9.4535E-1	9.6628E-1	11	7925	140		regulation of metabolic process	Q8TAQ2|Q96KK5|A8CG34|P35637|P31943|P0DMV9|Q71UM5|P35268|Q14839|P10412|P51532
+48522	9.4915E-1	9.6884E-1	5	4425	140		positive regulation of cellular process	Q8TAQ2|Q96AX9|P0DMV9|Q71UM5|P51532
+51246	9.5019E-1	9.6884E-1	2	2325	140		regulation of protein metabolic process	P0DMV9|Q71UM5
+45814	9.5617E-1	9.7255E-1	1	1525	140		negative regulation of gene expression, epigenetic	Q96KK5
+9605	9.5617E-1	9.7255E-1	1	1525	140		response to external stimulus	P27708
+33043	9.6493E-1	9.7788E-1	1	1625	140		regulation of organelle organization	P0DMV9
+60341	9.6493E-1	9.7788E-1	1	1625	140		regulation of cellular localization	P12036
+50790	9.6493E-1	9.7788E-1	1	1625	140		regulation of catalytic activity	Q71UM5
+16192	9.7200E-1	9.8384E-1	1	1725	140		vesicle-mediated transport	P0DMV9
+32879	9.7756E-1	9.8600E-1	2	2725	140		regulation of localization	A8CG34|P12036
+40029	9.7769E-1	9.8600E-1	1	1825	140		regulation of gene expression, epigenetic	Q96KK5
+44265	9.7769E-1	9.8600E-1	1	1825	140		cellular macromolecule catabolic process	P35268
+9057	9.8226E-1	9.8821E-1	1	1925	140		macromolecule catabolic process	P35268
+1901575	9.8226E-1	9.8821E-1	1	1925	140		organic substance catabolic process	P35268
+6955	9.8593E-1	9.9070E-1	1	2025	140		immune response	P0DMV9
+48518	9.8823E-1	9.9181E-1	5	5225	140		positive regulation of biological process	Q8TAQ2|Q96AX9|P0DMV9|Q71UM5|P51532
+9056	9.9120E-1	9.9239E-1	1	2225	140		catabolic process	P35268
+44248	9.9120E-1	9.9239E-1	1	2225	140		cellular catabolic process	P35268
+8150	1.0000	1.0000	25	14025	140		biological_process	Q8TAQ2|Q96AX9|A8CG34|P35637|P0DMV9|Q71UM5|Q5VTE0|P10412|Q9Y5M8|P35613|P12036|Q96KK5|P27708|Q16695|Q9BQE3|P31943|Q32P51|P49411|O15131|P35268|Q14839|P51532|Q99877|Q8N257|Q99879

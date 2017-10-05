@@ -228,7 +228,8 @@ def buildGOtree(GOdict, root_nodes):
                 GOdict[parent].children.add(GOid)
             except KeyError:
                 print(f'WARNING: The .obo file provided {parent} as a parent of {GOid}, but {parent} itself '
-                      f'was not found in the GO dictionary. Check if it exists in the .obo file.')
+                      f'was not found in the GO dictionary. Check if it exists in the .obo file.\nThis might '
+                      f'be the result of namespace filtering and cross-namespace relations in the .obo file.')
 
     # C) After all parents have been found, for each GO ID, add it as a child for all of its parents/ancestors
     completeChildHierarchy(GOdict)

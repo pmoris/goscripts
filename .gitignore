@@ -5,3 +5,5 @@ go-tools/__pycache__/
 data/__pycache__/
 go-tools/__pycache__/*
 .idea/
+
+go-tools/\.cache/
