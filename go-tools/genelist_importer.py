@@ -22,18 +22,19 @@ def importGeneList(path):
         A set of background Uniprot AC's.
 
     Notes: Gene lists should not contain a header. One gene per line.
-    
+
     Possible improvements: check for file structure and allow headers, comma separated lists, etc.
     """
 
     listPath = os.path.abspath(path)
-    
+
     with open(listPath, 'r') as inGenes:
         geneSet = set([line.rstrip() for line in inGenes])
-        
+
     print('Retrieved', len(geneSet), 'Uniprot AC\'s from', listPath)
 
     return geneSet
+
 
 def isValidSubset(subset, background):
     """
@@ -62,6 +63,7 @@ def isValidSubset(subset, background):
         print('Removing these genes from the set of interest...\n')
         return subset.difference(missing)
 
+
 def reportMissingGenes(geneSet, gafDict, indicator):
     """
     Finds and reports Uniprot AC's in the provided background/interest gene sets which
@@ -87,7 +89,7 @@ def reportMissingGenes(geneSet, gafDict, indicator):
 
     if len(geneSet) != len(gafDict):
         obsoleteGenes = [AC for AC in geneSet if AC not in gafDict]
-        print('WARNING! The', indicator, 'gene set contained genes not present in the gene association file.')
+        print('WARNING! The', indicator, 'gene set contained genes not present in the gene association file:')
         print(obsoleteGenes)
         print('Removing these genes from the', indicator, 'set...\n')
         return geneSet.difference(obsoleteGenes)
