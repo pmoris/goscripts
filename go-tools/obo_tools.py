@@ -5,6 +5,7 @@
 '''
 
 import os, re
+import copy
 
 class goTerm:
     """
@@ -16,7 +17,7 @@ class goTerm:
     ----------
     id : str
         The identifier of the GO term.
-    altid : str
+    alt_id : str
         Optional tag for an alternative id.
     name : str
         The GO term name.
@@ -37,12 +38,12 @@ class goTerm:
 
     goCount = 0
 
-    __slots__ = ('id', 'name', 'altid', 'namespace', 'children', 'parents',
+    __slots__ = ('id', 'name', 'alt_id', 'namespace', 'children', 'parents',
                  'recursive_children', 'recursive_parents', 'depth')
 
     def __init__(self, GOid):
         self.id = GOid
-        self.altid = []
+        self.alt_id = []
         self.name = None
         self.namespace = None
         self.children = set()
@@ -112,7 +113,7 @@ def importOBO(path, ignore_partof=True):
                 elif line.startswith('namespace:'):
                     GOdict[GOid].namespace = line.split(': ')[1].rstrip()
                 elif line.startswith('alt_id:'):
-                    GOdict[GOid].altid.append(line.split(': ')[1].rstrip())
+                    GOdict[GOid].alt_id.append(line.split(': ')[1].rstrip())
                 elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
                 elif line.startswith('relationship: part_of'):
@@ -120,6 +121,30 @@ def importOBO(path, ignore_partof=True):
                         GOdict[GOid].parents.add(line.split()[2].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
+
+    # create secondary IDs
+    print('Adding secondary GO identifiers...\n')
+    secondary_id_dict = {}
+    for term_id, term in GOdict.items():
+        try:
+            # only do this for GO terms which have an alternative ID attribute
+            # NOTE: not strictly necessary since alt_id is defined as an empty
+            # list upon creating new GOterm objects
+            for alt_id in term.alt_id:
+                # check if alternative id is already present in GO term dictionary
+                if alt_id not in GOdict:
+                    # if not, add it as its own instance
+                    secondary_id_dict[alt_id] = copy.deepcopy(term)
+                    secondary_id_dict[alt_id].id = alt_id
+                    secondary_id_dict[alt_id].alt_id.append(term_id)
+                    secondary_id_dict[alt_id].alt_id.remove(alt_id)
+                else:
+                    print('Alternative ID term was already present.\n')
+        except AttributeError:
+            continue
+
+    # Merge alternative id's with main dictionary
+    GOdict = {**GOdict, **secondary_id_dict}
 
     return GOdict
 
@@ -229,7 +254,7 @@ def buildGOtree(GOdict, root_nodes):
             except KeyError:
                 print(f'WARNING: The .obo file provided {parent} as a parent of {GOid}, but {parent} itself '
                       f'was not found in the GO dictionary. Check if it exists in the .obo file.\nThis might '
-                      f'be the result of namespace filtering and cross-namespace relations in the .obo file.')
+                      f'be the result of namespace filtering and cross-namespace relations in the .obo file.\n')
 
     # C) After all parents have been found, for each GO ID, add it as a child for all of its parents/ancestors
     completeChildHierarchy(GOdict)
@@ -286,7 +311,7 @@ def propagateParents(currentTerm, baseGOid, GOdict, parentSet):
             # Print a warning that a parent term was reported for the original base term,
             # yet the term is absent from the gene ontology file
             print('WARNING!\n' + parent, 'was defined as a parent for',
-                  baseGOid, ', but was not found in the OBO file.')
+                  baseGOid, ', but was not found in the OBO file.\n')
 
     return None
 
