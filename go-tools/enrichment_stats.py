@@ -64,7 +64,7 @@ from scipy.stats import hypergeom
 
 def enrichmentOneSided(subsetGO, backgroundTotal, backgroundGO, subsetTotal):
     """
-    Performs a one-sided hypergeometric test for a given GO term.
+    Performs a one-sided (enrichment) hypergeometric test for a given GO term.
 
     k or more successes (= GO associations = subsetGO) in N draws (= subsetTotal)
     from a population of size M (backgroundTotal) containing n successes (backgroundGO)
@@ -136,6 +136,7 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
 
     If the test is not significant at the chosen threshold (default = 0.05),
     the test will recursively be performed for all of the GO term's parents.
+    NOTE: these p-values *are* counted for multiple testing correction.
     If the test is significant, the recursive call will stop the propagation.
 
     NOTE: At the moment, this means the test will be propagated until the top level,
@@ -144,6 +145,7 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
 
     If the number of genes associated with a GO term is lower than minGenes,
     the test will be skipped for this term and its parents will recursively be tested.
+    NOTE: these do not count towards the multiple testing correction limit.
 
     For each test, the number of genes associated with the GO term is found
     by counting the number of genes associated with the GO term itself or
@@ -188,6 +190,7 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     # removed from the base set because it will automatically be visited during propagation.
     # If we fail to remove it, more tests than necessary will be conducted. This will take longer, but not affect
     # multiple testing correction in any way (since a repeatedly tested term will just overwrite its value).
+
     subsetGOidsParents = {parent for GOid in subsetGOids for parent in GOdict[GOid].recursive_parents}
     baseGOids = [GOid for GOid in subsetGOids if GOid not in subsetGOidsParents]
 
@@ -207,7 +210,8 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     #             baseGOids.append(GOid)
 
     # Create dictionary of dictionaries to store the hypergeometric p-values and frequency counts
-    enrichmentTestResults = {'pValues': {}, 'interestCount': {}, 'backgroundCount': {}}
+    enrichmentTestResults = {'pValues': {}, 'interestCount': {},
+                             'backgroundCount': {}}
 
     backgroundTotal = len(gafDict)
     subsetTotal = len(gafSubset)
@@ -335,15 +339,25 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0
 
     # Perform multiple testing correction
     if testType == 'bonferroni':
-        print('Performing multiple testing correction using the Bonferroni FWER method.\n')
-        corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')
-        print(np.sum(corr[0]), 'GO terms out of', len(corr[0]),
-              'were significant after Bonferroni multiple testing correction.')
+        method = 'bonferroni'
+        method_str = 'Bonferroni FWER'
     else:
-        print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.\n')
-        corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='fdr_bh')
-        print(np.sum(corr[0]), 'GO terms out of', len(corr[0]),
-              'were significant after FDR multiple testing correction.')
+        method = 'fdr_bh'
+        method_str = 'Benjamini Hochberg FDR'
+
+    print(f'Performing multiple testing correction using the {method_str} method.\n')
+    corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method=method)
+    print(np.sum(corr[0]), 'GO terms out of', len(corr[0]), f'were significant after {method_str} multiple testing correction.')
+
+    #     print('Performing multiple testing correction using the Bonferroni FWER method.\n')
+    #     corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')
+    #     print(np.sum(corr[0]), 'GO terms out of', len(corr[0]),
+    #           'were significant after Bonferroni multiple testing correction.')
+    # else:
+    #     print('Performing multiple testing correction using the Benjamini-Hochberg FDR method.\n')
+    #     corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='fdr_bh')
+    #     print(np.sum(corr[0]), 'GO terms out of', len(corr[0]),
+    #           'were significant after FDR multiple testing correction.')
 
     # Append corrected p-values as a new dictionary
     enrichmentTestResults['corr'] = {term: corrValue for term, corrValue in zip(terms, corr[1])}
