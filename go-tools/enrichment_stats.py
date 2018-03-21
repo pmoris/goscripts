@@ -222,11 +222,44 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
         recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
                         gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
 
+    # from joblib import Parallel, delayed
+    # Parallel(n_jobs=-2, backend='threading', verbose=5)(delayed(recursiveTester)( GOid, backgroundTotal,
+    #                                              subsetTotal, GOdict,
+    #                                              gafDict, gafSubset,
+    #                                              minGenes, threshold,
+    #                                              enrichmentTestResults )
+    #                                              for GOid in baseGOids)
+
+    # import multiprocessing
+
+    # pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() - 1)
+    # results = [
+    #     pool.apply_async(
+    #         recursive_wrapper,
+    #         args=(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
+    #               gafSubset, minGenes, threshold, enrichmentTestResults))
+    #     for GOid in baseGOids
+    # ]
+    # print('starting output loop')
+    # output = [p.get() for p in results]
+    # print('done with output loop')
+    # print(len(output))
+
+    # how to pass enrichmentTestResults every time
+    # why aren't print statements showing up?
+
     print('Tested', len(enrichmentTestResults['pValues']), 'GO categories for enrichment.\n')
     sig = sum(i < threshold for i in enrichmentTestResults['pValues'].values())
     print(sig, 'were significant at (uncorrected) alpha =', threshold, '\n')
 
     return enrichmentTestResults
+
+
+# def recursive_wrapper(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
+#                   gafSubset, minGenes, threshold, enrichmentTestResults):
+#     print(GOid)
+#     recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
+#                     gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
 
 
 def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
