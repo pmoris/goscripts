@@ -37,7 +37,7 @@ def importGAF(path, geneSet):
     gafPath = os.path.abspath(path)
 
     # If no gene set was provided
-    if geneSet == 'full annotation set':
+    if not geneSet:
         with open(gafPath, 'r') as gafFile:
             gafDict = {}
             for line in gafFile:
