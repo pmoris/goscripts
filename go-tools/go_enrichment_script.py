@@ -149,8 +149,18 @@ if __name__ == '__main__':
         print(
             '\nNo background gene set provided, retrieving all genes from the gene association file...\n'
         )
+
+        import time
+        t = time.clock()
         gafDict = gaf_parser.importGAF(args.gaf, args.background)
+        print('old', time.clock() - t)
+
+        # t = time.clock()
+        # gafDict = gaf_parser.importGAF2(args.gaf, args.background)
+        # print('new', time.clock() - t)
+
         background = set(gafDict.keys())
+
     # otherwise, import the background set first and
     # use this to limit gene association import
     else:
@@ -223,7 +233,7 @@ if __name__ == '__main__':
     print(
         'Finished completing ontology...proceeding with enrichment tests...\n')
 
-    enrichmentResults = enrichment_stats.enrichmentAnalysis(
+    enrichmentResults = enrichment_stats.multiproc_enrichmentAnalysis(
         GOterms,
         gafDict,
         gafSubset,
