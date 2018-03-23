@@ -119,6 +119,7 @@ def countGOassociations(validTerms, gafDict):
     for gene, GOids in gafDict.items():
         # Increment the GO counter if the valid terms set shares a member
         # with the GO id set of the current gene
+        # https://stackoverflow.com/questions/3170055/test-if-lists-share-any-items-in-python
         if not validTerms.isdisjoint(GOids):
             GOcounter += 1
 
@@ -180,17 +181,20 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     # Generate a list of all base GO terms to test
     # i.e. the terms of all the genes in the subset of interest
     # but starting at the most specific child terms since the function will propagate upwards.
+
     # 1) get all GO term ids from gene association dictionary of subset of interest
     # 2) retrieve all recursive parents for these terms
     # 3) retain terms that are not a parent of any other terms
-    subsetGOids = {GOid for gene, GOids in gafSubset.items() for GOid in GOids}
+
     # Use full recursive parent set here because a low non specific term might be associated with a specific gene
     # and not be a direct parent of any of the other terms (i.e. it is a distant ancestor). We have to look through
     # the full ancestor set to find out whether it's an ancestor of any of the other terms. In that case, it can be
     # removed from the base set because it will automatically be visited during propagation.
+
     # If we fail to remove it, more tests than necessary will be conducted. This will take longer, but not affect
     # multiple testing correction in any way (since a repeatedly tested term will just overwrite its value).
 
+    subsetGOids = {GOid for gene, GOids in gafSubset.items() for GOid in GOids}
     subsetGOidsParents = {parent for GOid in subsetGOids for parent in GOdict[GOid].recursive_parents}
     baseGOids = [GOid for GOid in subsetGOids if GOid not in subsetGOidsParents]
 
@@ -222,44 +226,11 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
         recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
                         gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
 
-    # from joblib import Parallel, delayed
-    # Parallel(n_jobs=-2, backend='threading', verbose=5)(delayed(recursiveTester)( GOid, backgroundTotal,
-    #                                              subsetTotal, GOdict,
-    #                                              gafDict, gafSubset,
-    #                                              minGenes, threshold,
-    #                                              enrichmentTestResults )
-    #                                              for GOid in baseGOids)
-
-    # import multiprocessing
-
-    # pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() - 1)
-    # results = [
-    #     pool.apply_async(
-    #         recursive_wrapper,
-    #         args=(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
-    #               gafSubset, minGenes, threshold, enrichmentTestResults))
-    #     for GOid in baseGOids
-    # ]
-    # print('starting output loop')
-    # output = [p.get() for p in results]
-    # print('done with output loop')
-    # print(len(output))
-
-    # how to pass enrichmentTestResults every time
-    # why aren't print statements showing up?
-
     print('Tested', len(enrichmentTestResults['pValues']), 'GO categories for enrichment.\n')
     sig = sum(i < threshold for i in enrichmentTestResults['pValues'].values())
     print(sig, 'were significant at (uncorrected) alpha =', threshold, '\n')
 
     return enrichmentTestResults
-
-
-# def recursive_wrapper(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
-#                   gafSubset, minGenes, threshold, enrichmentTestResults):
-#     print(GOid)
-#     recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
-#                     gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
 
 
 def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
