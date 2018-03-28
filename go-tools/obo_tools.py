@@ -4,8 +4,10 @@
 @author: Pieter Moris
 '''
 
-import os, re
 import copy
+import os
+import re
+
 
 class goTerm:
     """
@@ -55,7 +57,7 @@ class goTerm:
         goTerm.goCount += 1
 
 
-def importOBO(path, ignore_partof=True):
+def importOBO(path, ignore_part_of):
     """
     Imports an OBO file and generates a dictionary containing an goTerm object for each GO term.
 
@@ -66,7 +68,7 @@ def importOBO(path, ignore_partof=True):
     ----------
     path : str
         The path to the file.
-    ignore_partof : bool
+    ignore_part_of : bool
         A boolean indicating whether or not the "part_of" relationship should be ignored.
 
     Returns
@@ -117,7 +119,7 @@ def importOBO(path, ignore_partof=True):
                 elif line.startswith('is_a:'):
                     GOdict[GOid].parents.add(line.split()[1].rstrip())
                 elif line.startswith('relationship: part_of'):
-                    if not ignore_partof:
+                    if not ignore_part_of:
                         GOdict[GOid].parents.add(line.split()[2].rstrip())
 
     print('Retrieved', len(GOdict), 'GO terms from', path, '\n')
@@ -178,6 +180,7 @@ def filterOnNamespace(GOdict, namespace):
 
     return filteredGOdict
 
+
 def set_namespace_root(namespace):
     """
     Stores the GO ID for the root of the selected namespace.
@@ -194,13 +197,16 @@ def set_namespace_root(namespace):
         The list of GO ID's of the root terms of the selected namespace.
     """
     if namespace == 'biological_process':
-        return ['GO:0008150']
+        namespace_list = ['GO:0008150']
     elif namespace == 'cellular_component':
-        return ['GO:0005575']
+        namespace_list = ['GO:0005575']
     elif namespace == 'molecular_function':
-        return ['GO:0003674']
+        namespace_list = ['GO:0003674']
     else:
-        return ['GO:0008150', 'GO:0005575', 'GO:0003674']
+        namespace_list = ['GO:0008150', 'GO:0005575', 'GO:0003674']
+
+    return namespace_list
+
 
 def buildGOtree(GOdict, root_nodes):
     """
@@ -301,6 +307,8 @@ def propagateParents(currentTerm, baseGOid, GOdict, parentSet):
     # For each parent of the current term under consideration
     for parent in parents:
         # Check if parent is present in GO dictionary
+        # This is required because namespace filtering might lead to parent terms
+        # that are no longer present as GOterm objects themselves.
         if parent in GOdict:
             # Add current term's parents to growing set
             parentSet.add(parent)
