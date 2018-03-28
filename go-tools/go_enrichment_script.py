@@ -66,7 +66,7 @@ if __name__ == '__main__':
         default=set(), # use full annotation set instead
         dest='background',
         help=
-        'File containing a list of Uniprot accession numbers for the background set of genes'
+        'File containing a list of Uniprot accession numbers for the background set of genes. If omitted, the full list of genes in the .gaf file will be used.'
     )
     parser.add_argument(
         '-s',

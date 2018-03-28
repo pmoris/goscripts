@@ -3,6 +3,7 @@
 # TODO:
 
 - Namespace filtering should happen during initial import, otherwise there could be jumps across namespaces (if capable_of and part_of relations are included).
+- download files on request
 
 ## Commands used
 
@@ -22,16 +23,21 @@ pieter@pieter-XPS-15-9560 /media/pieter/DATA/Wetenschap/Doctoraat/host-pathogen-
 
 # Differences between Cytoscape BINGO and go-tools
 ## go-tools
+
 47,GO:0034641,cellular nitrogen compound metabolic process,biological_process,0.2229713478320156,0.97467920494363,12/25 (48.00%),55/140 (39.29%)
 
 ## BINGO
+
+GO-ID	p-value	corr p-value	x	n	X	N	Description	Genes in test set
 34641	8.0298E-2	8.8290E-1	14	58 25	140		cellular nitrogen compound metabolic process	Q8TAQ2|A8CG34|P35637|P31943|Q32P51|P0DMV9|P49411|Q71UM5|Q5VTE0|P35268|Q14839|P51532|P27708|Q16695
 
 ## Difference?
+
 12/25 vs 14/25
 55/140 vs 58/140
 
 ## Debugging
+
 ```
 viable = GOterms['GO:0034641'].recursive_children
 viable.add('GO:0034641')
