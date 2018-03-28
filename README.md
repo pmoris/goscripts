@@ -54,6 +54,14 @@ The `go-tools` module contains further functionality to parse and manipulate `.o
     --no-part-of          Ignore part_of relations between GO terms during
                             traversal. (default: False)
 
+## Input files
+
+The `background` and `subset` files should be plain text files containing a single Uniprot accession number per line.
+
+    P00750
+    A2BC19
+    P12345
+    A0A022YWF9
 
 ## Details
 
