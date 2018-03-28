@@ -242,8 +242,8 @@ if __name__ == '__main__':
                 to_remove.add(term)
                 print(f'{term} was missing from GO file.\nRemoving term from gene assocation file...\n')
     if to_remove:
-        gafDict = {gene: terms for gene, terms in gafDict if gene not in to_remove}
-        gafSubset = {gene: terms for gene, terms in gafSubset if gene not in to_remove}
+        gafDict = {gene: terms for gene, terms in gafDict.items() if gene not in to_remove}
+        gafSubset = {gene: terms for gene, terms in gafSubset.items() if gene not in to_remove}
 
     # Perform enrichment test
     print(
