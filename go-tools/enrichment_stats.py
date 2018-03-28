@@ -127,7 +127,7 @@ def countGOassociations(validTerms, gafDict):
 
 
 def enrichmentAnalysis(GOdict, gafDict, gafSubset,
-                       minGenes=3, threshold=0.05):
+                       minGenes=3, threshold=0.05, propagation=True):
     """
     Performs a GO enrichment analysis.
 
@@ -170,6 +170,8 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     threshold: float
         The threshold of the hypergeometric test for which the GO term's
         parents will not be further recursively tested for enrichment.
+    propagation : boolean
+        Specifies whether or not tests should propagate upwards through the tree.
 
     Returns
     -------
@@ -220,11 +222,21 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
     backgroundTotal = len(gafDict)
     subsetTotal = len(gafSubset)
 
-    # Perform a onesided enrichment test for each of the base GO ids,
-    # Recurse to parents if not significant at chosen threshold
-    for GOid in baseGOids:
-        recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
-                        gafDict, gafSubset, minGenes, threshold, enrichmentTestResults)
+    # Perform a onesided enrichment test for each of the GO ids
+
+    # if propagation is disabled, check explicit terms in subsetGOids.
+    if not propagation:
+        for GOid in subsetGOids:
+            # NOTE: recursiveTester will actually skip recursive steps if propagation=False, despite its name.
+            recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
+                            gafDict, gafSubset, minGenes, threshold, enrichmentTestResults, propagation)
+
+    # if propagation is enabled (default), use baseGOids to avoid redundant tests
+    else:
+        # and recurse to parents if tests are not significant at chosen threshold
+        for GOid in baseGOids:
+            recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict,
+                            gafDict, gafSubset, minGenes, threshold, enrichmentTestResults, propagation)
 
     print('Tested', len(enrichmentTestResults['pValues']), 'GO categories for enrichment.\n')
     sig = sum(i < threshold for i in enrichmentTestResults['pValues'].values())
@@ -234,7 +246,7 @@ def enrichmentAnalysis(GOdict, gafDict, gafSubset,
 
 
 def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
-                    gafSubset, minGenes, threshold, enrichmentTestResults):
+                    gafSubset, minGenes, threshold, enrichmentTestResults, propagation):
     """
     Implements the recursive enrichment tests for the enrichmentAnalysis() function
     by propagating through parent terms in case of an insignificant result or low
@@ -263,6 +275,8 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
     enrichmentTestResults : dict of dicts
         An dictionary of dictionaries that gets passed through the recursion and
         filled with mappings of GO ids to p-values and frequencies for every enrichment test.
+    propagation : boolean
+        Specifies whether or not tests should propagate upwards through the tree.
 
     Returns
     -------
@@ -287,33 +301,43 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
         #     print('bg Count', backgroundGO, 'interestCount', subsetGO, 'pval', pVal)
         #     print('bgTotal', backgroundTotal, 'subsetTotal', subsetTotal)
 
-        # If the number of associated genes for the current GO category is too low,
-        # skip and move up hierarchy to test the parents
-        if backgroundGO < minGenes:
-            for parent in GOdict[GOid].parents:
-                recursiveTester(parent, backgroundTotal, subsetTotal,
-                                GOdict, gafDict, gafSubset, minGenes,
-                                threshold, enrichmentTestResults)
-
-        else:
-            # Map GOid to p-value and the number of associated genes in the interest and background set
+        if not propagation:
             pVal = enrichmentOneSided(
-                subsetGO, backgroundTotal, backgroundGO, subsetTotal)
+            subsetGO, backgroundTotal, backgroundGO, subsetTotal)
             enrichmentTestResults['pValues'][GOid] = pVal
             enrichmentTestResults['interestCount'][GOid] = subsetGO
             enrichmentTestResults['backgroundCount'][GOid] = backgroundGO
 
-            # If test is not significant, move up the hierarchy to perform
-            # additional tests on parent terms
-            if pVal > threshold:
+            return
+
+        else:
+            # If the number of associated genes for the current GO category is too low,
+            # skip and move up hierarchy to test the parents
+            if backgroundGO < minGenes:
                 for parent in GOdict[GOid].parents:
                     recursiveTester(parent, backgroundTotal, subsetTotal,
                                     GOdict, gafDict, gafSubset, minGenes,
-                                    threshold, enrichmentTestResults)
+                                    threshold, enrichmentTestResults, propagation)
 
-            # Otherwise stop recursion and don't perform any higher up tests
             else:
-                return
+                # Map GOid to p-value and the number of associated genes in the interest and background set
+                pVal = enrichmentOneSided(
+                    subsetGO, backgroundTotal, backgroundGO, subsetTotal)
+                enrichmentTestResults['pValues'][GOid] = pVal
+                enrichmentTestResults['interestCount'][GOid] = subsetGO
+                enrichmentTestResults['backgroundCount'][GOid] = backgroundGO
+
+                # If test is not significant, move up the hierarchy to perform
+                # additional tests on parent terms
+                if pVal > threshold:
+                    for parent in GOdict[GOid].parents:
+                        recursiveTester(parent, backgroundTotal, subsetTotal,
+                                        GOdict, gafDict, gafSubset, minGenes,
+                                        threshold, enrichmentTestResults, propagation)
+
+                # Otherwise stop recursion and don't perform any higher up tests
+                else:
+                    return
 
 
 def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0.05):
@@ -351,7 +375,7 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0
 
     print(f'Performing multiple testing correction using the {method_str} method.\n')
     corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method=method)
-    print(np.sum(corr[0]), 'GO terms out of', len(corr[0]), f'were significant after {method_str} multiple testing correction.')
+    print(np.sum(corr[0]), 'GO terms out of', len(corr[0]), f'were significant after {method_str} multiple testing correction (at {threshold}).')
 
     #     print('Performing multiple testing correction using the Bonferroni FWER method.\n')
     #     corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method='bonferroni')

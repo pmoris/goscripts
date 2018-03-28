@@ -90,7 +90,7 @@ if __name__ == '__main__':
         type=str,
         required=True,
         dest='gaf',
-        help='.gaf file containing GO annotations')
+        help='.gaf file containing GO associations')
     # parser.add_argument('-O', '--output', type=argparse.FileType('w'),
     # default='enrichment-results.csv', dest='output',
     # help='Specifies the name or path of the output csv file')
@@ -124,20 +124,38 @@ if __name__ == '__main__':
         type=float,
         default='0.05',
         dest='testing_limit',
-        help='P-value cut-off to use to stop GO tree propagation during testing'
+        help='P-value cut-off to use to stop GO tree propagation during enchrichment tests'
     )
     parser.add_argument(
-        '-t',
-        '--thresh',
+        '-p',
+        '--pval-thresh',
         type=float,
         default='0.1',
         dest='threshold',
-        help='P-value cut-off to use for significance testing')
+        help='Significant p-value threshold to use for significance testing')
     parser.add_argument(
-        '-c',
-        '--condense',
+        '--mult-test',
+        type=str,
+        default='fdr',
+        dest='mult_test',
+        help=
+        'The type of multiple testing correction to use. Either "fdr" or "bonferroni".'
+    )
+    parser.add_argument(
+        '-v',
+        '--verbose',
         action="store_true",
-        help='Suppress verbose output.')
+        help='Verbose output.')
+    parser.add_argument(
+        '--no-propagation',
+        action="store_false",
+        dest="propagation", # will be true by default
+        help='Disables propagation during testing. Use if only strictly associated terms should be tested.')
+    parser.add_argument(
+        '--no-part-of',
+        action="store_true",
+        dest="no_part_of",
+        help='Ignore part_of relations between GO terms during traversal.')
     args = parser.parse_args()
 
     # Import the gene set of interest (Uniprot AC format)
@@ -173,7 +191,7 @@ if __name__ == '__main__':
                                                     'interest')
 
     # Import gene ontology file
-    GOterms = obo_tools.importOBO(args.obo)
+    GOterms = obo_tools.importOBO(args.obo, ignore_part_of=args.no_part_of)
 
     # Reduce gene ontology file to selected namespace
     if not args.namespace == 'all':
@@ -181,6 +199,14 @@ if __name__ == '__main__':
         # and reduce the gene association files to these GO terms
         gafDict = gaf_parser.cleanGafTerms(gafDict, GOterms)
         gafSubset = gaf_parser.cleanGafTerms(gafSubset, GOterms)
+    # NOTE: terms belonging to unselected namespaces could still show up in
+    #       the child/parent attributes of existing terms (via part_of relations)
+    #       This can be prevented by either going through these attributes
+    #       or by always checking if a term is present in the dictionary before using it.
+    #       The second option is used in propagateParents() and a warning is
+    #       issued in the buildGOtree() function.
+    #       This means that the parent attribute might contain removed terms,
+    #       but the recursive_parent/child attributes do not.
 
         print(
             len(gafDict), 'out of', len(background),
@@ -195,8 +221,8 @@ if __name__ == '__main__':
         # the set objects themselves need to be filtered once more as well.
         # NOTE that this will output a long list of removed (unannotated) genes
         # to the screen.
-        # background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
-        # interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
+        background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
+        interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
 
     # Build full GO hierarchy
     root_nodes = obo_tools.set_namespace_root(args.namespace)
@@ -228,18 +254,19 @@ if __name__ == '__main__':
         gafDict,
         gafSubset,
         minGenes=args.minGenes,
-        threshold=args.testing_limit)
+        threshold=args.testing_limit,
+        propagation=args.propagation)
 
     # Update results with multiple testing correction
     enrichment_stats.multipleTestingCorrection(
-        enrichmentResults, testType='fdr', threshold=args.threshold)
+        enrichmentResults, testType=args.mult_test, threshold=args.threshold)
 
     # Create dataframe with tested GO terms and results
     output = enrichment_stats.annotateOutput(enrichmentResults, GOterms,
                                              gafDict, gafSubset)
 
     # Print intermediate output
-    if not args.condense:
+    if args.verbose:
         print(
             '\nGO term, uncorrected and FDR-corrected p-values and description of GO term:\n'
         )
