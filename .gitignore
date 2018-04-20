@@ -1,9 +1,12 @@
-data/go_data/
-data/hpidb2/hpidb2*
-docs/.*
-go-tools/__pycache__/
-data/__pycache__/
-go-tools/__pycache__/*
-.idea/
+# Compiled python modules.
+*.pyc
 
-go-tools/\.cache/
+# Setuptools distribution folder.
+/dist/
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+
+goscripts/__pycache__/
+goscripts/test*
+testing-docs/testing-data/

@@ -5,11 +5,25 @@ ADReM - biomina - UAntwerpen
 
 A ready to use `python` script to perform GO enrichment tests by inputting a list of uniprot_kb accession numbers, an ontology (`.obo`) file and a gene association (`.gaf`) file.
 
-The `go-tools` module contains further functionality to parse and manipulate `.obo` and `.gaf` files. E.g. retrieving parent/child terms by traversing the hierachy, remapping a given set of GO terms to a specified depth, etc.
+The `goscripts` module contains further functionality to parse and manipulate `.obo` and `.gaf` files. E.g. retrieving parent/child terms by traversing the hierachy, remapping a given set of GO terms to a specified depth, etc.
+
+## Installation
+
+1) Download or clone this repository.
+2) Optionally: create a new virtual or conda environment before installing.
+3) From within the main directory (where `setup.py` resides), run the following command: `pip install .`. This will install the goscripts module as a python package.
+4) You can now use the stand-alone go enrichment testing script by invoking
+
+    go_enrichment_script
+
+on the command line.
+5) All additional functionality can be used in your own python scripts via an import statement:
+
+    import goscripts
 
 ## Usage
 
-    usage: go_enrichment_script.py [-h] [-b BACKGROUND] -s SUBSET -o OBO -g GAF
+    usage: go_enrichment_script [-h] [-b BACKGROUND] -s SUBSET -o OBO -g GAF
                                 [-O OUTPUTFILE]
                                 [-n {all,biological_process,molecular_function,cellular_component}]
                                 [-m MINGENES] [-l TESTING_LIMIT] [-p THRESHOLD]
@@ -65,7 +79,7 @@ The `background` and `subset` files should be plain text files containing a sing
 
 ## Details
 
-Performs one-sided hypergeometric tests, starting from the most specific (child) GO terms associated with the genes in the set of interest. If the p-value of the test does not fall below the specified significance level alpha, the test wll be carried out for all of the term's parent terms, otherwise the process will terminate. This method attempts to limit the total number of tests that need to be carried out, since a term that is enriched will likely also have enriched parent terms. Furthermore, GO terms associated with a small number of genes are skipped. Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing correction are applied to the test results. Finally, a `.csv` file containing all the GO terms that were evaluated and their p-values are returned. More information is available in the docstrings.
+Performs one-sided hypergeometric tests, starting from the most specific (child) GO terms associated with the genes in the set of interest. If the p-value of the test does not fall below the specified significance level alpha, the test will be carried out for all of the term's parent terms, otherwise the process will terminate. This method attempts to limit the total number of tests that need to be carried out, since a term that is enriched will likely also have enriched parent terms. Furthermore, GO terms associated with a small number of genes are skipped. Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing correction are applied to the test results. Finally, a `.csv` file containing all the GO terms that were evaluated and their p-values are returned. More information is available in the docstrings.
 
 ---
 

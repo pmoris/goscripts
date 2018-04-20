@@ -46,14 +46,13 @@ If the subset of interest is disjoint from the background, the extra genes will 
 
 import argparse
 
-import enrichment_stats
-import gaf_parser
-import genelist_importer
-import obo_tools
+from goscripts import enrichment_stats
+from goscripts import gaf_parser
+from goscripts import genelist_importer
+from goscripts import obo_tools
 
-# Run as stand alone script
-if __name__ == '__main__':
 
+def main():
     # Check provided arguments
     parser = argparse.ArgumentParser(
         description='Script to perform GO enrichment analysis',
@@ -275,3 +274,7 @@ if __name__ == '__main__':
     # Save results
     print('\nSaving output to', args.outputFile)
     output.to_csv(args.outputFile)
+
+# Run as stand alone script
+if __name__ == '__main__':
+    main()
