@@ -74,13 +74,18 @@ If you wish to move the script to another location, be sure to also copy the `go
                             testing (default: 0.1)
     --mult-test MULT_TEST
                             The type of multiple testing correction to use. Either
-                            "fdr" or "bonferroni". (default: fdr)
+                            "fdr_bh" (default), "bonferroni" or any other method
+                            offered by
+                            statsmodels.stats.multitest.multipletests(). (default:
+                            fdr_bh)
     -v, --verbose         Verbose output. (default: False)
     --no-propagation      Disables propagation during testing. Use if only
                             strictly associated terms should be tested. (default:
                             True)
     --no-part-of          Ignore part_of relations between GO terms during
                             traversal. (default: False)
+
+See the statsmodels documentation for an overview of all available multiple testing correction procedures: [http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests](http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests).
 
 ## Input files
 
@@ -104,7 +109,7 @@ Performs one-sided hypergeometric tests, starting from the most specific (child)
     numpy
     pandas
     scipy.stats
-    statsmodels.sandbox.stats.multicomp
+    statsmodels.stats.multitest
 
 ---
 

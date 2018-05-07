@@ -137,10 +137,10 @@ if __name__ == '__main__':
     parser.add_argument(
         '--mult-test',
         type=str,
-        default='fdr',
+        default='fdr_bh',
         dest='mult_test',
         help=
-        'The type of multiple testing correction to use. Either "fdr" or "bonferroni".'
+        'The type of multiple testing correction to use. Either "fdr_bh" (default), "bonferroni" or any other method offered by statsmodels.stats.multitest.multipletests().'
     )
     parser.add_argument(
         '-v', '--verbose', action="store_true", help='Verbose output.')

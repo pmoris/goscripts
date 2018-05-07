@@ -4,9 +4,11 @@
 @author: Pieter Moris
 '''
 
+import sys
 import numpy as np
 import pandas as pd
-import statsmodels.sandbox.stats.multicomp
+# import statsmodels.sandbox.stats.multicomp
+import statsmodels.stats.multitest
 
 from scipy.stats import hypergeom
 
@@ -340,7 +342,7 @@ def recursiveTester(GOid, backgroundTotal, subsetTotal, GOdict, gafDict,
                     return
 
 
-def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0.05):
+def multipleTestingCorrection(enrichmentTestResults, testType='fdr_bh', threshold=0.05):
     """
     Updates the original enrichmentTestResults dictionary of dictionaries by appending
     an additional dictionary mapping GO ids to corrected p-values.
@@ -351,7 +353,9 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0
         An dictionary of dictionaries mapping GO ids to p-values and counts.
     testType : str
         Specifies the type of multiple correction.
-        Options include: `bonferroni` and `fdr` (Benjamini Hochberg).
+        Options include: `bonferroni` and `fdr_bh` (Benjamini Hochberg)
+        and any others defined by
+        statsmodels.stats.multitest.multipletests().
     threshold : float
         The significance level to use.
 
@@ -367,14 +371,18 @@ def multipleTestingCorrection(enrichmentTestResults, testType='fdr', threshold=0
 
     # Perform multiple testing correction
     if testType == 'bonferroni':
-        method = 'bonferroni'
         method_str = 'Bonferroni FWER'
-    else:
-        method = 'fdr_bh'
+    elif testType == 'fdr_bh':
         method_str = 'Benjamini Hochberg FDR'
+    else:
+        method_str = testType
 
-    print(f'Performing multiple testing correction using the {method_str} method.\n')
-    corr = statsmodels.sandbox.stats.multicomp.multipletests(list(pValues), alpha=threshold, method=method)
+    print(f'Performing multiple testing correction using the {method_str} method...\n')
+    try:
+        corr = statsmodels.stats.multitest.multipletests(list(pValues), alpha=threshold, method=testType)
+    except ValueError:
+        print('ERROR: Invalid method for multiple testing correction. Accepted options include: fdr_bh, bonferroni and any others defined by statsmodels.stats.multitest.multipletests().')
+        sys.exit(1)
     print(np.sum(corr[0]), 'GO terms out of', len(corr[0]), f'were significant after {method_str} multiple testing correction (at {threshold}).')
 
     #     print('Performing multiple testing correction using the Bonferroni FWER method.\n')

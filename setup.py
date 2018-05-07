@@ -9,10 +9,5 @@ setup(
     author_email='pieter.moris@uantwerpen.be',
     license='MIT',
     packages=['goscripts'],
-    install_requires=['pandas', 'numpy', 'statsmodels'],
-    # entry_points={
-    #     "console_scripts": [
-    #         "go_enrichment_script = goscripts.go_enrichment_script:main",
-    #     ]
-    # },
+    install_requires=['pandas', 'numpy', 'statsmodels', 'scipy'],
     zip_safe=False)
