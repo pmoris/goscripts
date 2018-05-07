@@ -10,9 +10,9 @@ setup(
     license='MIT',
     packages=['goscripts'],
     install_requires=['pandas', 'numpy', 'statsmodels'],
-    entry_points={
-        "console_scripts": [
-            "go_enrichment_script = goscripts.go_enrichment_script:main",
-        ]
-    },
+    # entry_points={
+    #     "console_scripts": [
+    #         "go_enrichment_script = goscripts.go_enrichment_script:main",
+    #     ]
+    # },
     zip_safe=False)

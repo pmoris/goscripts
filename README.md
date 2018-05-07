@@ -1,16 +1,15 @@
 # GO enrichment analysis tools
 
-Pieter Moris 2017
-ADReM - biomina - UAntwerpen
-
 A ready to use `python` script to perform GO enrichment tests by inputting a list of uniprot_kb accession numbers, an ontology (`.obo`) file and a gene association (`.gaf`) file.
 
-The `goscripts` module contains further functionality to parse and manipulate `.obo` and `.gaf` files. E.g. retrieving parent/child terms by traversing the hierachy, remapping a given set of GO terms to a specified depth, etc.
+The `goscripts` module contains further functionality to parse and manipulate `.obo` and `.gaf` files; e.g. retrieving parent/child terms by traversing the hierarchy, remapping a given set of GO terms to a specified depth, etc.
 
 ## Installation
 
-1) Download or clone this repository.
-2) Optionally: create a new virtual or conda environment before installing.
+1) Download or clone this repository: `git clone git@github.com:pmoris/goscripts.git`
+    This is enough to simply run the main enrichment testing script: `python go_enrichment_script ...`
+    To install the additional functionalities for use in your own python scripts, the following steps are required:
+2) Optionally: create a new virtual or conda environment before installing: `conda create -n goenv`
 3) From within the main directory (where `setup.py` resides), run the following command: `pip install .`. This will install the goscripts module as a python package.
 4) You can now use the stand-alone go enrichment testing script by invoking
 
@@ -70,7 +69,9 @@ on the command line.
 
 ## Input files
 
-The `background` and `subset` files should be plain text files containing a single Uniprot accession number per line.
+* Ontology .obo files are described and available at the [Gene Ontology Consortium](http://www.geneontology.org/page/download-ontology).
+* The gene association file format is described at the [Gene Ontology Consortium](http://www.geneontology.org/page/go-annotation-file-formats) and made available by EBI at the [GOA ftp site](https://www.ebi.ac.uk/GOA/downloads).
+* The `background` and `subset` files should be plain text files containing a single Uniprot accession number per line.
 
     P00750
     A2BC19
@@ -89,3 +90,8 @@ Performs one-sided hypergeometric tests, starting from the most specific (child)
     pandas
     scipy.stats
     statsmodels.sandbox.stats.multicomp
+
+---
+
+Copyright (c) 2018 Pieter Moris
+Adrem Data Lab - biomina - UAntwerpen

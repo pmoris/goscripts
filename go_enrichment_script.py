@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 '''
 @author: Pieter Moris
 
@@ -51,8 +52,8 @@ from goscripts import gaf_parser
 from goscripts import genelist_importer
 from goscripts import obo_tools
 
-
-def main():
+# Run as stand alone script
+if __name__ == '__main__':
     # Check provided arguments
     parser = argparse.ArgumentParser(
         description='Script to perform GO enrichment analysis',
@@ -62,7 +63,7 @@ def main():
         '-b',
         '--background',
         type=str,
-        default=set(), # use full annotation set instead
+        default=set(),    # use full annotation set instead
         dest='background',
         help=
         'File containing a list of Uniprot accession numbers for the background set of genes. If omitted, the full list of genes in the .gaf file will be used.'
@@ -123,7 +124,8 @@ def main():
         type=float,
         default='0.05',
         dest='testing_limit',
-        help='P-value cut-off to use to stop GO tree propagation during enchrichment tests'
+        help=
+        'P-value cut-off to use to stop GO tree propagation during enchrichment tests'
     )
     parser.add_argument(
         '-p',
@@ -141,15 +143,14 @@ def main():
         'The type of multiple testing correction to use. Either "fdr" or "bonferroni".'
     )
     parser.add_argument(
-        '-v',
-        '--verbose',
-        action="store_true",
-        help='Verbose output.')
+        '-v', '--verbose', action="store_true", help='Verbose output.')
     parser.add_argument(
         '--no-propagation',
         action="store_false",
-        dest="propagation", # will be true by default
-        help='Disables propagation during testing. Use if only strictly associated terms should be tested.')
+        dest="propagation",  # will be true by default
+        help=
+        'Disables propagation during testing. Use if only strictly associated terms should be tested.'
+    )
     parser.add_argument(
         '--no-part-of',
         action="store_true",
@@ -198,14 +199,14 @@ def main():
         # and reduce the gene association files to these GO terms
         gafDict = gaf_parser.cleanGafTerms(gafDict, GOterms)
         gafSubset = gaf_parser.cleanGafTerms(gafSubset, GOterms)
-    # NOTE: terms belonging to unselected namespaces could still show up in
-    #       the child/parent attributes of existing terms (via part_of relations)
-    #       This can be prevented by either going through these attributes
-    #       or by always checking if a term is present in the dictionary before using it.
-    #       The second option is used in propagateParents() and a warning is
-    #       issued in the buildGOtree() function.
-    #       This means that the parent attribute might contain removed terms,
-    #       but the recursive_parent/child attributes do not.
+        # NOTE: terms belonging to unselected namespaces could still show up in
+        #       the child/parent attributes of existing terms (via part_of relations)
+        #       This can be prevented by either going through these attributes
+        #       or by always checking if a term is present in the dictionary before using it.
+        #       The second option is used in propagateParents() and a warning is
+        #       issued in the buildGOtree() function.
+        #       This means that the parent attribute might contain removed terms,
+        #       but the recursive_parent/child attributes do not.
 
         print(
             len(gafDict), 'out of', len(background),
@@ -220,8 +221,10 @@ def main():
         # the set objects themselves need to be filtered once more as well.
         # NOTE that this will output a long list of removed (unannotated) genes
         # to the screen.
-        background = genelist_importer.reportMissingGenes(background, gafDict, 'background')
-        interest = genelist_importer.reportMissingGenes(interest, gafSubset, 'interest')
+        background = genelist_importer.reportMissingGenes(
+            background, gafDict, 'background')
+        interest = genelist_importer.reportMissingGenes(
+            interest, gafSubset, 'interest')
 
     # Build full GO hierarchy
     root_nodes = obo_tools.set_namespace_root(args.namespace)
@@ -239,10 +242,18 @@ def main():
         for term in gafDict[gene]:
             if term not in GOterms and term not in to_remove:
                 to_remove.add(term)
-                print(f'{term} was missing from GO file.\nRemoving term from gene assocation file...\n')
+                print(
+                    f'{term} was missing from GO file.\nRemoving term from gene assocation file...\n'
+                )
     if to_remove:
-        gafDict = {gene: terms for gene, terms in gafDict.items() if gene not in to_remove}
-        gafSubset = {gene: terms for gene, terms in gafSubset.items() if gene not in to_remove}
+        gafDict = {
+            gene: terms
+            for gene, terms in gafDict.items() if gene not in to_remove
+        }
+        gafSubset = {
+            gene: terms
+            for gene, terms in gafSubset.items() if gene not in to_remove
+        }
 
     # Perform enrichment test
     print(
@@ -274,7 +285,3 @@ def main():
     # Save results
     print('\nSaving output to', args.outputFile)
     output.to_csv(args.outputFile)
-
-# Run as stand alone script
-if __name__ == '__main__':
-    main()
