@@ -1,4 +1,4 @@
-# GO enrichment analysis tools
+# goscripts - GO enrichment analysis tools
 
 A ready to use `python` script to perform GO enrichment tests by inputting a list of uniprot_kb accession numbers, an ontology (`.obo`) file and a gene association (`.gaf`) file.
 
@@ -6,23 +6,38 @@ The `goscripts` module contains further functionality to parse and manipulate `.
 
 ## Installation
 
+### Using the main enrichment test script without installing additional packages
+
 1) Download or clone this repository: `git clone git@github.com:pmoris/goscripts.git`
-    This is enough to simply run the main enrichment testing script: `python go_enrichment_script ...`
-    To install the additional functionalities for use in your own python scripts, the following steps are required:
-2) Optionally: create a new virtual or conda environment before installing: `conda create -n goenv`
-3) From within the main directory (where `setup.py` resides), run the following command: `pip install .`. This will install the goscripts module as a python package.
-4) You can now use the stand-alone go enrichment testing script by invoking
+2) Run the `go_enrichment_script.py`.
 
-    go_enrichment_script
+If you wish to move the script to another location, be sure to also copy the `goscripts` directory with it.
 
-on the command line.
-5) All additional functionality can be used in your own python scripts via an import statement:
+### Installing all `goscripts` functionality as a python package
 
-    import goscripts
+1) Optionally: create a new virtual or conda environment: `conda create -n goenv`
+2) Install the goscripts package:
+    * **Directly**:
+
+            pip install git+https://github.com/pmoris/goscripts.git
+
+    * **Manually**: Download or clone the repository and from within the main directory (where `setup.py` resides), let pip install the package:
+
+            git clone git@github.com:pmoris/goscripts.git
+            cd goscripts/
+            pip install . # don't forget the dot
+
+3) You can now use the stand-alone go enrichment testing script (which can be moved to any location) by invoking:
+
+        python go_enrichment_script.py
+
+4) All additional `goscripts` functionality can be used in your own python scripts via an import statement:
+
+        import goscripts
 
 ## Usage
 
-    usage: go_enrichment_script [-h] [-b BACKGROUND] -s SUBSET -o OBO -g GAF
+    usage: go_enrichment_script.py [-h] [-b BACKGROUND] -s SUBSET -o OBO -g GAF
                                 [-O OUTPUTFILE]
                                 [-n {all,biological_process,molecular_function,cellular_component}]
                                 [-m MINGENES] [-l TESTING_LIMIT] [-p THRESHOLD]
