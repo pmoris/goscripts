@@ -1,5 +1,5 @@
-goscripts - Python script and module for Gene Ontology enrichment analysis
-==========================================================================
+goscripts - Python script and package for Gene Ontology enrichment analysis
+===========================================================================
 
 The full documentation for this project is available at: https://pmoris.github.io/goscripts/
 
@@ -7,28 +7,32 @@ The full documentation for this project is available at: https://pmoris.github.i
 
 A ready to use ``python`` script to perform GO enrichment tests by
 inputting a list of uniprot\_kb accession numbers, an ontology
-(``.obo``) file and a gene association (``.gaf``) file.
+(``.obo``) file and a gene association (``.gaf``) file. No install required!
 
-The ``goscripts`` module contains further functionality to parse and
-manipulate ``.obo`` and ``.gaf`` files; e.g. retrieving parent/child
-terms by traversing the hierarchy, remapping a given set of GO terms to
-a specified depth, etc.
+The ``goscripts`` package provides further functionality to parse and
+manipulate ``.obo`` and ``.gaf`` files; e.g. it can be used for retrieving
+parent/child terms by traversing the ontology hierarchy, remapping a given
+set of GO terms to a specified depth, etc.
 
-Installation
-------------
+How to use
+----------
 
-Using the main enrichment test script without installing additional packages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Without installation
+~~~~~~~~~~~~~~~~~~~~
 
-1) Download or clone this repository:
+1) Download or clone the repository:
    ``git clone git@github.com:pmoris/goscripts.git``
-2) Run the ``go_enrichment_script.py``.
+2) Run the script:
+   ::
 
-If you wish to move the script to another location, be sure to also copy
-the ``goscripts`` directory with it.
+       python go_enrichment_script.py
 
-Installing all ``goscripts`` functionality as a python package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The script requires functionality stored inside the ``goscripts`` directory
+and expects to find this directory. Consequently, if you wish to move the
+script to a different location, be sure to also copy this directory with it.
+
+Installing the ``goscripts`` package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1) Optionally: create a new virtual or conda environment:
    ``conda create -n goenv``
@@ -50,8 +54,7 @@ Installing all ``goscripts`` functionality as a python package
           cd goscripts/
           pip install . # don't forget the dot
 
-3) You can now use the stand-alone go enrichment testing script (which
-   can be moved to any location) by invoking:
+3) You can now use the ``go_enrichment_script.py`` from any location:
 
    ::
 
@@ -63,9 +66,11 @@ Installing all ``goscripts`` functionality as a python package
    ::
 
        import goscripts
+       # or
+       from goscripts import gaf_parser
 
-Usage of enrichment test script
--------------------------------
+Using the GO enrichment test script
+-----------------------------------
 
 ::
 
@@ -153,8 +158,8 @@ returned. More information is available in the docstrings.
 
 --------------
 
-Usage of package
-----------------
+Using the package
+-----------------
 
 Simply import the main goscripts module and access its functions using
 the full path:

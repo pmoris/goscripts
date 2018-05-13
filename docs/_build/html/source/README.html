@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>goscripts - Python script and module for Gene Ontology enrichment analysis &mdash; goscripts 1.0 documentation</title>
+  <title>goscripts - Python script and package for Gene Ontology enrichment analysis &mdash; goscripts 1.0 documentation</title>
   
 
   
@@ -81,18 +81,18 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">goscripts - Python script and module for Gene Ontology enrichment analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#using-the-main-enrichment-test-script-without-installing-additional-packages">Using the main enrichment test script without installing additional packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installing-all-goscripts-functionality-as-a-python-package">Installing all <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> functionality as a python package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">goscripts - Python script and package for Gene Ontology enrichment analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#without-installation">Without installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-goscripts-package">Installing the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#usage-of-enrichment-test-script">Usage of enrichment test script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-go-enrichment-test-script">Using the GO enrichment test script</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#input-files">Input files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#usage-of-package">Usage of package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-package">Using the package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 </ul>
 </li>
@@ -142,7 +142,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>goscripts - Python script and module for Gene Ontology enrichment analysis</li>
+      <li>goscripts - Python script and package for Gene Ontology enrichment analysis</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,31 +161,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="goscripts-python-script-and-module-for-gene-ontology-enrichment-analysis">
-<h1>goscripts - Python script and module for Gene Ontology enrichment analysis<a class="headerlink" href="#goscripts-python-script-and-module-for-gene-ontology-enrichment-analysis" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="goscripts-python-script-and-package-for-gene-ontology-enrichment-analysis">
+<h1>goscripts - Python script and package for Gene Ontology enrichment analysis<a class="headerlink" href="#goscripts-python-script-and-package-for-gene-ontology-enrichment-analysis" title="Permalink to this headline">¶</a></h1>
 <p>The full documentation for this project is available at: <a class="reference external" href="https://pmoris.github.io/goscripts/">https://pmoris.github.io/goscripts/</a></p>
 <hr class="docutils" />
 <p>A ready to use <code class="docutils literal notranslate"><span class="pre">python</span></code> script to perform GO enrichment tests by
 inputting a list of uniprot_kb accession numbers, an ontology
-(<code class="docutils literal notranslate"><span class="pre">.obo</span></code>) file and a gene association (<code class="docutils literal notranslate"><span class="pre">.gaf</span></code>) file.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> module contains further functionality to parse and
-manipulate <code class="docutils literal notranslate"><span class="pre">.obo</span></code> and <code class="docutils literal notranslate"><span class="pre">.gaf</span></code> files; e.g. retrieving parent/child
-terms by traversing the hierarchy, remapping a given set of GO terms to
-a specified depth, etc.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="using-the-main-enrichment-test-script-without-installing-additional-packages">
-<h3>Using the main enrichment test script without installing additional packages<a class="headerlink" href="#using-the-main-enrichment-test-script-without-installing-additional-packages" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Download or clone this repository:
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:pmoris/goscripts.git</span></code></li>
-<li>Run the <code class="docutils literal notranslate"><span class="pre">go_enrichment_script.py</span></code>.</li>
-</ol>
-<p>If you wish to move the script to another location, be sure to also copy
-the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> directory with it.</p>
+(<code class="docutils literal notranslate"><span class="pre">.obo</span></code>) file and a gene association (<code class="docutils literal notranslate"><span class="pre">.gaf</span></code>) file. No install required!</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package provides further functionality to parse and
+manipulate <code class="docutils literal notranslate"><span class="pre">.obo</span></code> and <code class="docutils literal notranslate"><span class="pre">.gaf</span></code> files; e.g. it can be used for retrieving
+parent/child terms by traversing the ontology hierarchy, remapping a given
+set of GO terms to a specified depth, etc.</p>
+<div class="section" id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="without-installation">
+<h3>Without installation<a class="headerlink" href="#without-installation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Download or clone the repository:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:pmoris/goscripts.git</span></code></p>
+</li>
+<li><p class="first">Run the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">go_enrichment_script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
 </div>
-<div class="section" id="installing-all-goscripts-functionality-as-a-python-package">
-<h3>Installing all <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> functionality as a python package<a class="headerlink" href="#installing-all-goscripts-functionality-as-a-python-package" title="Permalink to this headline">¶</a></h3>
+</li>
+</ol>
+<p>The script requires functionality stored inside the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> directory
+and expects to find this directory. Consequently, if you wish to move the
+script to a different location, be sure to also copy this directory with it.</p>
+</div>
+<div class="section" id="installing-the-goscripts-package">
+<h3>Installing the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package<a class="headerlink" href="#installing-the-goscripts-package" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p class="first">Optionally: create a new virtual or conda environment:
 <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">goenv</span></code></p>
@@ -208,8 +214,7 @@ package:</p>
 </li>
 </ul>
 </li>
-<li><p class="first">You can now use the stand-alone go enrichment testing script (which
-can be moved to any location) by invoking:</p>
+<li><p class="first">You can now use the <code class="docutils literal notranslate"><span class="pre">go_enrichment_script.py</span></code> from any location:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">go_enrichment_script</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -217,14 +222,16 @@ can be moved to any location) by invoking:</p>
 <li><p class="first">All additional <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> functionality can be used in your own
 python scripts via an import statement:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">goscripts</span>
+<span class="c1"># or</span>
+<span class="kn">from</span> <span class="nn">goscripts</span> <span class="k">import</span> <span class="n">gaf_parser</span>
 </pre></div>
 </div>
 </li>
 </ol>
 </div>
 </div>
-<div class="section" id="usage-of-enrichment-test-script">
-<h2>Usage of enrichment test script<a class="headerlink" href="#usage-of-enrichment-test-script" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-go-enrichment-test-script">
+<h2>Using the GO enrichment test script<a class="headerlink" href="#using-the-go-enrichment-test-script" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">go_enrichment_script</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">b</span> <span class="n">BACKGROUND</span><span class="p">]</span> <span class="o">-</span><span class="n">s</span> <span class="n">SUBSET</span> <span class="o">-</span><span class="n">o</span> <span class="n">OBO</span> <span class="o">-</span><span class="n">g</span> <span class="n">GAF</span>
                             <span class="p">[</span><span class="o">-</span><span class="n">O</span> <span class="n">OUTPUTFILE</span><span class="p">]</span>
                             <span class="p">[</span><span class="o">-</span><span class="n">n</span> <span class="p">{</span><span class="nb">all</span><span class="p">,</span><span class="n">biological_process</span><span class="p">,</span><span class="n">molecular_function</span><span class="p">,</span><span class="n">cellular_component</span><span class="p">}]</span>
@@ -311,8 +318,8 @@ returned. More information is available in the docstrings.</p>
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="usage-of-package">
-<h2>Usage of package<a class="headerlink" href="#usage-of-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-package">
+<h2>Using the package<a class="headerlink" href="#using-the-package" title="Permalink to this headline">¶</a></h2>
 <p>Simply import the main goscripts module and access its functions using
 the full path:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">goscripts</span>
