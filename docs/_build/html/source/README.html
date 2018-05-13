@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Documentation for goscripts package" href="goscripts.html" />
+    <link rel="next" title="Package documentation" href="goscripts.html" />
     <link rel="prev" title="Welcome to goscripts’s documentation!" href="../index.html" /> 
 
   
@@ -82,7 +82,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">goscripts - Python script and package for Gene Ontology enrichment analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-get-started">How to get started</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#without-installation">Without installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-goscripts-package">Installing the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package</a></li>
 </ul>
@@ -92,11 +92,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-package">Using the package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="goscripts.html">Documentation for goscripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goscripts.html">Package documentation</a></li>
 </ul>
 
             
@@ -172,8 +171,8 @@ inputting a list of uniprot_kb accession numbers, an ontology
 manipulate <code class="docutils literal notranslate"><span class="pre">.obo</span></code> and <code class="docutils literal notranslate"><span class="pre">.gaf</span></code> files; e.g. it can be used for retrieving
 parent/child terms by traversing the ontology hierarchy, remapping a given
 set of GO terms to a specified depth, etc.</p>
-<div class="section" id="how-to-use">
-<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-get-started">
+<h2>How to get started<a class="headerlink" href="#how-to-get-started" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="without-installation">
 <h3>Without installation<a class="headerlink" href="#without-installation" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
@@ -188,7 +187,7 @@ set of GO terms to a specified depth, etc.</p>
 </ol>
 <p>The script requires functionality stored inside the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> directory
 and expects to find this directory. Consequently, if you wish to move the
-script to a different location, be sure to also copy this directory with it.</p>
+script to a different location, be sure to also copy this directory with it. Moreover, all <a class="reference internal" href="#dep-label"><span class="std std-ref">dependencies</span></a> should be installed.</p>
 </div>
 <div class="section" id="installing-the-goscripts-package">
 <h3>Installing the <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package<a class="headerlink" href="#installing-the-goscripts-package" title="Permalink to this headline">¶</a></h3>
@@ -315,22 +314,11 @@ skipped. Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing
 correction are applied to the test results. Finally, a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file
 containing all the GO terms that were evaluated and their p-values are
 returned. More information is available in the docstrings.</p>
-</div>
-</div>
 <hr class="docutils" />
-<div class="section" id="using-the-package">
-<h2>Using the package<a class="headerlink" href="#using-the-package" title="Permalink to this headline">¶</a></h2>
-<p>Simply import the main goscripts module and access its functions using
-the full path:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">goscripts</span>
-
-<span class="n">goscripts</span><span class="o">.</span><span class="n">buildGOtree</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</pre></div>
 </div>
 </div>
-<hr class="docutils" />
 <div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<span id="dep-label"></span><h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span>
 <span class="n">pandas</span>
 <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span>
@@ -350,7 +338,7 @@ the full path:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="goscripts.html" class="btn btn-neutral float-right" title="Documentation for goscripts package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="goscripts.html" class="btn btn-neutral float-right" title="Package documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="Welcome to goscripts’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

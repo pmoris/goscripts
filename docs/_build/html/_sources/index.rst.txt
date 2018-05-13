@@ -7,7 +7,7 @@ Welcome to goscripts's documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    source/README

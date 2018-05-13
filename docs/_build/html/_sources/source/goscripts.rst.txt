@@ -1,13 +1,10 @@
-Documentation for goscripts package
-===================================
+Package documentation
+===============================
 
 .. automodule:: goscripts
     :members:
     :undoc-members:
     :show-inheritance:
-
-Submodules
-----------
 
 .. toctree::
 

@@ -1,0 +1,7 @@
+goscripts
+=========
+
+.. toctree::
+   :maxdepth: 4
+
+   goscripts

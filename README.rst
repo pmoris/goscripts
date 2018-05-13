@@ -14,8 +14,8 @@ manipulate ``.obo`` and ``.gaf`` files; e.g. it can be used for retrieving
 parent/child terms by traversing the ontology hierarchy, remapping a given
 set of GO terms to a specified depth, etc.
 
-How to use
-----------
+How to get started
+------------------
 
 Without installation
 ~~~~~~~~~~~~~~~~~~~~
@@ -29,7 +29,7 @@ Without installation
 
 The script requires functionality stored inside the ``goscripts`` directory
 and expects to find this directory. Consequently, if you wish to move the
-script to a different location, be sure to also copy this directory with it.
+script to a different location, be sure to also copy this directory with it. Moreover, all :ref:`dependencies <dep-label>` should be installed.
 
 Installing the ``goscripts`` package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -158,19 +158,7 @@ returned. More information is available in the docstrings.
 
 --------------
 
-Using the package
------------------
-
-Simply import the main goscripts module and access its functions using
-the full path:
-
-::
-
-    import goscripts
-
-    goscripts.buildGOtree(...)
-
---------------
+.. _dep-label:
 
 Dependencies
 ------------
