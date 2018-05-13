@@ -1,5 +1,9 @@
 # goscripts - GO enrichment analysis tools
 
+The full documentation for this project is available at: 
+
+---
+
 A ready to use `python` script to perform GO enrichment tests by inputting a list of uniprot_kb accession numbers, an ontology (`.obo`) file and a gene association (`.gaf`) file.
 
 The `goscripts` module contains further functionality to parse and manipulate `.obo` and `.gaf` files; e.g. retrieving parent/child terms by traversing the hierarchy, remapping a given set of GO terms to a specified depth, etc.
@@ -35,7 +39,7 @@ If you wish to move the script to another location, be sure to also copy the `go
 
         import goscripts
 
-## Usage
+## Usage of enrichment test script
 
     usage: go_enrichment_script.py [-h] [-b BACKGROUND] -s SUBSET -o OBO -g GAF
                                 [-O OUTPUTFILE]
@@ -87,7 +91,7 @@ If you wish to move the script to another location, be sure to also copy the `go
 
 See the statsmodels documentation for an overview of all available multiple testing correction procedures: [http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests](http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests).
 
-## Input files
+### Input files
 
 * Ontology .obo files are described and available at the [Gene Ontology Consortium](http://www.geneontology.org/page/download-ontology).
 * The gene association file format is described at the [Gene Ontology Consortium](http://www.geneontology.org/page/go-annotation-file-formats) and made available by EBI at the [GOA ftp site](https://www.ebi.ac.uk/GOA/downloads).
@@ -98,9 +102,19 @@ See the statsmodels documentation for an overview of all available multiple test
     P12345
     A0A022YWF9
 
-## Details
+### Details
 
 Performs one-sided hypergeometric tests, starting from the most specific (child) GO terms associated with the genes in the set of interest. If the p-value of the test does not fall below the specified significance level alpha, the test will be carried out for all of the term's parent terms, otherwise the process will terminate. This method attempts to limit the total number of tests that need to be carried out, since a term that is enriched will likely also have enriched parent terms. Furthermore, GO terms associated with a small number of genes are skipped. Next, the Benjamini-Hochberg FDR or Bonferroni multiple testing correction are applied to the test results. Finally, a `.csv` file containing all the GO terms that were evaluated and their p-values are returned. More information is available in the docstrings.
+
+---
+
+## Usage of package
+
+Simply import the main goscripts module and access its functions using the full path:
+
+    import goscripts
+
+    goscripts.buildGOtree(...)
 
 ---
 
