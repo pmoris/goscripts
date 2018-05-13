@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>goscripts.enrichment_stats module &mdash; goscripts 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goscripts.gaf_parser module" href="goscripts.gaf_parser.html" />
+    <link rel="prev" title="Documentation for goscripts package" href="goscripts.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> goscripts
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">About the GO enrichment script</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="goscripts.html">Documentation for goscripts package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="goscripts.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">goscripts.enrichment_stats module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.gaf_parser.html">goscripts.gaf_parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.genelist_importer.html">goscripts.genelist_importer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.obo_tools.html">goscripts.obo_tools module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">goscripts</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="goscripts.html">Documentation for goscripts package</a> &raquo;</li>
+        
+      <li>goscripts.enrichment_stats module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/goscripts.enrichment_stats.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-goscripts.enrichment_stats">
+<span id="goscripts-enrichment-stats-module"></span><h1>goscripts.enrichment_stats module<a class="headerlink" href="#module-goscripts.enrichment_stats" title="Permalink to this headline">¶</a></h1>
+<p>&#64;author: Pieter Moris</p>
+<dl class="function">
+<dt id="goscripts.enrichment_stats.annotateOutput">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">annotateOutput</code><span class="sig-paren">(</span><em>enrichmentTestResults</em>, <em>GOdict</em>, <em>gafDict</em>, <em>gafSubset</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.annotateOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the GO id names to the array with enrichment results.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>enrichmentTestResults</strong> (<em>dict of dicts</em>) – A dictionary containing dictionaries mapping the GO IDs to their frequency counts
+for both the interest and background set.</li>
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.</li>
+<li><strong>gafDict</strong> (<em>dict</em>) – A dictionary mapping the background’s gene Uniprot AC’s to GO IDs.</li>
+<li><strong>gafSubset</strong> (<em>dict</em>) – A dictionary mapping the subset’s gene Uniprot AC’s to GO IDs.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A pandas DataFrame containing GO IDs, descriptions, frequency counts and p-values and corrected p-values.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DataFrame</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.enrichment_stats.countGOassociations">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">countGOassociations</code><span class="sig-paren">(</span><em>validTerms</em>, <em>gafDict</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.countGOassociations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the number of genes associated with at least one of the provided GO terms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>validTerms</strong> (<em>set</em>) – A set of GO terms. Should include the GO id of interest and all of its children.</li>
+<li><strong>gafDict</strong> (<em>dict</em>) – A dictionary mapping gene Uniprot AC’s to GO IDs.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The number of associated genes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.enrichment_stats.enrichmentAnalysis">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">enrichmentAnalysis</code><span class="sig-paren">(</span><em>GOdict</em>, <em>gafDict</em>, <em>gafSubset</em>, <em>minGenes=3</em>, <em>threshold=0.05</em>, <em>propagation=True</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.enrichmentAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a GO enrichment analysis.</p>
+<p>First, all GO term IDs associated with the genes in the subset of interest,
+i.e. those defined in the gafSubset dictionary, will be tested using a
+one-sided hypergeometric test.</p>
+<p>If the test is not significant at the chosen threshold (default = 0.05),
+the test will recursively be performed for all of the GO term’s parents.
+NOTE: these p-values <em>are</em> counted for multiple testing correction.
+If the test is significant, the recursive call will stop the propagation.</p>
+<p>NOTE: At the moment, this means the test will be propagated until the top level,
+but after a certain point it might not be worth testing anymore (e.g. “biological process”).
+NOTE: Isn’t this cherry picking / p-value manipulation?</p>
+<p>If the number of genes associated with a GO term is lower than minGenes,
+the test will be skipped for this term and its parents will recursively be tested.
+NOTE: these do not count towards the multiple testing correction limit.</p>
+<p>For each test, the number of genes associated with the GO term is found
+by counting the number of genes associated with the GO term itself or
+with any of its child terms.</p>
+<p>In the end, a dictionary containing the tested GO IDs mapped to p-values is returned.
+Any term that was not tested will be absent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.</li>
+<li><strong>gafDict</strong> (<em>dict</em>) – A dictionary mapping the background’s gene Uniprot AC’s to GO IDs.</li>
+<li><strong>gafSubset</strong> (<em>dict</em>) – A dictionary mapping the subset’s gene Uniprot AC’s to GO IDs.</li>
+<li><strong>minGenes</strong> (<em>int</em>) – The minimum number of genes that has to be associated with a term,
+before the test will be performed.</li>
+<li><strong>threshold</strong> (<em>float</em>) – The threshold of the hypergeometric test for which the GO term’s
+parents will not be further recursively tested for enrichment.</li>
+<li><strong>propagation</strong> (<em>boolean</em>) – Specifies whether or not tests should propagate upwards through the tree.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary of dictionaries mapping GO IDs to p-values and frequencies.
+Only GO IDs that were tested are returned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict of dicts</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.enrichment_stats.enrichmentOneSided">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">enrichmentOneSided</code><span class="sig-paren">(</span><em>subsetGO</em>, <em>backgroundTotal</em>, <em>backgroundGO</em>, <em>subsetTotal</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.enrichmentOneSided" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a one-sided (enrichment) hypergeometric test for a given GO term.</p>
+<p>k or more successes (= GO associations = subsetGO) in N draws (= subsetTotal)
+from a population of size M (backgroundTotal) containing n successes (backgroundGO)
+k or more is the sum of the probability mass functions of k up to N successes
+since cdf gives the cumulative probability up and including input (less or equal to k successes),
+and we want P(k or more), we need to calculate 1 - P(less than k) =  1 - P(k-1 or less)
+sf is the survival function (1-cdf).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>subsetGO</strong> (<em>int</em>) – The number of genes in the interest subset associated with a GO term.</li>
+<li><strong>backgroundTotal</strong> (<em>int</em>) – The total number of genes in the background set.</li>
+<li><strong>backgroundGO</strong> (<em>int</em>) – The number of genes in the background set associated with the GO term.</li>
+<li><strong>subsetTotal</strong> (<em>int</em>) – The total number of genes in the interest subset.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The p-value of the one-sided hypergeometric test.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.enrichment_stats.multipleTestingCorrection">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">multipleTestingCorrection</code><span class="sig-paren">(</span><em>enrichmentTestResults</em>, <em>testType='fdr_bh'</em>, <em>threshold=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.multipleTestingCorrection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the original enrichmentTestResults dictionary of dictionaries by appending
+an additional dictionary mapping GO ids to corrected p-values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>enrichmentTestResults</strong> (<em>dict of dicts</em>) – An dictionary of dictionaries mapping GO ids to p-values and counts.</li>
+<li><strong>testType</strong> (<em>str</em>) – Specifies the type of multiple correction.
+Options include: <cite>bonferroni</cite> and <cite>fdr_bh</cite> (Benjamini Hochberg)
+and any others defined by
+statsmodels.stats.multitest.multipletests().</li>
+<li><strong>threshold</strong> (<em>float</em>) – The significance level to use.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Modifies the provided enrichmenTestResults dictionary in-place.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.enrichment_stats.recursiveTester">
+<code class="descclassname">goscripts.enrichment_stats.</code><code class="descname">recursiveTester</code><span class="sig-paren">(</span><em>GOid</em>, <em>backgroundTotal</em>, <em>subsetTotal</em>, <em>GOdict</em>, <em>gafDict</em>, <em>gafSubset</em>, <em>minGenes</em>, <em>threshold</em>, <em>enrichmentTestResults</em>, <em>propagation</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.enrichment_stats.recursiveTester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the recursive enrichment tests for the enrichmentAnalysis() function
+by propagating through parent terms in case of an insignificant result or low
+gene count.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>GOid</strong> (<em>str</em>) – The GO term id that is being tested for enrichment.</li>
+<li><strong>backgroundTotal</strong> (<em>int</em>) – The total number of genes in the background set.</li>
+<li><strong>subsetTotal</strong> (<em>int</em>) – The total number of genes in the subset of interest.</li>
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.</li>
+<li><strong>gafDict</strong> (<em>dict</em>) – A dictionary mapping the background’s gene Uniprot AC’s to GO IDs.</li>
+<li><strong>gafSubset</strong> (<em>dict</em>) – A dictionary mapping the subset’s gene Uniprot AC’s to GO IDs.</li>
+<li><strong>minGenes</strong> (<em>int</em>) – The minimum number of genes that has to be associated with</li>
+<li><strong>threshold</strong> (<em>float</em>) – The threshold of the hypergeometric test for which the GO term’s
+parents will not be further recursively tested for enrichment.</li>
+<li><strong>enrichmentTestResults</strong> (<em>dict of dicts</em>) – An dictionary of dictionaries that gets passed through the recursion and
+filled with mappings of GO ids to p-values and frequencies for every enrichment test.</li>
+<li><strong>propagation</strong> (<em>boolean</em>) – Specifies whether or not tests should propagate upwards through the tree.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>Does not return anything, but fills in the passed pValues dictionary (which is nested</em></li>
+<li><em>in the enrichmentTestResults dictionary).</em></li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="goscripts.gaf_parser.html" class="btn btn-neutral float-right" title="goscripts.gaf_parser module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="goscripts.html" class="btn btn-neutral" title="Documentation for goscripts package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pieter Moris.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

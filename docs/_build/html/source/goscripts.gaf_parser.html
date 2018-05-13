@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>goscripts.gaf_parser module &mdash; goscripts 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goscripts.genelist_importer module" href="goscripts.genelist_importer.html" />
+    <link rel="prev" title="goscripts.enrichment_stats module" href="goscripts.enrichment_stats.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> goscripts
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">About the GO enrichment script</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="goscripts.html">Documentation for goscripts package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="goscripts.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="goscripts.enrichment_stats.html">goscripts.enrichment_stats module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">goscripts.gaf_parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.genelist_importer.html">goscripts.genelist_importer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.obo_tools.html">goscripts.obo_tools module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">goscripts</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="goscripts.html">Documentation for goscripts package</a> &raquo;</li>
+        
+      <li>goscripts.gaf_parser module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/goscripts.gaf_parser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-goscripts.gaf_parser">
+<span id="goscripts-gaf-parser-module"></span><h1>goscripts.gaf_parser module<a class="headerlink" href="#module-goscripts.gaf_parser" title="Permalink to this headline">¶</a></h1>
+<p>&#64;author: Pieter Moris</p>
+<dl class="function">
+<dt id="goscripts.gaf_parser.cleanGafTerms">
+<code class="descclassname">goscripts.gaf_parser.</code><code class="descname">cleanGafTerms</code><span class="sig-paren">(</span><em>gafDict</em>, <em>filteredGOdict</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.gaf_parser.cleanGafTerms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove GO terms that do not belong to the chosen namespace, from the gaf dictionary.
+Also removes genes entirely if none of their associated terms belong to the namespace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gafDict</strong> (<em>dict of str mapping to set</em>) – A dictionary mapping gene Uniprot AC’s (str) to a set GO term IDs.
+Generated by importGAF().</li>
+<li><strong>filteredGOdict</strong> – A filtered dictionary of GO objects all belonging to the same namespace.
+Generated by obo_tools.importOBO() followed by obo_tools.filterOnNamespace().</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The gaf dictionary after removal of GO terms belonging to different namespaces.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">filteredGafDict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.gaf_parser.createSubsetGafDict">
+<code class="descclassname">goscripts.gaf_parser.</code><code class="descname">createSubsetGafDict</code><span class="sig-paren">(</span><em>subset</em>, <em>gafDict</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.gaf_parser.createSubsetGafDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a dictionary mapping the subset’s gene Uniprot AC’s to the GO IDs,
+based on the provided gene subset and the gaf dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>subset</strong> (<em>set of str</em>) – A subset of Uniprot ACs of interest.</li>
+<li><strong>gafDict</strong> (<em>dict of str mapping to set</em>) – A dictionary mapping gene Uniprot AC’s (str) to a set GO IDs.
+Generated by importGAF().</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary mapping the subset’s gene Uniprot AC’s to GO IDs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict of str mapping to set</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.gaf_parser.importGAF">
+<code class="descclassname">goscripts.gaf_parser.</code><code class="descname">importGAF</code><span class="sig-paren">(</span><em>path</em>, <em>geneSet</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.gaf_parser.importGAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports a GAF file (gene association format) and generates a dictionary mapping the gene Uniprot AC to the GO ID.
+Only imports genes which are present in the provided (background) gene set, if one is provided.</p>
+<dl class="docutils">
+<dt>Information on the GAF 2.1 format can be found at</dt>
+<dd><a class="reference external" href="http://geneontology.org/page/go-annotation-file-gaf-format-21">http://geneontology.org/page/go-annotation-file-gaf-format-21</a></dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) – The path to the file.</li>
+<li><strong>geneSet</strong> (<em>set</em>) – A set containing the Uniprot AC’s of all the genes under consideration (background).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul>
+<li><p class="first"><em>dict of str mapping to set</em> – A dictionary mapping gene Uniprot AC’s (str) to a set GO IDs.</p>
+</li>
+<li><p class="first"><em>Possible improvements</em> – Check for <cite>is_obsolete</cite> and <cite>replaced_by</cite>, although the replacement term should be in OBO file as an entry.</p>
+<dl class="docutils">
+<dt>Check for inclusion in provided gene set afterwards using:</dt>
+<dd><p class="first last">gafDict = {key: value for key, value in gafDict.items() if key in geneSet }</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="goscripts.genelist_importer.html" class="btn btn-neutral float-right" title="goscripts.genelist_importer module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="goscripts.enrichment_stats.html" class="btn btn-neutral" title="goscripts.enrichment_stats module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pieter Moris.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

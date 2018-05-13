@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>goscripts.obo_tools module &mdash; goscripts 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="goscripts.genelist_importer module" href="goscripts.genelist_importer.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> goscripts
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">About the GO enrichment script</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="goscripts.html">Documentation for goscripts package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="goscripts.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="goscripts.enrichment_stats.html">goscripts.enrichment_stats module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.gaf_parser.html">goscripts.gaf_parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goscripts.genelist_importer.html">goscripts.genelist_importer module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">goscripts.obo_tools module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">goscripts</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="goscripts.html">Documentation for goscripts package</a> &raquo;</li>
+        
+      <li>goscripts.obo_tools module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/goscripts.obo_tools.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-goscripts.obo_tools">
+<span id="goscripts-obo-tools-module"></span><h1>goscripts.obo_tools module<a class="headerlink" href="#module-goscripts.obo_tools" title="Permalink to this headline">¶</a></h1>
+<p>&#64;author: Pieter Moris</p>
+<dl class="function">
+<dt id="goscripts.obo_tools.assign_depth">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">assign_depth</code><span class="sig-paren">(</span><em>node</em>, <em>GOdict</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.assign_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursive function to assign depth to node and all of its children.</p>
+<p>Starting from the root node of a directed acyclic graph (i.e. the gene ontology hierarchy), provided that all
+nodes have their child nodes as an attribute, the depth of each node will be set.
+Note: the minimal depth is always assigned. The depth of the root node is set to zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node</strong> (<em>goTerm object</em>) – The GO node that is the starting point for the recursive assignment, normally the root nodes of the
+three GO ontologies.</li>
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.</li>
+<li><strong>depth</strong> (<em>int</em>) – The current depth of the recursion, assigned to each node as its depth in the hierarchy.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Modifies the goTerm objects’ depth attribute inplace.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.buildGOtree">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">buildGOtree</code><span class="sig-paren">(</span><em>GOdict</em>, <em>root_nodes</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.buildGOtree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the entire GO tree’s parent structure by walking through the hierarchy of each GO entry.</p>
+<p>Performs four main functions:
+A) assign all higher order ancestors (recursive parents) for each GO object
+B) assign immediate children
+C) assign all recursively found children
+D) assign depth to each node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.</li>
+<li><strong>root_nodes</strong> (<em>list</em>) – A list of nodes that lie at the root of the gene ontologies. These form the starting point for the
+recursive function that walks through the directed acyclic graph and assigns depths to each GO term/node.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The input GO dictionary will be updated in place.
+Each term object’s parent attributes now trace back over the full tree hierarchy.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.completeChildHierarchy">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">completeChildHierarchy</code><span class="sig-paren">(</span><em>GOdict</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.completeChildHierarchy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the entire GO tree’s child structure.</p>
+<p>By iterating over the parents of each GO object, each term’s recursive_children attribute will be filled with
+a set of all recursively found child terms.</p>
+<p>NOTE: completeParentsHierarchy() must be run prior to this function!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to OBO objects.
+The recursive_parents attribute of the GO objects must be complete.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Updates the provided GO dictionary inplace so that for each GO term object the “children” attribute points
+to the immediate children of the GO term and the “recursive_children” attribute traces back over the full
+GO hierarchy.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.filterOnNamespace">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">filterOnNamespace</code><span class="sig-paren">(</span><em>GOdict</em>, <em>namespace</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.filterOnNamespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces the dictionary of goTerm objects to those belonging to a specific namespace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to goTerm objects.</li>
+<li><strong>namespace</strong> (<em>str</em>) – The namespace to restrict the GO dictionary and enrichment test to. E.g. biological_process, cellular_component
+or molecular_function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A filtered dictionary of GO objects all belonging to the namespace.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="goscripts.obo_tools.goTerm">
+<em class="property">class </em><code class="descclassname">goscripts.obo_tools.</code><code class="descname">goTerm</code><span class="sig-paren">(</span><em>GOid</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.goTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>GO term object.</p>
+<p>Stores the ID, name and domain of the GO term and contains dictionaries for child and parent nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.id" title="goscripts.obo_tools.goTerm.id"><strong>id</strong></a> (<em>str</em>) – The identifier of the GO term.</li>
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.alt_id" title="goscripts.obo_tools.goTerm.alt_id"><strong>alt_id</strong></a> (<em>str</em>) – Optional tag for an alternative id.</li>
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.name" title="goscripts.obo_tools.goTerm.name"><strong>name</strong></a> (<em>str</em>) – The GO term name.</li>
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.namespace" title="goscripts.obo_tools.goTerm.namespace"><strong>namespace</strong></a> (<em>str</em>) – The domain of the GO term (Cellular Component, Molecular Function or Biological Process).</li>
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.parents" title="goscripts.obo_tools.goTerm.parents"><strong>parents</strong></a> (<em>set of str</em>) – The parent terms of the GO term, as indicated by the <cite>is_a</cite> relationship.</li>
+<li><a class="reference internal" href="#goscripts.obo_tools.goTerm.children" title="goscripts.obo_tools.goTerm.children"><strong>children</strong></a> (<em>set of str</em>) – The child terms of the GO term, derived from other GO terms after a complete OBO file is processed initially.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p># <a class="reference external" href="https://stackoverflow.com/questions/1336791/dictionary-vs-object-which-is-more-efficient-and-why">https://stackoverflow.com/questions/1336791/dictionary-vs-object-which-is-more-efficient-and-why</a>
+# <a class="reference external" href="https://stackoverflow.com/questions/3489071/in-python-when-to-use-a-dictionary-list-or-set">https://stackoverflow.com/questions/3489071/in-python-when-to-use-a-dictionary-list-or-set</a>
+# When you want to store some values which you’ll be iterating over, Python’s list constructs are slightly faster.
+# However, if you’ll be storing (unique) values in order to check for their existence, then sets are significantly faster.
+‘’‘</p>
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.alt_id">
+<code class="descname">alt_id</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.alt_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.children">
+<code class="descname">children</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.children" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.depth">
+<code class="descname">depth</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.goCount">
+<code class="descname">goCount</code><em class="property"> = 0</em><a class="headerlink" href="#goscripts.obo_tools.goTerm.goCount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.id">
+<code class="descname">id</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.name">
+<code class="descname">name</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.namespace">
+<code class="descname">namespace</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.namespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.parents">
+<code class="descname">parents</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.parents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.recursive_children">
+<code class="descname">recursive_children</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.recursive_children" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="goscripts.obo_tools.goTerm.recursive_parents">
+<code class="descname">recursive_parents</code><a class="headerlink" href="#goscripts.obo_tools.goTerm.recursive_parents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.importOBO">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">importOBO</code><span class="sig-paren">(</span><em>path</em>, <em>ignore_part_of</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.importOBO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports an OBO file and generates a dictionary containing an goTerm object for each GO term.</p>
+<p>Every entry that is referred to via either “is_a” or “relationship: part_of” is considered
+a parent of the referring entry.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) – The path to the file.</li>
+<li><strong>ignore_part_of</strong> (<em>bool</em>) – A boolean indicating whether or not the “part_of” relationship should be ignored.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>dict of goTerm objects</em> – Keys are of the format <cite>GO-0000001</cite> and map to goTerm objects..</li>
+<li><em>Possible improvements</em> – Check for <cite>is_obsolete</cite> and <cite>replaced_by</cite>, although the replacement term should be in OBO file as an entry.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.propagateParents">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">propagateParents</code><span class="sig-paren">(</span><em>currentTerm</em>, <em>baseGOid</em>, <em>GOdict</em>, <em>parentSet</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.propagateParents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagates through the parent hierarchy of a provided GO term to create a set of all higher order parents.</p>
+<p>Each term’s recursive_parents attribute will be filled with all recursively found parent terms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>currentTerm</strong> (<em>str</em>) – The GO id that is being visited.</li>
+<li><strong>baseGOid</strong> (<em>str</em>) – The original GO term id for which the search for its parents was started.</li>
+<li><strong>GOdict</strong> (<em>dict</em>) – A dictionary of GO objects generated by importOBO().
+Keys are of the format <cite>GO-0000001</cite> and map to goTerm objects.</li>
+<li><strong>parentSet</strong> (<em>set</em>) – An, initially, empty set that gets passed through the recursion.
+It tracks the entire recursive group of parent terms of the original base GO id (i.e. the starting point
+of the function call).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Updates the parentSet set inplace so that it contains all the (recursive) parents for the baseGOid.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="goscripts.obo_tools.set_namespace_root">
+<code class="descclassname">goscripts.obo_tools.</code><code class="descname">set_namespace_root</code><span class="sig-paren">(</span><em>namespace</em><span class="sig-paren">)</span><a class="headerlink" href="#goscripts.obo_tools.set_namespace_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the GO ID for the root of the selected namespace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>namespace</strong> (<em>str</em>) – A string containing the desired namespace. E.g. biological_process, cellular_component
+or molecular_function.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The list of GO ID’s of the root terms of the selected namespace.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="goscripts.genelist_importer.html" class="btn btn-neutral" title="goscripts.genelist_importer module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pieter Moris.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
