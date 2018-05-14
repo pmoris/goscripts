@@ -1,10 +1,13 @@
-Package documentation
-===============================
+goscripts package
+=================
 
 .. automodule:: goscripts
     :members:
     :undoc-members:
     :show-inheritance:
+
+Submodules
+----------
 
 .. toctree::
 

@@ -10,9 +10,15 @@ inputting a list of uniprot\_kb accession numbers, an ontology
 (``.obo``) file and a gene association (``.gaf``) file. No install required!
 
 The ``goscripts`` package provides further functionality to parse and
-manipulate ``.obo`` and ``.gaf`` files; e.g. it can be used for retrieving
-parent/child terms by traversing the ontology hierarchy, remapping a given
-set of GO terms to a specified depth, etc.
+manipulate ``.obo`` and ``.gaf`` files; e.g.
+
+-  Parsing ``.obo`` `gene ontology files <http://www.geneontology.org/page/download-ontology>`_
+   in order to retrieve child/parent terms: ``goscripts.obo_tools``
+-  Remapping gene ontology terms to a specified depth: ``goscripts.obo_tools``
+-  Parse ``.gaf`` `gene association files <http://www.geneontology.org/page/go-annotation-file-formats>`_:
+   ``goscripts.gaf_parser``
+-  Performing an enrichment test using various multiple testing correction
+   procedures (provided by `statsmodels <http://www.statsmodels.org/stable/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests>`_): ``goscripts.enrichment_stats``
 
 How to get started
 ------------------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to goscripts’s documentation! &mdash; goscripts 1.0 documentation</title>
+  <title>goscripts - Python script and package for Gene Ontology enrichment analysis &mdash; goscripts 1.0 documentation</title>
   
 
   
@@ -81,7 +81,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="source/README.html">goscripts - Python script and package for Gene Ontology enrichment analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/goscripts.html">Package documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/goscripts.html">goscripts package</a></li>
 </ul>
 
             
@@ -127,7 +127,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to goscripts’s documentation!</li>
+      <li>goscripts - Python script and package for Gene Ontology enrichment analysis</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,8 +146,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-goscripts-s-documentation">
-<h1>Welcome to goscripts’s documentation!<a class="headerlink" href="#welcome-to-goscripts-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="goscripts-python-script-and-package-for-gene-ontology-enrichment-analysis">
+<h1>goscripts - Python script and package for Gene Ontology enrichment analysis<a class="headerlink" href="#goscripts-python-script-and-package-for-gene-ontology-enrichment-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="welcome-to-goscripts-s-documentation">
+<h2>Welcome to goscripts’s documentation!<a class="headerlink" href="#welcome-to-goscripts-s-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The full documentation for this project is available at: <a class="reference external" href="https://pmoris.github.io/goscripts/">https://pmoris.github.io/goscripts/</a></p>
+<hr class="docutils" />
+<p>A ready to use <code class="docutils literal notranslate"><span class="pre">python</span></code> script to perform GO enrichment tests by
+inputting a list of uniprot_kb accession numbers, an ontology
+(<code class="docutils literal notranslate"><span class="pre">.obo</span></code>) file and a gene association (<code class="docutils literal notranslate"><span class="pre">.gaf</span></code>) file. No install required!</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">goscripts</span></code> package provides further functionality to parse and
+manipulate <code class="docutils literal notranslate"><span class="pre">.obo</span></code> and <code class="docutils literal notranslate"><span class="pre">.gaf</span></code> files; e.g.</p>
+<ul class="simple">
+<li>Parsing <code class="docutils literal notranslate"><span class="pre">.obo</span></code> <a class="reference external" href="http://www.geneontology.org/page/download-ontology">gene ontology files</a>
+in order to retrieve child/parent terms: <code class="docutils literal notranslate"><span class="pre">goscripts.obo_tools</span></code></li>
+<li>Remapping gene ontology terms to a specified depth: <code class="docutils literal notranslate"><span class="pre">goscripts.obo_tools</span></code></li>
+<li>Parse <code class="docutils literal notranslate"><span class="pre">.gaf</span></code> <a class="reference external" href="http://www.geneontology.org/page/go-annotation-file-formats">gene association files</a>:
+<code class="docutils literal notranslate"><span class="pre">goscripts.gaf_parser</span></code></li>
+<li>Performing an enrichment test using various multiple testing correction
+procedures (provided by <a class="reference external" href="http://www.statsmodels.org/stable/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests">statsmodels</a>): <code class="docutils literal notranslate"><span class="pre">goscripts.enrichment_stats</span></code></li>
+</ul>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -165,14 +183,18 @@
 <li class="toctree-l2"><a class="reference internal" href="source/README.html#dependencies">Dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source/goscripts.html">Package documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source/goscripts.enrichment_stats.html">goscripts.enrichment_stats module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/goscripts.gaf_parser.html">goscripts.gaf_parser module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/goscripts.genelist_importer.html">goscripts.genelist_importer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/goscripts.obo_tools.html">goscripts.obo_tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/goscripts.html">goscripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/goscripts.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/goscripts.enrichment_stats.html">goscripts.enrichment_stats module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/goscripts.gaf_parser.html">goscripts.gaf_parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/goscripts.genelist_importer.html">goscripts.genelist_importer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/goscripts.obo_tools.html">goscripts.obo_tools module</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

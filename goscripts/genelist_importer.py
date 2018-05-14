@@ -9,7 +9,7 @@ import os
 
 def importGeneList(path):
     """
-    Imports the interest/background set of genes (Uniprot AC).
+    Imports the interest/background set (Uniprot AC).
 
     Parameters
     ----------
