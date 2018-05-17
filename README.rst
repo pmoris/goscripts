@@ -18,7 +18,7 @@ manipulate ``.obo`` and ``.gaf`` files; e.g.
 -  Parse ``.gaf`` `gene association files <http://www.geneontology.org/page/go-annotation-file-formats>`_:
    ``goscripts.gaf_parser``
 -  Performing an enrichment test using various multiple testing correction
-   procedures (provided by `statsmodels <http://www.statsmodels.org/stable/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests>`_): ``goscripts.enrichment_stats``
+   procedures (provided by `statsmodels <http://www.statsmodels.org/dev/_modules/statsmodels/stats/multitest.html>`_): ``goscripts.enrichment_stats``
 
 How to get started
 ------------------
@@ -130,7 +130,7 @@ Using the GO enrichment test script
 
 See the statsmodels documentation for an overview of all available
 multiple testing correction procedures:
-http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests.
+http://www.statsmodels.org/dev/_modules/statsmodels/stats/multitest.html.
 
 Input files
 ~~~~~~~~~~~
