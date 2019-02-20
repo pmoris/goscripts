@@ -75,6 +75,20 @@ Installing the ``goscripts`` package
        # or
        from goscripts import gaf_parser
 
+Downloading required ontologies and annotations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Example for human data:
+
+::
+
+    # Ontology file
+    wget http://purl.obolibrary.org/obo/go.obo destination/directory
+    # Annotation file
+    wget ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/HUMAN/goa_human.gaf.gz destination/directory
+    gunzip destination/directory/goa_human.gaf.gz
+
+
 Using the GO enrichment test script
 -----------------------------------
 
@@ -175,6 +189,15 @@ Dependencies
     pandas
     scipy.stats
     statsmodels.stats.multitest
+
+--------------
+
+Similar projects
+----------------
+
+-   https://github.com/tanghaibao/goatools
+-   https://github.com/jdrudolph/goenrich
+-   https://www.psb.ugent.be/cbd/papers/BiNGO/Home.html
 
 --------------
 
